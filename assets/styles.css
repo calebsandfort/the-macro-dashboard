@@ -1,0 +1,17 @@
+.card-header-font{
+    font-size: 1.7rem;
+}
+
+#main_tabs .nav-item{
+    font-size: 1.7rem;
+}
+
+@media (min-width: 2000px) {
+    .modal-xl {
+        max-width:1940px
+    }
+}
+
+#asset-modal-header{
+    justify-content: center;
+}
