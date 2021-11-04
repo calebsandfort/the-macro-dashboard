@@ -1,0 +1,5 @@
+data/*
+!data/UniverseInfo.csv
+portfolios/
+__pycache__/
+.spyproject/
