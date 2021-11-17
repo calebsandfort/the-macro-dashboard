@@ -28,6 +28,24 @@ def calcHvZScore(data, window):
 
     return (hvMean - mean)/std
 
+def calcZScore(data, col, window = None, is_negative = False):
+    col_values = data[col]
+    
+    if is_negative:
+        col_values = col_values * -1.0
+    
+    mean = None
+    std = None
+    
+    if window is None:
+        mean = col_values.mean()
+        std = col_values.std()
+    else:
+        mean = col_values.rolling(window=window).mean()
+        std = col_values.rolling(window=window).std()
+
+    return (col_values - mean)/std
+
 def getTrend(data, lowColumn, highColumn, closeColumn, period): 
      lowestLow = data[lowColumn].rolling(period).min();
      highestHigh = data[highColumn].rolling(period).max();

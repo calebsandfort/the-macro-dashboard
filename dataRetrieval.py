@@ -108,6 +108,15 @@ def GetTdaData(stockTicker, periodType, frequencyType, frequency, startDate, end
 
 # tda_daily_data = GetTdaData("XLE", 'month', 'daily', 1, startDate, endDate, False)
 
+def GetDataFromCsv(tickers):
+    data = {}
+    
+    for ticker in tickers:
+        file_path = "data/{0}.csv".format(ticker);
+        data[ticker] = pd.read_csv(file_path, index_col="datetime", parse_dates=True)
+    
+    return data
+
 def DownloadYahooData(ticker, startDate, endDate):
     data = yf.download(ticker, start = startDate.strftime("%Y-%m-%d"), end = endDate.strftime("%Y-%m-%d"), progress = False)
     

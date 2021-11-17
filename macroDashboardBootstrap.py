@@ -21,12 +21,14 @@ import json
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import plotly.express as px
+import constants
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.CYBORG])
 
 RV_BINS = 9
 
 empty_portfolios = portUtils.initializePortfolios()
+rosetta_stone = constants.grids
 
 market_snapshot_assets = [
     {"ticker": "SPY", "display": "SPY"},
@@ -199,40 +201,62 @@ inflationColor = "#FF0000"
 deflationColor = "#002060"
 
 
-def get_positions_table(portfolio_name, positions):
+def get_assets_table(table_name, assets, is_portfolio = True):
     columns = [
         dict(id='Ticker', name='Ticker'),
         dict(id='Name', name='Name'),
-        dict(id='Weight', name='Weight', type='numeric',
+        ]
+    
+    if is_portfolio:
+        columns.extend([ dict(id='Weight', name='Weight', type='numeric',
              format={"specifier": ".2%"}),
-        # dict(id='Quantity', name='Quantity', type='numeric',
-        #      format={"specifier": ".0f"}),
-        # dict(id='Entry', name='Entry', type='numeric',
-        #      format={"specifier": "$.2f"}),
         dict(id='PnL', name='P/L Open', type='numeric',
              format={"specifier": ".2%"}),
-        # dict(id='BBBot', name='BB Bot', type='numeric',
-        #      format={"specifier": "$.2f"}),
-        dict(id='Last', name='Last', type='numeric',
-             format={"specifier": "$.2f"}),
-        dict(id='Chg1D', name='Chg 1D', type='numeric',
-             format={"specifier": ".2%"}),
-        dict(id='BBPos', name='BB Pos', type='numeric',
-             format={"specifier": ".2f"}),
-        dict(id='VolumeDesc', name='Volume'),
-        dict(id='TradeEmoji', name='Trade'),
-        dict(id='TrendEmoji', name='Trend'),
-        dict(id='MomoEmoji', name='Momo'),
-        # dict(id='BBTop', name='BB Top', type='numeric',
-        #      format={"specifier": "$.2f"}),
-        dict(id='RV1M', name='RV 1M', type='numeric',
-             format={"specifier": ".1f"}),
-        dict(id='RV1W', name='RV 1W', type='numeric',
-             format={"specifier": ".1f"}),
-        dict(id='RV1D', name='RV 1D', type='numeric',
-             format={"specifier": ".1f"}),
-        dict(id='RV', name='RV', type='numeric',
-             format={"specifier": ".1f"}),
+        ])
+        
+    columns.extend([dict(id='Last', name='Last', type='numeric',
+         format={"specifier": "$.2f"}),
+    dict(id='Chg1D', name='Chg 1D', type='numeric',
+         format={"specifier": ".2%"}),
+    dict(id='Chg1W', name='Chg 1W', type='numeric',
+         format={"specifier": ".2%"}),
+    dict(id='Chg1M', name='Chg 1M', type='numeric',
+         format={"specifier": ".2%"}),
+    dict(id='Chg3M', name='Chg 3M', type='numeric',
+         format={"specifier": ".2%"}),
+    
+    dict(id='Chg1D_zs', name='Chg 1D ZS', type='numeric',
+         format={"specifier": ".1f"}),
+    dict(id='Chg1W_zs', name='Chg 1W ZS', type='numeric',
+         format={"specifier": ".1f"}),
+    dict(id='Chg1M_zs', name='Chg 1M ZS', type='numeric',
+         format={"specifier": ".1f"}),
+    dict(id='Chg3M_zs', name='Chg 3M ZS', type='numeric',
+         format={"specifier": ".1f"}),
+    
+    
+    dict(id='BBPos', name='BB Pos', type='numeric',
+         format={"specifier": ".2f"}),
+    dict(id='VolumeDesc', name='Volume'),
+    dict(id='TradeEmoji', name='Trade'),
+    dict(id='TrendEmoji', name='Trend'),
+    dict(id='MomoEmoji', name='Momo'),
+
+    
+
+    dict(id='RV1M', name='RV 1M', type='numeric',
+         format={"specifier": ".1f"}),
+    dict(id='RV1W', name='RV 1W', type='numeric',
+         format={"specifier": ".1f"}),
+    dict(id='RV1D', name='RV 1D', type='numeric',
+         format={"specifier": ".1f"}),
+    dict(id='RV', name='RV', type='numeric',
+         format={"specifier": ".1f"}),
+    ])
+        
+        
+        
+        
         # dict(id='CostBasis', name='CB', type='numeric',
         #      format={"specifier": "$.2f"}),
         # dict(id='CurrentValue', name='CV', type='numeric',
@@ -241,9 +265,9 @@ def get_positions_table(portfolio_name, positions):
         # dict(id='Factor', name='Factor/Sector'),
         # dict(id='Exposure', name='Cap/Exposure'),
         # dict(id='GRID', name='GRID')
-    ]
 
-    dff = pd.read_json(positions, orient='split')
+
+    dff = pd.read_json(assets, orient='split') if type(assets) == str else assets
 
     dff["IsBullTrend"] = dff["Last"] > dff["Trend"]
     dff['TrendEmoji'] = dff['IsBullTrend'].apply(lambda x: '✔️' if x else '❌')
@@ -300,20 +324,64 @@ def get_positions_table(portfolio_name, positions):
             },
             'color': redColor
         },
-        {
-            'if': {
-                'filter_query': '{Chg1D} > 0 and {Chg1D} != 0.0001',
-                'column_id': 'Chg1D'
-            },
-            'color': greenColor
-        },
-        {
-            'if': {
-                'filter_query': '{Chg1D} < 0 and {Chg1D} != 0.0001',
-                'column_id': 'Chg1D'
-            },
-            'color': redColor
-        },
+        # {
+        #     'if': {
+        #         'filter_query': '{Chg1D} > 0 and {Chg1D} != 0.0001',
+        #         'column_id': 'Chg1D'
+        #     },
+        #     'color': greenColor,
+        #     'fontWeight': 'bold'
+        # },
+        # {
+        #     'if': {
+        #         'filter_query': '{Chg1D} < 0 and {Chg1D} != 0.0001',
+        #         'column_id': 'Chg1D'
+        #     },
+        #     'color': redColor,
+        #     'fontWeight': 'bold'
+        # },
+        # {
+        #     'if': {
+        #         'filter_query': '{Chg1W} > 0 and {Chg1W} != 0.0001',
+        #         'column_id': 'Chg1W'
+        #     },
+        #     'color': greenColor
+        # },
+        # {
+        #     'if': {
+        #         'filter_query': '{Chg1W} < 0 and {Chg1W} != 0.0001',
+        #         'column_id': 'Chg1W'
+        #     },
+        #     'color': redColor
+        # },
+        # {
+        #     'if': {
+        #         'filter_query': '{Chg1M} > 0 and {Chg1M} != 0.0001',
+        #         'column_id': 'Chg1M'
+        #     },
+        #     'color': greenColor
+        # },
+        # {
+        #     'if': {
+        #         'filter_query': '{Chg1M} < 0 and {Chg1M} != 0.0001',
+        #         'column_id': 'Chg1M'
+        #     },
+        #     'color': redColor
+        # },
+        # {
+        #     'if': {
+        #         'filter_query': '{Chg3M} > 0 and {Chg3M} != 0.0001',
+        #         'column_id': 'Chg3M'
+        #     },
+        #     'color': greenColor
+        # },
+        # {
+        #     'if': {
+        #         'filter_query': '{Chg3M} < 0 and {Chg3M} != 0.0001',
+        #         'column_id': 'Chg3M'
+        #     },
+        #     'color': redColor
+        # },
         {
             'if': {'column_id': 'TrendEmoji'},
             'textAlign': 'center'
@@ -396,6 +464,16 @@ def get_positions_table(portfolio_name, positions):
     for col in ['RV', 'RV1D', 'RV1W', 'RV1M']:
         styles.extend(portUtils.get_column_cmap_values(dff, col, -2.0, 2.0, cmap='RdYlGn', reverse=True, low=0, high=0,
                                                        st_threshold_1=1.0, st_threshold_2=-1.0, white_threshold_1=1.0, white_threshold_2=-1.0))
+        
+    for col in ['Chg1D', 'Chg1W', 'Chg1M', 'Chg3M']:
+        styles.extend(portUtils.get_column_cmap_values(dff[dff[col] > 0.0], col, -1.0, 2.0, cmap='Greens', reverse=False, low=0, high=0,
+                                                   st_threshold_1=0.0, st_threshold_2=-3.0, white_threshold_1=0.0, white_threshold_2=-4.0,
+                                                   data_col=f"{col}_zs", inverse_text_color_rule = False))
+
+    for col in ['Chg1D', 'Chg1W', 'Chg1M', 'Chg3M']:
+        styles.extend(portUtils.get_column_cmap_values(dff[dff[col] < 0.0], col, -1.0, 2.0, cmap='Reds', reverse=False, low=0, high=0,
+                                                   st_threshold_1=0.0, st_threshold_2=-3.0, white_threshold_1=0.0, white_threshold_2=-4.0,
+                                                   data_col=f"{col}_zs", inverse_text_color_rule = False))
 
     # print(portUtils.get_column_cmap_values(dff, 'BBPos', 0.0, 1.0, cmap='RdYlGn', reverse=False, low=0, high=0,
     #                                                    st_threshold_1=0.25, st_threshold_2=0.75, white_threshold_1=0.25, white_threshold_2=0.75))
@@ -406,16 +484,17 @@ def get_positions_table(portfolio_name, positions):
     styles.append({
         'if': {
             'filter_query': '{Ticker} = "Cash"',
-            'column_id': ['Last', 'Chg1D', 'PnL', 'RV', 'RV1D', 'RV1W', 'RV1M', 'BBPos', 'TrendEmoji', 'TradeEmoji', 'MomoEmoji']
+            'column_id': ['Last', 'Chg1D', 'Chg1W', 'Chg1M', 'Chg3M', 'PnL', 'RV', 'RV1D', 'RV1W', 'RV1M', 'BBPos', 'TrendEmoji', 'TradeEmoji', 'MomoEmoji']
         },
         'color': 'transparent',
         'backgroundColor': 'transparent'
     })
 
-    positionsDataTable = DataTable(
-        id="{}_assets_data_table".format(portfolio_name.replace(" ", "_")),
+    assetsDataTable = DataTable(
+        id="{}_assets_data_table".format(table_name.replace(" ", "_")),
         data=dff.to_dict("records"),
         columns=columns,
+        hidden_columns=['Chg1D_zs', 'Chg1W_zs', 'Chg1M_zs', 'Chg3M', 'Chg3M_zs'],
         css=[{"selector": ".dash-spreadsheet-menu", "rule": "display: none"}],
         sort_action='native',
         style_header=data_table_style_header_dict,
@@ -423,14 +502,10 @@ def get_positions_table(portfolio_name, positions):
         style_data_conditional=styles
     )
 
-    return positionsDataTable
+    return assetsDataTable
 
 
 def get_portfolio_card(portfolio_name, portfolio):
-    #get_positions_table(portfolio_name, portfolio['positions']),
-
-    #print(portfolio['total_value'], portfolio['yday_value'])
-
     card_header_children = []
 
     if portfolio['total_value'] == portfolio['yday_value']:
@@ -454,8 +529,8 @@ def get_portfolio_card(portfolio_name, portfolio):
             dbc.CardBody(
                 [
                     html.Div(
-                        [get_positions_table(
-                            portfolio_name, portfolio['positions'])]
+                        [get_assets_table(
+                            portfolio_name, portfolio['assets'])]
                     )
                 ]
             )
@@ -467,15 +542,15 @@ def get_portfolio_card(portfolio_name, portfolio):
 
 
 def get_main_content(portfolios):
-    tabs = dbc.Tabs(
-    [
-        dbc.Tab(get_portfolios_tab_content(portfolios), id="portfolio_tab", label="Portfolios"),
-        dbc.Tab("Sector/Style Factors", id="sector_style_factor_tab", label="Sector/Style Factors"),
-        dbc.Tab("Goldilocks", id="goldilocks_tab", label="Goldilocks"),
-        dbc.Tab("Reflation", id="reflation_tab", label="Reflation"),
-        dbc.Tab("Inflation", id="inflation_tab", label="Inflation"),
-        dbc.Tab("Deflation", id="deflation_tab", label="Deflation")
-    ], id="main_tabs")
+    tabs_array = []
+    tabs_array.append(dbc.Tab(get_portfolios_tab_content(portfolios), id="portfolio_tab", label="Portfolios"))
+    
+    # TODO
+    # tabs_array.append(dbc.Tab("Sector/Style Factors", id="sector_style_factor_tab", label="Sector/Style Factors"))
+    
+    tabs_array.extend(get_grid_tabs())
+    
+    tabs = dbc.Tabs(tabs_array, id="main_tabs")
 
     return tabs
 
@@ -491,6 +566,29 @@ def get_portfolios_tab_content(portfolios):
 
     return portfolio_cards
 
+def get_grid_tabs():
+    return [dbc.Tab(get_grid_tab_content(key, None), id=f"{key}_tab", label=key) for key in rosetta_stone]
+
+def get_grid_tab_content(tab_key, asset_tables):
+    
+    table_cards = []
+    
+    for table in rosetta_stone[tab_key]:
+        card = dbc.Card(
+            [
+                getCardHeader(table['title'], table['outlookClass']),
+                dbc.CardBody(
+                    [
+                        html.Div(tab_key)
+                    ]
+                )
+            ],
+            className="mb-3"
+        )
+        
+        table_cards.append(card)
+    
+    return table_cards
 
 def get_asset_modal_contents():
     return
@@ -516,7 +614,7 @@ app.layout = html.Div(
                   data=portUtils.initializePortfolios()),
         dcc.Store(id='asset-modal-store', data=""),
         dbc.Modal([
-            dbc.ModalHeader("Test", id="asset-modal-header"),
+            dbc.ModalHeader("Test", id="asset-modal-header", className = "bg-info"),
             dbc.ModalBody(
                 dcc.Graph(id="asset-modal-candlestick-graph")
             ),
@@ -946,7 +1044,12 @@ def update_market_snapshot_data_table(jsonified_big_board_data):
     [Input("portfolio-interval", "n_intervals")],
     [State("portfolio-store", "data")])
 def update_portfolio_store(n, previous_portfolios):
-    updated_portfolios = portUtils.updatePortfolios(previous_portfolios)
+    # TODO
+    portUtils.update_asset_dfs(previous_portfolios, rosetta_stone)
+    #portUtils.update_asset_dfs(previous_portfolios, {})
+    
+    updated_portfolios = portUtils.updateAssetTables(previous_portfolios)
+    
     return updated_portfolios
 
 
