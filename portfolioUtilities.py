@@ -67,41 +67,41 @@ def initialize_asset_df(from_df, is_portfolio = False, ticker_list = None):
     if is_portfolio and "Cash" in from_df.index.values:
         totalCash += from_df.at["Cash", "Entry"]
     
-    tickers.append("Cash")
-    quantities.append(1.0)
-    entries.append(totalCash)
-    lasts.append(totalCash)
-    previouses.append(0.0)
-    costBasii.append(totalCash)
-    currentValues.append(totalCash)
-    ydayValues.append(totalCash)
-    weights.append(0.0)
-    pnls.append(0.0)
-    chg1d.append(0.0)
-    chg1w.append(0.0)
-    chg1m.append(0.0)
-    chg3m.append(0.0)
-    chg1d_zs.append(0.0)
-    chg1w_zs.append(0.0)
-    chg1m_zs.append(0.0)
-    chg3m_zs.append(0.0)
-    names.append("Cash")
-    assetClasses.append("Cash")
-    universes.append("Cash")
-    factors.append("Cash")
-    exposures.append("Cash")
-    grids.append("Cash")
-    rvs.append(0.0)
-    rvs1d.append(0.0)
-    rvs1w.append(0.0)
-    rvs1m.append(0.0)
-    trends.append(0.0)
-    trades.append(0.0)
-    momos.append(0.0)
-    bbbs.append(0.0)
-    bbts.append(0.0)
-    bbps.append(0.0)
-    volumeDescs.append('')
+        tickers.append("Cash")
+        quantities.append(1.0)
+        entries.append(totalCash)
+        lasts.append(totalCash)
+        previouses.append(0.0)
+        costBasii.append(totalCash)
+        currentValues.append(totalCash)
+        ydayValues.append(totalCash)
+        weights.append(0.0)
+        pnls.append(0.0)
+        chg1d.append(0.0)
+        chg1w.append(0.0)
+        chg1m.append(0.0)
+        chg3m.append(0.0)
+        chg1d_zs.append(0.0)
+        chg1w_zs.append(0.0)
+        chg1m_zs.append(0.0)
+        chg3m_zs.append(0.0)
+        names.append("Cash")
+        assetClasses.append("Cash")
+        universes.append("Cash")
+        factors.append("Cash")
+        exposures.append("Cash")
+        grids.append("Cash")
+        rvs.append(0.0)
+        rvs1d.append(0.0)
+        rvs1w.append(0.0)
+        rvs1m.append(0.0)
+        trends.append(0.0)
+        trades.append(0.0)
+        momos.append(0.0)
+        bbbs.append(0.0)
+        bbts.append(0.0)
+        bbps.append(0.0)
+        volumeDescs.append('')
     
     for i in ticker_list:
         if i != "SDBA Cash" and i != "Cash":
@@ -208,10 +208,11 @@ def initializeTabData():
     temp_df = None
     
     for grid in rosetta_stone:
-        for title in rosetta_stone[grid]:
-            temp_df = initialize_asset_df(None, False, rosetta_stone[grid][title]["tickers"])
+        tab_data_frames[grid] = {}
+        for table in rosetta_stone[grid]:
+            temp_df = initialize_asset_df(None, False, table["tickers"])
             
-            tab_data_frames[grid][title] = temp_df.to_json(date_format='iso', orient='split')
+            tab_data_frames[grid][table["title"]] = temp_df.to_json(date_format='iso', orient='split')
             
     return tab_data_frames
 
@@ -301,39 +302,47 @@ def initializePortfolios():
 
 # def create_asset_data_table
 
-def update_asset_dfs(portfolios, rosetta_stone):
+def update_asset_dfs(data_store):
     startDate = datetime.datetime.strptime('2020-05-01', '%Y-%m-%d')
     endDate = datetime.datetime.today()
     
+    temp = None
     allTickers = []
     
-    for key in portfolios:
-        temp = pd.read_json(portfolios[key]['assets'], orient='split')
+    for key in data_store["portfolios"]:
+        temp = pd.read_json(data_store["portfolios"][key]['assets'], orient='split')
         allTickers.extend(x for x in temp.index.values if x not in allTickers and x != 'Cash')
     
-    for grid in rosetta_stone:
-        for table in rosetta_stone[grid]:
-            allTickers.extend(x for x in table["tickers"] if x not in allTickers and x != 'Cash')
-    
-    #print(", ".join(allTickers))
+    for tab in data_store["tabData"]:
+        for table_name in data_store["tabData"][tab]:
+            temp = pd.read_json(data_store["tabData"][tab][table_name], orient='split')
+            allTickers.extend(x for x in temp.index.values if x not in allTickers and x != 'Cash')
     
     dr.GetTdaDataForTickers(allTickers, 'month', 'daily', 1, startDate, endDate, False, True)
 
-def updateAssetTables(asset_tables):
+def updateAssetTables(data_store):
     # startDate = datetime.datetime.strptime('2020-05-01', '%Y-%m-%d')
     # endDate = datetime.datetime.today()
     
     allTickers = []
-    asset_table_dfs = {}
+    portfolio_table_dfs = {}
 
-    for key in asset_tables:
-        asset_table_dfs[key] =pd.read_json(asset_tables[key]['assets'], orient='split')
-        allTickers.extend(x for x in asset_table_dfs[key].index.values if x not in allTickers and x != 'Cash')
+    for key in data_store["portfolios"]:
+        portfolio_table_dfs[key] = pd.read_json(data_store["portfolios"][key]['assets'], orient='split')
+        allTickers.extend(x for x in portfolio_table_dfs[key].index.values if x not in allTickers and x != 'Cash')
     
+    tabData_table_dfs = {}
+    
+    for tab in data_store["tabData"]:
+        tabData_table_dfs[tab] = {}
+        for table_name in data_store["tabData"][tab]:
+            tabData_table_dfs[tab][table_name] = pd.read_json(data_store["tabData"][tab][table_name], orient='split')
+            allTickers.extend(x for x in tabData_table_dfs[tab][table_name].index.values if x not in allTickers and x != 'Cash')
+
     data = dr.GetDataFromCsv(allTickers)
     
-    for key in asset_table_dfs:
-        asset_table = asset_table_dfs[key]       
+    for key in portfolio_table_dfs:
+        asset_table = portfolio_table_dfs[key]       
         
         for ticker in asset_table.index.values:
             if ticker != 'Cash':
@@ -348,19 +357,29 @@ def updateAssetTables(asset_tables):
         total_value = asset_table["CurrentValue"].sum()
         asset_table["Weight"] = asset_table["CurrentValue"] / total_value
     
-        asset_tables[key] = {"assets": asset_table.to_json(date_format='iso', orient='split'),
+        data_store["portfolios"][key] = {"assets": asset_table.to_json(date_format='iso', orient='split'),
                            "total_value": total_value,
                            "yday_value": asset_table["YdayValue"].sum()
                            }
     
-    #print(allTickers)
+    for tab in tabData_table_dfs:
+        for table_name in tabData_table_dfs[tab]:
+            asset_table = tabData_table_dfs[tab][table_name]
+            
+            #print(tab, ", ", table_name, ", ", ",".join(asset_table.index.values))
+            
+            for ticker in asset_table.index.values:
+                asset_table.at[ticker, 'Last'] = data[ticker]['close'][-1]
+                # asset_table.at[ticker, 'CurrentValue'] = asset_table.at[ticker, 'Last'] * asset_table.at[ticker, 'Quantity']
+                # asset_table.at[ticker, 'YdayValue'] = data[ticker]['close'][-2] * asset_table.at[ticker, 'Quantity']
+                # asset_table.at[ticker, 'PnL'] = (data[ticker]['close'][-1] / asset_table.at[ticker, 'Entry']) - 1.0
+                
+                data, asset_table = apply_technicals_to_asset_df(ticker, data, asset_table)
+                    
+                data_store["tabData"][tab][table_name] = asset_table.to_json(date_format='iso', orient='split')
+              
     
-    # allTickers = list(ftMacroTickers)
-
-    # benchmarkTickers = ['SPY', 'VTI', 'IEI', 'GSG', 'VEU', 'EEM', 'BND']
-    # allTickers.extend(x for x in benchmarkTickers if x not in allTickers)
-    
-    return asset_tables
+    return data_store
 
 
 def apply_technicals_to_asset_df(ticker, data, asset_df):

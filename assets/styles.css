@@ -15,3 +15,7 @@
 #asset-modal-header{
     justify-content: center;
 }
+
+#eth-btc-comparison-modal text[style*="font-size: 9px"] {
+    font-size: 0 !important;
+}

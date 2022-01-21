@@ -6,13 +6,16 @@ Created on Mon Sep 20 14:18:35 2021
 """
 import datetime
 import pandas as pd
+import numpy as np
 import requests
 import json
 import yfinance as yf  
 from os.path import exists
+import constants
+#from Historic_Crypto import HistoricalData
 
-tda_client_id = "CGO9BSW7QI4SAOTB2RP9AUCY8QFFMQ47"
-tda_refresh_token = "ECjfrFDrUJqaV5en1SKtjWmBhNIR63agz7f9JJzPvlnI8Ap9o4jvXo4hyp4LtIvGoRx/BP3c40PtiO6lscgE8gJBhcBxeFSt9Hg1qsBgyybsOMeuxStjFj/pT2vBrXgu9AK01xdsD+GcARst68kgmNEf3culaK+0B/iCtktMCz3R93+wyXiA4SWfmCL+sC1g37BjHSkYndPoRof+YUpnabNR/hvsexc+Uur8Xos7V169JNH7YU/iZPUmIEaL2DCTR2TGvamCyyjO8VLG7zVdjsfML7e1C6Iyfwt/GcBDVveZD6CAjLHVU32VviCas8/d7GuDLoVHCXCJJux3EGqitvAZbZfXUkRpo8rXvWZirqBtYSfFOK8XveZZt8mCvMEugV4Or2q9lBnlfdljAfC9Wj67HDcPuaxnNC8DNlCBG6mSYO6k7MOmXWeKxJl100MQuG4LYrgoVi/JHHvlv/CNqO1IleGCXuLlF4Yxt0tVBNH0lW/JCTO4iheqN6qTCnbAoO/LAJ2RiqQBWMPYR8IiN/oiI2xxeWS4V/jhxORhjHV12D0XlW3jE1ZxLYCU1bbpXmiS0fJIa35Adfie2P5bh/dOZXb5V/yvbOyeITpNz0tXUaTBdlHz7G6jZct8x4EKrx28kG7BJRdemnvNUCjnzdZCvsZ4Zra/+b98pDwjkCsXaePJBRFANb4MKHfjiNLg5qT9lZ3cp0QyuJQ9G7Z/ifLrpyQxgvG3HU6iS+pjOH62cTKoTkJxYtgvC3xmSk5xD545cZP3ohJITe6MVw0XlKO8a/K6eR9mUGKZOMLcpkAF8zb3pK3Dn2zQvBnnH2fVUMzaMPlJhhfCzXXGJqMP4eIdpEOHCRtG1NZUb8Zwbu6MA6iPEs/jyyzimbGV9f5MhXA9DJf1vBA=212FD3x19z9sWBHDJACbC00B75E",
+tda_client_id = "1W2ETS0ETWQBSTRLIARCBLZJACHJYICG"
+tda_refresh_token = "vuKpt8gS8BOFVJwM5jtELMhf4n24kogk4dlisS+VBAUxGv3hqjDmU6W4XMhhYZkVBUA1XvXI6HtAgcfmCEqONGqZON3YeZkF6PniyiV2TiiAylLd24jk+uWQ84wl/RWrBLhtPHkn0Qq2Rh97CI2aJF2Ly6cN50jjj9bbXtFFWTVWmvnZezmXbJUcJ8/3b2tT8Bn8M18Hc4VcWrqM3cSQtBvrN5SRapVg3DCxXUhy6D2Ta1GF1FUpFZcL4YjXr21OP6tOm4Zg8TR0SD62v2QIpyqK+6KfkqEsw9an8Zt5tm19gBNIfRIW7cDlAgz9wyCJPOpuYyjplhbGtXT2IEneDh+1FIJ4fHb++82uVQIwErCVBvA/jpPVrchS75f5+TmSMpezQe09HTeueOmiNo3O/m9LF0I3mXL7OYbG2OTTR0S8AHVyQHu5DVsGzJ7100MQuG4LYrgoVi/JHHvlGPckCSU1q2cLjnw/BKHj3ydPTwc9RAKxbt6HqMKp0KrrGTZxMW6Y5KWUlapmA1OAUSh51tTy4MtJd136eO3bE1hOitYO3blyVM/Fm2DZ6WFAF3gK+tI4dVeRDbog9JfWc2taU7mzF1cJzyoas6dZ1ztealijWVcKqIQdLqJvqQoucDiRSy7ojbX6WkB685n+uphJSWXXuC4E1JCL+4PHO5ue4em2VLk8ClWYqXB+v/DPOXHgaat0PVHv3L19d+9wLVhPwT0CAxDNgUxyjO2Sak5S7/v1f8Jkj8HXVEJXlHLYR4gU1uQdYPQ7VW/07OlyLvD9OJTyRXpivWiI5w8y6qHiU/pO78do27bL6E2etHuchRzTq2MSBr/3hKXGfQ77zl6AzdBDNEBOzKjgOQnLb+wpuZCHcqxlResXCUxsYebq+Ehig/+Mecib0RA=212FD3x19z9sWBHDJACbC00B75E",
 #tda_access_token = "WrYYDRo0c7DcKuNNBO1YZL/DvAG7beI1/b2STi7u+wQxdBY9f+6nk+1X0u0JeC4jKQZ/8xThMxJeRFRwr+xNZqtckWHDoEao/rtWqoRKx4UQaCJcHJkxRjEcOe/dlTdB72iFxGjUe1MG1f/Uhd5nN0yks+GHLteqc5rmVrMzGVuBhpWP1Oc4HWucMn0LEGiy4fX5pxghy0W46tFRZ6pv9U8fyVqLlwfzs0JkRCu/k16bMJUkCOXH/hDuH5YOsaBYcZoOrlf1VbZySJkdAF6EVezUWXT3sRLZWXnoH+Fd+ZwX5hUfNY/4981gkIjrbhDwLk5Ma6v3iEjUSavwCPVHJp8Ako58DksF1WatQQUPKi/S74IUH3u1AtIWV6VJSciklgu/RWOLtQTw+Fg+5b3dhygq7XpxKDJCDG5IFXZqj1KA4IZsCjVSaVx2p3pJStnAmpq3PpGPUSSpGkz32zA72s9oobP5R1QX6TXX6RC4QKFgmxkVyvKr1vXeB25WNaomhlMY1kFupUWSwMI4J+/YOwaktiH17apyb9wCs6xzAaHv9GPQlA1oqe2XVen100MQuG4LYrgoVi/JHHvl3GzfqTlQqSuxCH3ZO82OAvYZk0B17ue59FTMYru3DKdV+JhqI3ESnmisiIbTIRcVFrqmBv0eb7wo9z8K3D3gjQeWmHWVd0ZTuXpAXhmH89UEjkLRPBiIIppwZssb93AslXtJRCtgPqxaByIhSxim5wntM/xYkGg5Vr7QsaZPmCUs9RGx4BZP4tbbU/urSpe0eGuMPckKS0tgT7iFq5gWkp/QiBNyshO/MApULpjNJFxH9qz5WiwmBfyzqVIROAE2cezKh69wXeeKTaRig+6IGk66HDkVQzwYNfiMe5LnJqUoBxvKQYEXST3WdAIh2rImXZ/N22u5dHJwZAJMhB8MzQRSJTuela8xSbV7C1smm6CBBzOSTQ5Q6iDZW8QS0qqMQoei+B1tOE89A2Tg4US1uQDe4riZfHGu3X56rC33kyKVhOotfsUVdhS/QJpJQ7C4/eR6mSM3uY8c5bBN949d+bS9u4t4Hxg8tBe5qPeqAOpsz97O7iAaSf+2Y7of223NBffhkNQVSiUtI3bTUwcgQwN7mberkRrDsezNkzSjplScAOEahJvd/Bh4BPA=212FD3x19z9sWBHDJACbC00B75E"
 
 def getAccessToken():
@@ -130,4 +133,94 @@ def DownloadYahooData(ticker, startDate, endDate):
     
     return df
 
-#vix_data = DownloadYahooData("^RVX", startDate, endDate)
+def getEthBtcCompDf():
+    # endDate = datetime.date.today() + datetime.timedelta(days=1)
+    # startDate = (endDate - datetime.timedelta(days=10))
+    
+    
+    # btcStartDate = datetime.datetime.strptime('2012-03-01', '%Y-%m-%d')
+    # ethStartDate = datetime.datetime.strptime('2016-06-01', '%Y-%m-%d')
+    # endDate = datetime.date.today() + datetime.timedelta(days=1)
+
+    btcData = getTiingoCryptoData("btcusd", '2012-02-01')
+    ethData = getTiingoCryptoData("ethusd", '2016-04-18')
+    
+    # btcData = getTiingoCryptoData("btcusd", '2012-03-01')
+    # ethData = getTiingoCryptoData("ethusd", '2016-06-01')
+    
+    comp_df_index = [ethData.index.values[0]]
+    
+    for i in range(1, len(btcData)):
+        comp_df_index.append(comp_df_index[i-1] + np.timedelta64(1,'D'))
+    
+    comp_df = pd.DataFrame(index = comp_df_index)
+    comp_df["BTC"] = np.nan
+    comp_df["ETH"] = np.nan
+    
+    for i in range(len(btcData)):
+        comp_df.iat[i, 0] = btcData.iat[i, 0]
+        
+    ethData_index = ethData.index.values
+        
+    for i in range(len(ethData)):
+        comp_df.iat[i, 1] = ethData.iat[i, 0]
+        #print(ethData_index[i])
+    
+    return comp_df
+
+def getTiingoCryptoData(ticker, startDate):
+    
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization' : 'Token 75c2738ee800320f770e0205110e626c6ac7220b'
+        }
+    
+    requestResponse = requests.get(f"https://api.tiingo.com/tiingo/crypto/prices?tickers={ticker}&startDate={startDate}&resampleFreq=1day&token=75c2738ee800320f770e0205110e626c6ac7220b", headers=headers)
+    
+    #content = json.loads(page.content)
+    content = requestResponse.json()
+    
+    df = pd.DataFrame(content[0]["priceData"])
+    df.set_index(df['date'].apply(lambda x: datetime.datetime.strptime(x.replace("T00:00:00+00:00", ""), "%Y-%m-%d").date()).astype('datetime64'), inplace=True)
+    df.drop(['date', 'high', 'low', 'open', 'tradesDone', 'volume', 'volumeNotional'], inplace=True, axis = 1)
+    
+    return df
+    
+
+def getOneMillionActiveAddresses(arr):
+    dates = [];
+    activeAddresses = []
+    
+    for pair in arr:
+        dates.append(datetime.datetime.strptime(pair[0], "%Y-%m-%d").date())
+        activeAddresses.append(pair[1])
+        
+    df = pd.DataFrame(index = dates)
+    df["ActiveAddresses"] = activeAddresses
+    df["AggregateActiveAddresses"] = df["ActiveAddresses"].rolling(30).sum()
+    
+    return df[df["AggregateActiveAddresses"] > 950000]
+
+#ethMill = getOneMillionActiveAddresses(constants.ethDailyActiveAddresses)
+#btcMill = getOneMillionActiveAddresses(constants.btcDailyActiveAddresses)
+
+#temp = getTiingoCryptoData("ethusd", '2016-04-18')
+#temp = getEthBtcCompDf()      
+
+#temp1 = getTiingoCryptoData("btcusd")
+#temp2 = getTiingoCryptoData("ethusd")
+   
+# def historicCryptoTest():
+#     df = HistoricalData('BTC-USD',86400,'2012-03-01-00-00').retrieve_data()
+    
+#     return df
+
+# 7l8rmlz2yd
+
+# pBI/G8fM13bIOLDTg19qRqSMdHXLlykClDw+I/6l//PlR8yNiq1rSq1lSvjnrP6wTmFt/dZkjagPXg+cQKchzw==
+
+#temp = getEthBtcCompDf()
+#temp = historicCryptoTest()
+
+
+# cbf01b35-7ba0-4eda-a2b3-74d2ac0f88f8

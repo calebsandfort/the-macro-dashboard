@@ -27,7 +27,7 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.CYBORG])
 
 RV_BINS = 9
 
-empty_portfolios = portUtils.initializePortfolios()
+empty_data = portUtils.initializeData()
 rosetta_stone = constants.grids
 
 market_snapshot_assets = [
@@ -51,6 +51,7 @@ market_snapshot_assets = [
     {"ticker": "GLD", "display": "GLD"},
     {"ticker": "TLT", "display": "TLT"},
     {"ticker": "^TNX", "display": "TNX"},
+    {"ticker": "^TYX", "display": "TYX"},
     {"ticker": "Blank", "display": "Blank"},
     {"ticker": "^KS11", "display": "Kospi"},
     {"ticker": "^N225", "display": "Nikkei"},
@@ -187,8 +188,13 @@ side_bar = [
                 ]
             ),
             dbc.CardFooter(
-                html.Small(id="market-snapshot-timestamp",
+                [html.Small(id="market-snapshot-timestamp",
                            children=["test"], className="form-text"),
+                 html.Div(
+                 dbc.Button("ETH - BTC Comparison", id="open-eth-btc-comparison-modal", n_clicks=0, color="warning", size="lg", className="font-weight-bold"),
+                     className="text-center py-3"
+                 )
+                 ],
                 className="py-1"
             )
         ]
@@ -569,7 +575,7 @@ def get_portfolios_tab_content(portfolios):
 def get_grid_tabs():
     return [dbc.Tab(get_grid_tab_content(key, None), id=f"{key}_tab", label=key) for key in rosetta_stone]
 
-def get_grid_tab_content(tab_key, asset_tables):
+def get_grid_tab_content(tab_key, data_store):
     
     table_cards = []
     
@@ -579,7 +585,7 @@ def get_grid_tab_content(tab_key, asset_tables):
                 getCardHeader(table['title'], table['outlookClass']),
                 dbc.CardBody(
                     [
-                        html.Div(tab_key)
+                        html.Div(tab_key if data_store is None else get_assets_table(f"{tab_key} {table['title']}", data_store["tabData"][tab_key][table['title']], is_portfolio = False))
                     ]
                 )
             ],
@@ -590,6 +596,7 @@ def get_grid_tab_content(tab_key, asset_tables):
     
     return table_cards
 
+
 def get_asset_modal_contents():
     return
     [
@@ -597,10 +604,48 @@ def get_asset_modal_contents():
         dbc.ModalBody("Poop"),
     ]
 
-
-def get_asset_modal_fig():
-    pass
-
+def get_eth_btc_comparison_graph():
+    df = dr.getEthBtcCompDf()
+    
+    df = df[:"2024-12-31"]
+    
+    layout = {
+        "template": "plotly_dark",
+        "height": 1000,
+        "xaxis_rangeslider_visible": True,
+        "margin": {"r": 10, "t": 10, "l": 10, "b": 10},
+        "legend": {
+            "x": 1.075,
+            "y": .95,
+        }, 
+    }
+    
+    #fig = dcc.Graph(id="eth-btc-comparison-graph")
+    fig = go.Figure(layout=layout)
+    
+    #print(df)
+    
+    fig.add_trace(go.Scatter(x=df.index.values, y=df["BTC"],
+                             mode='lines',
+                             line=dict(color='rgba(239, 142, 25, 0.5)', width=2),
+                             name='Bitcoin - 03/2013 - Current'))
+    
+    fig.add_trace(go.Scatter(x=df.index.values, y=df["ETH"],
+                             mode='lines',
+                             line=dict(color='rgba(165, 252, 246, 1.0)', width=2),
+                             name='Ethereum - 06/2017 - Current'))
+    
+    fig.update_yaxes({
+            "title": {"text": "Price", "standoff": 25},
+            "side": "right",
+            "tickprefix": "     $",
+            "tickformat": ',.0f',
+            "type": "log",
+            "tick0": 1.0,
+            "tickvals": [1.0, 3.0, 9.0, 27.0, 81.0, 243.0, 729.0, 2187.0, 6561.0, 19683.0, 59049.0]
+        })
+    
+    return fig
 
 app.layout = html.Div(
     [
@@ -608,10 +653,10 @@ app.layout = html.Div(
                      interval=60 * 1000, n_intervals=0),
         dcc.Store(id='market-snapshot-store',
                   data=get_assets_data(market_snapshot_assets)),
-        dcc.Interval(id="portfolio-interval",
+        dcc.Interval(id="data-interval",
                      interval=3000 * 1000, n_intervals=0),
-        dcc.Store(id='portfolio-store',
-                  data=portUtils.initializePortfolios()),
+        dcc.Store(id='data-store',
+                  data=portUtils.initializeData()),
         dcc.Store(id='asset-modal-store', data=""),
         dbc.Modal([
             dbc.ModalHeader("Test", id="asset-modal-header", className = "bg-info"),
@@ -620,6 +665,17 @@ app.layout = html.Div(
             ),
         ],
             id="asset_modal",
+            size="xl",
+            is_open=False,
+        ),
+        dbc.Modal([
+            dbc.ModalHeader("ETH - BTC Comparison", id="eth-btc-comparison-modal-header", className = "bg-warning"),
+            dbc.ModalBody(
+                dcc.Graph(id="eth-btc-comparison-graph", figure = get_eth_btc_comparison_graph())
+                
+            ),
+        ],
+            id="eth-btc-comparison-modal",
             size="xl",
             is_open=False,
         ),
@@ -658,7 +714,7 @@ app.layout = html.Div(
                         xs=2,
                         className="dbc_dark"
                     ),
-                        dbc.Col([dbc.Alert("Click the table", id='out', className="pb-3"), get_main_content(empty_portfolios)],
+                        dbc.Col([dbc.Alert("Click the table", id='out', className="pb-3", is_open = False), get_main_content(empty_data["portfolios"])],
                         xs=10,
                         id="main_content"
                     )],
@@ -703,6 +759,22 @@ def addDownVolume(fig, df, name, enumValue):
                 legendgroup="Volume",
                 marker=dict(color= volume_colors)),
         row=2, col=1)
+
+def get_eth_btc_comparison_graph():
+    layout = {
+        "template": "plotly_dark",
+        "xaxis_rangeslider_visible": True,
+        "margin": {"r": 10, "t": 10, "l": 10, "b": 10},
+        "legend": {
+            "x": 1.075,
+            "y": .95,
+        }, 
+    }
+    
+    #fig = dcc.Graph(id="eth-btc-comparison-graph")
+    fig = go.Figure(id="eth-btc-comparison-graph", layout=layout)
+    
+    return fig
 
 @app.callback([Output('asset-modal-candlestick-graph', 'figure'), Output("asset-modal-header", "children")],
               Input('asset-modal-store', 'data'))
@@ -1040,51 +1112,69 @@ def update_market_snapshot_data_table(jsonified_big_board_data):
 
 
 @app.callback(
-    Output("portfolio-store", "data"),
-    [Input("portfolio-interval", "n_intervals")],
-    [State("portfolio-store", "data")])
-def update_portfolio_store(n, previous_portfolios):
+    Output("data-store", "data"),
+    [Input("data-interval", "n_intervals")],
+    [State("data-store", "data")])
+def update_data_store(n, previous_data):
     # TODO
-    portUtils.update_asset_dfs(previous_portfolios, rosetta_stone)
-    #portUtils.update_asset_dfs(previous_portfolios, {})
+    portUtils.update_asset_dfs(previous_data)
+    updated_data = portUtils.updateAssetTables(previous_data)
     
-    updated_portfolios = portUtils.updateAssetTables(previous_portfolios)
-    
-    return updated_portfolios
+    return previous_data
+    #return updated_data
 
 
-@app.callback(Output('portfolio_tab', 'children'), Input('portfolio-store', 'data'))
-def update_portfolios_content(portfolios):
+@app.callback(Output('portfolio_tab', 'children'), Input('data-store', 'data'))
+def update_portfolios_content(data):
 
-    return get_portfolios_tab_content(portfolios)
+    return get_portfolios_tab_content(data["portfolios"])
 
+
+@app.callback(Output('Goldilocks_tab', 'children'), Input('data-store', 'data'))
+def update_goldilocks_tab_content(data_store):
+    return get_grid_tab_content("Goldilocks", data_store)
+
+@app.callback(Output('Reflation_tab', 'children'), Input('data-store', 'data'))
+def update_reflation_tab_content(data_store):
+    return get_grid_tab_content("Reflation", data_store)
+
+@app.callback(Output('Inflation_tab', 'children'), Input('data-store', 'data'))
+def update_inflation_tab_content(data_store):
+    return get_grid_tab_content("Inflation", data_store)
+
+@app.callback(Output('Deflation_tab', 'children'), Input('data-store', 'data'))
+def update_deflation_tab_content(data_store):
+    return get_grid_tab_content("Deflation", data_store)
+
+# , Output('asset_modal', 'is_open')
+
+#    return [dbc.Tab(get_grid_tab_content(key, None), id=f"{key}_tab", label=key) for key in rosetta_stone]
+
+# def get_grid_tab_content(tab_key, data_store):
 
 asset_tables_inputs = []
-for key in empty_portfolios:
+for key in empty_data["portfolios"]:
     asset_tables_inputs.append(
         Input("{}_assets_data_table".format(key.replace(" ", "_")), 'active_cell'))
 
-# , Output('asset_modal', 'is_open')
 
 
 @app.callback(
     [Output('out', 'children'), Output('asset_modal', 'is_open'),
      Output('asset-modal-store', 'data')],
     asset_tables_inputs,
-    [State("portfolio-store", "data")])
-def update_graphs(active_cell_1, active_cell_2, active_cell_3, portfolio_store):
+    [State("data-store", "data")])
+def update_graphs(active_cell_1, active_cell_2, active_cell_3, data_store):
     ctx = dash.callback_context
 
     control_id = ""
 
     if not ctx.triggered:
-        control_id = ", ".join(list(portfolio_store.keys()))
+        control_id = ", ".join(list(data_store["portfolios"].keys()))
     else:
         control_id = ctx.triggered[0]['prop_id'].split(
             '.')[0].replace("_assets_data_table", "").replace("_", " ")
 
-    # if control_id in portfolio_store.keys():
-    #     control_id = f"{control_id} portfolio clicked"
 
     active_cell = None
     active_ticker = ""
@@ -1101,6 +1191,15 @@ def update_graphs(active_cell_1, active_cell_2, active_cell_3, portfolio_store):
 
     return control_id, True if active_cell is not None else False, active_ticker
 
+@app.callback(
+    Output("eth-btc-comparison-modal", "is_open"),
+    Input("open-eth-btc-comparison-modal", "n_clicks"),
+    State("eth-btc-comparison-modal", "is_open"),
+)
+def toggle_modal(n1, is_open):
+    if n1:
+        return not is_open
+    return is_open
 
 if __name__ == '__main__':
     app.run_server(debug=True, port='1203')
