@@ -12,11 +12,14 @@ import json
 import yfinance as yf  
 from os.path import exists
 import constants
+import nasdaqdatalink
 #from Historic_Crypto import HistoricalData
 
 tda_client_id = "1W2ETS0ETWQBSTRLIARCBLZJACHJYICG"
 tda_refresh_token = "vuKpt8gS8BOFVJwM5jtELMhf4n24kogk4dlisS+VBAUxGv3hqjDmU6W4XMhhYZkVBUA1XvXI6HtAgcfmCEqONGqZON3YeZkF6PniyiV2TiiAylLd24jk+uWQ84wl/RWrBLhtPHkn0Qq2Rh97CI2aJF2Ly6cN50jjj9bbXtFFWTVWmvnZezmXbJUcJ8/3b2tT8Bn8M18Hc4VcWrqM3cSQtBvrN5SRapVg3DCxXUhy6D2Ta1GF1FUpFZcL4YjXr21OP6tOm4Zg8TR0SD62v2QIpyqK+6KfkqEsw9an8Zt5tm19gBNIfRIW7cDlAgz9wyCJPOpuYyjplhbGtXT2IEneDh+1FIJ4fHb++82uVQIwErCVBvA/jpPVrchS75f5+TmSMpezQe09HTeueOmiNo3O/m9LF0I3mXL7OYbG2OTTR0S8AHVyQHu5DVsGzJ7100MQuG4LYrgoVi/JHHvlGPckCSU1q2cLjnw/BKHj3ydPTwc9RAKxbt6HqMKp0KrrGTZxMW6Y5KWUlapmA1OAUSh51tTy4MtJd136eO3bE1hOitYO3blyVM/Fm2DZ6WFAF3gK+tI4dVeRDbog9JfWc2taU7mzF1cJzyoas6dZ1ztealijWVcKqIQdLqJvqQoucDiRSy7ojbX6WkB685n+uphJSWXXuC4E1JCL+4PHO5ue4em2VLk8ClWYqXB+v/DPOXHgaat0PVHv3L19d+9wLVhPwT0CAxDNgUxyjO2Sak5S7/v1f8Jkj8HXVEJXlHLYR4gU1uQdYPQ7VW/07OlyLvD9OJTyRXpivWiI5w8y6qHiU/pO78do27bL6E2etHuchRzTq2MSBr/3hKXGfQ77zl6AzdBDNEBOzKjgOQnLb+wpuZCHcqxlResXCUxsYebq+Ehig/+Mecib0RA=212FD3x19z9sWBHDJACbC00B75E",
 #tda_access_token = "WrYYDRo0c7DcKuNNBO1YZL/DvAG7beI1/b2STi7u+wQxdBY9f+6nk+1X0u0JeC4jKQZ/8xThMxJeRFRwr+xNZqtckWHDoEao/rtWqoRKx4UQaCJcHJkxRjEcOe/dlTdB72iFxGjUe1MG1f/Uhd5nN0yks+GHLteqc5rmVrMzGVuBhpWP1Oc4HWucMn0LEGiy4fX5pxghy0W46tFRZ6pv9U8fyVqLlwfzs0JkRCu/k16bMJUkCOXH/hDuH5YOsaBYcZoOrlf1VbZySJkdAF6EVezUWXT3sRLZWXnoH+Fd+ZwX5hUfNY/4981gkIjrbhDwLk5Ma6v3iEjUSavwCPVHJp8Ako58DksF1WatQQUPKi/S74IUH3u1AtIWV6VJSciklgu/RWOLtQTw+Fg+5b3dhygq7XpxKDJCDG5IFXZqj1KA4IZsCjVSaVx2p3pJStnAmpq3PpGPUSSpGkz32zA72s9oobP5R1QX6TXX6RC4QKFgmxkVyvKr1vXeB25WNaomhlMY1kFupUWSwMI4J+/YOwaktiH17apyb9wCs6xzAaHv9GPQlA1oqe2XVen100MQuG4LYrgoVi/JHHvl3GzfqTlQqSuxCH3ZO82OAvYZk0B17ue59FTMYru3DKdV+JhqI3ESnmisiIbTIRcVFrqmBv0eb7wo9z8K3D3gjQeWmHWVd0ZTuXpAXhmH89UEjkLRPBiIIppwZssb93AslXtJRCtgPqxaByIhSxim5wntM/xYkGg5Vr7QsaZPmCUs9RGx4BZP4tbbU/urSpe0eGuMPckKS0tgT7iFq5gWkp/QiBNyshO/MApULpjNJFxH9qz5WiwmBfyzqVIROAE2cezKh69wXeeKTaRig+6IGk66HDkVQzwYNfiMe5LnJqUoBxvKQYEXST3WdAIh2rImXZ/N22u5dHJwZAJMhB8MzQRSJTuela8xSbV7C1smm6CBBzOSTQ5Q6iDZW8QS0qqMQoei+B1tOE89A2Tg4US1uQDe4riZfHGu3X56rC33kyKVhOotfsUVdhS/QJpJQ7C4/eR6mSM3uY8c5bBN949d+bS9u4t4Hxg8tBe5qPeqAOpsz97O7iAaSf+2Y7of223NBffhkNQVSiUtI3bTUwcgQwN7mberkRrDsezNkzSjplScAOEahJvd/Bh4BPA=212FD3x19z9sWBHDJACbC00B75E"
+
+nasdaqdatalink.ApiConfig.api_key = 'Y9Lf787ZrM5gcGKv-6W7'
 
 def getAccessToken():
     url = "https://api.tdameritrade.com/v1/oauth2/token"
@@ -109,16 +112,74 @@ def GetTdaData(stockTicker, periodType, frequencyType, frequency, startDate, end
     
     return df
 
-# tda_daily_data = GetTdaData("XLE", 'month', 'daily', 1, startDate, endDate, False)
+volTickerProxies = {
+    "BNDD": "TLT",
+    "PINK": "XLV"
+    }
+
+def GetVolDataForTickers(stockTickers, startDate, endDate, saveToFile = False):
+    data = {}
+    
+    for ticker in stockTickers:
+        volData = GetVolData(ticker, startDate, endDate, saveToFile)
+        if volData is not None:
+            data[ticker] = volData
+        
+    return data
+
+def GetVolData(stockTicker, startDate, endDate, saveToFile = False):
+    original_df = None
+    df = None
+    file_path = "data/{0}.Vol.csv".format(stockTicker);
+    
+    file_exists = exists(file_path)
+    
+    if file_exists:
+        original_df = pd.read_csv(file_path, index_col="Date", parse_dates=True)
+        startDate = pd.to_datetime(original_df.index.values[-1])
+    
+    volTicker = stockTicker
+    if volTicker in volTickerProxies:
+        volTicker = volTickerProxies[volTicker]
+    
+    try:
+        df = nasdaqdatalink.get(f'VOL/{volTicker}', start_date=startDate, end_date=endDate)
+    except nasdaqdatalink.DataLinkError:
+        print("Failed {0}.Vol.csv".format(stockTicker))
+        return df
+        
+    
+    isCurrent = startDate.date() == endDate.date()
+
+    if original_df is not None and isCurrent:
+        lastIndex = original_df.index.values[-1]
+
+        for col in df.columns:
+            original_df.at[lastIndex, col] = df.at[lastIndex, col]
+        
+        df = original_df.copy()
+    elif original_df is not None:
+        additional_rows = df.loc[df.index.isin(original_df.index.values[-1:])] if isCurrent else df.loc[~df.index.isin(original_df.index.values)]
+        df = pd.concat([original_df, additional_rows])
+
+    if saveToFile and df is not None:
+        df.to_csv(file_path)
+        print("Saved {0}.Vol.csv".format(stockTicker))
+        
+    return df
 
 def GetDataFromCsv(tickers):
-    data = {}
+    price_data = {}
+    vol_data = {}
     
     for ticker in tickers:
         file_path = "data/{0}.csv".format(ticker);
-        data[ticker] = pd.read_csv(file_path, index_col="datetime", parse_dates=True)
+        price_data[ticker] = pd.read_csv(file_path, index_col="datetime", parse_dates=True)
+        
+        file_path = "data/{0}.Vol.csv".format(ticker);
+        vol_data[ticker] = pd.read_csv(file_path, index_col="Date", parse_dates=True)
     
-    return data
+    return price_data, vol_data
 
 def DownloadYahooData(ticker, startDate, endDate):
     data = yf.download(ticker, start = startDate.strftime("%Y-%m-%d"), end = endDate.strftime("%Y-%m-%d"), progress = False)

@@ -21,5 +21,6 @@ def refreshData():
     endDate = datetime.datetime.today()
     
     dr.GetTdaDataForTickers(allTickers, 'month', 'daily', 1, startDate, endDate, False, True)
+    dr.GetVolDataForTickers(allTickers, startDate, endDate, True)
     
 refreshData()
