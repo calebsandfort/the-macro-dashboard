@@ -1,0 +1,39 @@
+Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Downside,Upside,Upside / Downside,Position on Range in %,30D HH/LL,Trend,Long Term: Lower Fractal Range,Long Term: Upper Fractal Range,Range spread,Relative Range
+02/16/2022,US30Y.INDX,U.S. 30 Year Treasury,2.229,2.413,2.3617,-5.62%,2.17%,0.39,0.72,bullish,bullish,2.09,2.60,0.18399999999999972,7.79%
+02/16/2022,USO,United States Commodity Funds LLC - United States Oil Fund,63.169,66.554,65.51,-3.57%,1.59%,0.45,0.69,bullish,bullish,52.09,69.31,3.385000000000005,5.17%
+02/16/2022,UUP,Invesco DB US Dollar Index Trust - Invesco DB US Dollar Index Bullish Fund,25.331,26.049,25.645,-1.22%,1.58%,1.29,0.44,bearish,neutral,25.31,26.21,0.718,2.80%
+02/16/2022,VIX.INDX,CBOE Volatility Index,17.603,29.172,25.7,-31.51%,13.51%,0.43,0.70,neutral,bearish,11.68,38.37,11.568999999999999,45.02%
+02/16/2022,VONG,Vanguard Group  Inc. - Vanguard Russell 1000 Growth Index ETF,68.366,75.224,69.9,-2.19%,7.62%,3.47,0.22,neutral,bearish,63.79,76.06,6.858000000000004,9.81%
+02/16/2022,VYM,Vanguard Group  Inc. - Vanguard High Dividend Yield Indx ETF,110.255,114.816,111.32,-0.96%,3.14%,3.28,0.23,neutral,neutral,105.97,117.88,4.561000000000007,4.10%
+02/16/2022,XLE,SSgA Active Trust - The Energy Select Sector SPDR Fund,66.84,70.997,69.105,-3.28%,2.74%,0.84,0.54,bullish,bullish,58.69,73.80,4.1569999999999965,6.02%
+02/16/2022,XLP,SSgA Active Trust - Consumer Staples Select Sector SPDR,74.45,77.355,75.035,-0.78%,3.09%,3.97,0.20,neutral,neutral,71.67,80.76,2.905000000000001,3.87%
+02/16/2022,XLRE,SSgA Active Trust - Real Estate Select Sector SPDR Fund (The),43.795,47.684,45.005,-2.69%,5.95%,2.21,0.31,bearish,bearish,42.65,50.41,3.888999999999996,8.64%
+02/16/2022,XLU,SSgA Active Trust - Utilities Select Sector SPDR ETF,65.541,69.003,66.11,-0.86%,4.38%,5.08,0.16,bearish,bearish,64.20,71.59,3.4620000000000033,5.24%
+02/16/2022,BNDD,Krane Shares Trust - Quadratic Deflation ETF,25.023,25.686,25.18,-0.62%,2.01%,3.22,0.24,bearish,bearish,24.12,26.89,0.6630000000000003,2.63%
+02/16/2022,DBA,Invesco DB Multi-Sector Commodity Trust - Invesco DB Agriculture Fund,20.568,21.494,20.97,-1.92%,2.50%,1.30,0.43,bullish,bullish,19.72,21.49,0.9259999999999984,4.42%
+02/16/2022,DBB,Invesco DB Multi-Sector Commodity Trust - Invesco DB Base Metals Fund,23.183,24.453,23.785,-2.53%,2.81%,1.11,0.47,bullish,bullish,22.32,24.65,1.2699999999999996,5.34%
+02/16/2022,DEF,Invesco Capital Management LLC - Invesco Defensive Equity ETF,67.252,70.363,67.84,-0.87%,3.72%,4.29,0.19,bearish,bearish,65.35,73.06,3.111000000000004,4.59%
+02/16/2022,DXY.INDX,US Dollar Index,94.535,96.812,95.985,-1.51%,0.86%,0.57,0.64,bearish,neutral,94.45,97.81,2.277000000000001,2.37%
+02/16/2022,ETHE,Grayscale Investments LLC - Grayscale Ethereum Trust,22.444,31.297,26.46,-15.18%,18.28%,1.20,0.45,neutral,bearish,12.75,31.47,8.853000000000002,33.46%
+02/16/2022,GLD,SSgA Active Trust - SPDR Gold Shares ETF,167.395,175.342,174.51,-4.08%,0.48%,0.12,0.90,bullish,bullish,164.33,176.58,7.947000000000003,4.55%
+02/16/2022,GRN,Barclays Bank PLC - ZC SP ETN REDEEM 08/09/2049 USD 50,33.969,38.202,35.023,-3.01%,9.08%,3.02,0.25,bullish,bullish,28.25,42.96,4.232999999999997,12.09%
+02/16/2022,HAL,Halliburton Co.,31.759,33.838,33.78,-5.98%,0.17%,0.03,0.97,bullish,bullish,27.06,36.26,2.0790000000000006,6.15%
+02/16/2022,IWM,BlackRock Institutional Trust Company N.A. - iShares Russell 2000 ETF,197.351,214.941,204.475,-3.48%,5.12%,1.47,0.41,neutral,bearish,182.87,220.39,17.590000000000003,8.60%
+02/16/2022,MTUM,BlackRock Institutional Trust Company N.A. - BTC iShares MSCI USA Momentum Factor ETF,161.947,175.425,164.42,-1.50%,6.69%,4.45,0.18,neutral,bearish,149.55,176.94,13.478000000000009,8.20%
+02/16/2022,PINK,Simplify Exchange Traded Funds - Simplify Health Care ETF,24.913,26.337,25.13,-0.86%,4.80%,5.56,0.15,neutral,bearish,23.32,27.78,1.4239999999999995,5.67%
+02/16/2022,QQQ,Invesco Capital Management LLC - Invesco QQQ Trust Series 1,342.74,378.912,351.305,-2.44%,7.86%,3.22,0.24,neutral,bearish,322.20,383.38,36.17199999999997,10.30%
+02/16/2022,QUAL,BlackRock Institutional Trust Company N.A. - BTC iShares MSCI USA Quality Factor ETF,128.424,139.689,130.99,-1.96%,6.64%,3.39,0.23,bearish,bearish,123.67,141.10,11.264999999999986,8.60%
+02/16/2022,SPHB,Invesco Capital Management LLC - Invesco S&P 500 High Beta ETF,74.476,80.187,76.58,-2.75%,4.71%,1.71,0.37,neutral,neutral,69.16,82.87,5.7109999999999985,7.46%
+02/16/2022,SPLV,Invesco Capital Management LLC - Invesco S&P 500 Low Volatility ETF,62.89,65.688,63.29,-0.63%,3.79%,6.00,0.14,bearish,bearish,61.35,69.11,2.798000000000002,4.42%
+02/16/2022,SPY,SSgA Active Trust - S&P 500 ETF TRUST ETF,436.724,467.673,442.72,-1.35%,5.64%,4.16,0.19,neutral,neutral,417.28,474.11,30.949000000000012,6.99%
+02/16/2022,TLT,BlackRock Institutional Trust Company N.A. - BTC iShares 20+ Year Treasury Bond ETF,133.48,138.536,135.28,-1.33%,2.41%,1.81,0.36,bearish,bearish,130.75,145.01,5.056000000000012,3.74%
+02/16/2022,URNM,Exchange Traded Concepts Trust - North Shore Global Uranium Mining ETF,62.407,74.664,67.9,-8.09%,9.96%,1.23,0.45,neutral,bearish,54.77,77.98,12.257000000000005,18.05%
+02/16/2022,US10Y.INDX,U.S. 10 Year Treasury,1.879,2.133,2.0478,-8.24%,4.16%,0.50,0.66,bullish,bullish,1.73,2.27,0.254,12.40%
+02/16/2022,ARKK,ARK Investment Management LLC - ARK Innovation ETF,67.343,84.388,71.895,-6.33%,17.38%,2.74,0.27,neutral,bearish,57.49,84.55,17.045,23.71%
+02/16/2022,EDV,Vanguard Group  Inc. - Vanguard Extended Duration Treasury ETF,122.676,128.918,124.92,-1.80%,3.20%,1.78,0.36,bearish,bearish,119.94,136.73,6.242000000000004,5.00%
+02/16/2022,HYG,BlackRock Institutional Trust Company N.A. - iShares iBoxx USD High Yield Corporate Bond ETF,82.074,83.612,82.72,-0.78%,1.08%,1.38,0.42,bearish,bearish,81.87,85.38,1.5379999999999967,1.86%
+02/16/2022,JJU,Barclays Bank PLC - ZC SP ETN REDEEM 23/01/2048 USD 50 - Ser B_JJUB,64.36,71.089,68.495,-6.04%,3.79%,0.63,0.61,bullish,bullish,61.31,72.16,6.728999999999999,9.82%
+02/16/2022,SMH,VanEck ETF Trust - VanEck Semiconductor ETF,263.958,300.071,273.71,-3.56%,9.63%,2.70,0.27,neutral,neutral,239.51,304.39,36.113,13.19%
+02/16/2022,UNG,United States Commodity Funds LLC - United States Natural Gas Fund,12.482,19.539,15.785,-20.92%,23.78%,1.14,0.47,bullish,bearish,9.77,19.80,7.057000000000002,44.71%
+02/16/2022,XLB,SSgA Active Trust - Materials Select Sector SPDR,81.902,87.564,84.81,-3.43%,3.25%,0.95,0.51,bearish,bearish,79.23,91.05,5.661999999999992,6.68%
+02/16/2022,ZROZ,Pimco Exchange Traded Fund - PIMCO 25+ Year Zero Coupon U.S. Treasury Index Exchange-Traded Fund,132.573,139.909,134.91,-1.73%,3.71%,2.14,0.32,bearish,bearish,128.34,149.24,7.335999999999984,5.44%

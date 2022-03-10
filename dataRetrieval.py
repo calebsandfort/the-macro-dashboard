@@ -13,6 +13,7 @@ import yfinance as yf
 from os.path import exists
 import constants
 import nasdaqdatalink
+import assetClassesMfr as ac
 #from Historic_Crypto import HistoricalData
 
 tda_client_id = "1W2ETS0ETWQBSTRLIARCBLZJACHJYICG"
@@ -42,20 +43,35 @@ def getAccessToken():
 #endDate = datetime.datetime.strptime('2021-09-21', '%Y-%m-%d')
 #"https://api.tdameritrade.com/v1/marketdata/chains?apikey=CGO9BSW7QI4SAOTB2RP9AUCY8QFFMQ47&symbol=XLP&contractType=PUT&strikeCount=20&strategy=SINGLE"
 
-def GetTdaDataForTickers(stockTickers, periodType, frequencyType, frequency, startDate, endDate, needExtendedHoursData, saveToFile = False):
+def GetTdaDataForTickers(tickers, periodType, frequencyType, frequency, startDate, endDate, needExtendedHoursData, saveToFile = False):
     accessToken = getAccessToken()
     
     data = {}
     
-    for ticker in stockTickers:
+    for ticker in tickers:
         data[ticker] = GetTdaData(ticker, periodType, frequencyType, frequency, startDate, endDate, needExtendedHoursData, saveToFile, accessToken)
         
     return data
 
-def GetTdaData(stockTicker, periodType, frequencyType, frequency, startDate, endDate, needExtendedHoursData, saveToFile = False, accessToken = ""):
+def GetTdaData(ticker, periodType, frequencyType, frequency, startDate, endDate, needExtendedHoursData, saveToFile = False, accessToken = ""):
     original_df = None
     df = None
-    file_path = "data/{0}.csv".format(stockTicker);
+    isYahooData = False
+    yahooTicker = ""
+    
+    divisor = 1.0
+    
+    if ticker in ac.tickerLookup:
+        if "divisor" in ac.tickerLookup[ticker]:
+            divisor = ac.tickerLookup[ticker]["divisor"]
+            
+        if "yahoo" in ac.tickerLookup[ticker]:
+            isYahooData = True
+            yahooTicker = ac.tickerLookup[ticker]["yahoo"]
+        
+        ticker = ac.tickerLookup[ticker]["tda"]
+    
+    file_path = "data/{0}.csv".format(ticker);
     
     file_exists = exists(file_path)
     
@@ -63,54 +79,89 @@ def GetTdaData(stockTicker, periodType, frequencyType, frequency, startDate, end
         original_df = pd.read_csv(file_path, index_col="datetime", parse_dates=True)
         startDate = pd.to_datetime(original_df.index.values[-1])
 
-    if accessToken == "":
-        accessToken = getAccessToken()
-
-    
-    endpoint = 'https://api.tdameritrade.com/v1/marketdata/{stockTicker}/pricehistory?periodType={periodType}&frequencyType={frequencyType}&frequency={frequency}&startDate={startDate}&endDate={endDate}&needExtendedHoursData={needExtendedHoursData}'
-    
-    full_url = endpoint.format(stockTicker=stockTicker, periodType=periodType, frequencyType=frequencyType, frequency=frequency, startDate=int(startDate.timestamp() * 1000), endDate=int(endDate.timestamp() * 1000), needExtendedHoursData=needExtendedHoursData)
-    
-    #print(accessToken)
-    
-    page = requests.get(url=full_url,
-                    params={'apikey' : tda_client_id},
-                    headers = {'Authorization' : f'Bearer {accessToken}'})
-    
-    
-    content = json.loads(page.content)
-
     isCurrent = startDate.date() == endDate.date()
 
-    if frequencyType == 'daily':
+    if not isYahooData:
+        if accessToken == "":
+            accessToken = getAccessToken()
+    
+        
+        endpoint = 'https://api.tdameritrade.com/v1/marketdata/{stockTicker}/pricehistory?periodType={periodType}&frequencyType={frequencyType}&frequency={frequency}&startDate={startDate}&endDate={endDate}&needExtendedHoursData={needExtendedHoursData}'
+        
+        full_url = endpoint.format(stockTicker=ticker, periodType=periodType, frequencyType=frequencyType, frequency=frequency, startDate=int(startDate.timestamp() * 1000), endDate=int(endDate.timestamp() * 1000), needExtendedHoursData=needExtendedHoursData)
+        
+        page = requests.get(url=full_url,
+                        params={'apikey' : tda_client_id},
+                        headers = {'Authorization' : f'Bearer {accessToken}'})
+        
+        
+        content = json.loads(page.content)
+    
+    
         df = pd.DataFrame.from_dict(content["candles"])
         df.set_index(df['datetime'].apply(lambda x: datetime.datetime.utcfromtimestamp(x/1000).date()).astype('datetime64'), inplace=True)
         df.drop('datetime', inplace=True, axis = 1)
-        
-        if original_df is not None and isCurrent:
-            lastIndex = original_df.index.values[-1]
-
-            original_df.at[lastIndex, 'close'] = df.at[lastIndex, 'close']
-            original_df.at[lastIndex, 'high'] = df.at[lastIndex, 'high']
-            original_df.at[lastIndex, 'low'] = df.at[lastIndex, 'low']
-            original_df.at[lastIndex, 'open'] = df.at[lastIndex, 'open']
-            original_df.at[lastIndex, 'volume'] = df.at[lastIndex, 'volume']
-            
-            df = original_df.copy()
-        elif original_df is not None:
-            additional_rows = df.loc[df.index.isin(original_df.index.values[-1:])] if isCurrent else df.loc[~df.index.isin(original_df.index.values)]
-            df = pd.concat([original_df, additional_rows])
-                
     else:
-        df['date'] = df['datetime'].apply(lambda x: datetime.datetime.fromtimestamp(x/1000))
-        df.set_index('date', inplace=True)
-        df['date'] = df.index.strftime("%m-%d-%Y %I:%M %p")
+        df = DownloadYahooData(yahooTicker, startDate, endDate)
+    
+    df["close"] = df["close"] / divisor
+    df["high"] = df["high"] / divisor
+    df["low"] = df["low"] / divisor
+    df["open"] = df["open"] / divisor
+    
+    if original_df is not None and isCurrent:
+        lastIndex = original_df.index.values[-1]
+
+        original_df.at[lastIndex, 'close'] = df.at[lastIndex, 'close']
+        original_df.at[lastIndex, 'high'] = df.at[lastIndex, 'high']
+        original_df.at[lastIndex, 'low'] = df.at[lastIndex, 'low']
+        original_df.at[lastIndex, 'open'] = df.at[lastIndex, 'open']
+        original_df.at[lastIndex, 'volume'] = df.at[lastIndex, 'volume']
+        
+        df = original_df.copy()
+    elif original_df is not None:
+        additional_rows = df.loc[df.index.isin(original_df.index.values[-1:])] if isCurrent else df.loc[~df.index.isin(original_df.index.values)]
+        df = pd.concat([original_df, additional_rows])
+    
+    if divisor > 1:
+        df = df.round({"close": 4, "high": 4, "low": 4, "open": 4})
     
     if saveToFile and df is not None:
         df.to_csv(file_path)
-        print("Saved {0}.csv".format(stockTicker))
+        print("Saved {0}.csv".format(ticker))
     
     return df
+
+
+def DownloadYahooData(ticker, startDate, endDate):
+    data = yf.download(ticker, start = startDate.strftime("%Y-%m-%d"), end = endDate.strftime("%Y-%m-%d"), progress = False)
+    
+    #data = yf.download(ticker, period = '5d', interval='15m', progress = False)
+    
+    d = {'close': data["Close"].values,
+         'high': data["High"].values,
+         'low': data["Low"].values,
+         'open': data["Open"].values,
+         'volume': data["Volume"].values,}
+    
+    index = [str(x.astype('datetime64[D]')) for x in data.index.values]
+    
+    df = pd.DataFrame(data = d, index=index)
+    # df.set_index([str(x.astype('datetime64[D]')) for x in data.index.values], inplace = True)
+    df.index.names = ['datetime']
+    df = df.round({"close": 4, "high": 4, "low": 4, "open": 4})
+    
+    df.to_csv("data/Temp.csv")
+    
+    df = pd.read_csv("data/Temp.csv", index_col="datetime", parse_dates=True)
+    df = df.round({"close": 4, "high": 4, "low": 4, "open": 4})
+    
+    return df
+
+startDatey = datetime.datetime.strptime('2019-05-01', '%Y-%m-%d')
+endDatey = datetime.datetime.today()
+
+# test = GetTdaDataForTickers(["DX-Y.NYB"], 'month', 'daily', 1, startDatey, endDatey, False, True)
 
 volTickerProxies = {
     "BNDD": "TLT",
@@ -168,31 +219,24 @@ def GetVolData(stockTicker, startDate, endDate, saveToFile = False):
         
     return df
 
-def GetDataFromCsv(tickers):
+def GetDataFromCsv(tickers, getVolData = False):
     price_data = {}
     vol_data = {}
     
     for ticker in tickers:
-        file_path = "data/{0}.csv".format(ticker);
+        tda_ticker = ticker
+        if tda_ticker in ac.tickerLookup:
+            tda_ticker = ac.tickerLookup[ticker]["tda"]
+        
+        file_path = "data/{0}.csv".format(tda_ticker);
         price_data[ticker] = pd.read_csv(file_path, index_col="datetime", parse_dates=True)
         
-        file_path = "data/{0}.Vol.csv".format(ticker);
-        vol_data[ticker] = pd.read_csv(file_path, index_col="Date", parse_dates=True)
+        if getVolData:
+            file_path = "data/{0}.Vol.csv".format(ticker);
+            vol_data[ticker] = pd.read_csv(file_path, index_col="Date", parse_dates=True)
     
     return price_data, vol_data
 
-def DownloadYahooData(ticker, startDate, endDate):
-    data = yf.download(ticker, start = startDate.strftime("%Y-%m-%d"), end = endDate.strftime("%Y-%m-%d"), progress = False)
-    
-    #data = yf.download(ticker, period = '5d', interval='15m', progress = False)
-    
-    columns = [data["Open"], data["High"], data["Low"], data["Close"], data["Volume"]]
-
-    headers = ["open", "high", "low", "close", "volume"]
-    
-    df = pd.concat(columns, axis=1, keys=headers)
-    
-    return df
 
 def getEthBtcCompDf():
     # endDate = datetime.date.today() + datetime.timedelta(days=1)

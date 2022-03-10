@@ -511,6 +511,29 @@ def get_cmap_value(s, m, M, cmap='seismic', reverse = False, low=0, high=0):
     c = [colors.rgb2hex(x) for x in the_cmap(normed)]
     return c
 
+def get_single_cmap_style(val, m, M, cmap='seismic', reverse = False, low=0, high=0, st_threshold_1 = 1.0, st_threshold_2 = -1.0,
+                           white_threshold_1 = 1.0, white_threshold_2 = -1.0, data_col = None, inverse_text_color_rule = False):
+    styles = {}
+
+    color = get_single_cmap_value([val], m, M, cmap, reverse, low, high)[0]
+    
+    styles = {
+        "backgroundColor": color
+        }
+    
+    if inverse_text_color_rule:
+        if (val <= st_threshold_1 and val >= st_threshold_2):
+            styles["color"] = "white"
+        elif (val > white_threshold_1 or val < white_threshold_2):
+            styles["color"] = "#272727"
+    else:
+        if (val <= st_threshold_1 and val >= st_threshold_2):
+            styles["color"] = "#272727"
+        elif (val > white_threshold_1 or val < white_threshold_2):
+            styles["color"] = "white"
+      
+    return styles
+
 def get_column_cmap_values(df, col, m, M, cmap='seismic', reverse = False, low=0, high=0, st_threshold_1 = 1.0, st_threshold_2 = -1.0,
                            white_threshold_1 = 1.0, white_threshold_2 = -1.0, data_col = None, inverse_text_color_rule = False):
     styles = []
@@ -569,156 +592,39 @@ def get_column_cmap_values(df, col, m, M, cmap='seismic', reverse = False, low=0
         })
       
     return styles
-    
-    startDate = datetime.datetime.strptime('2020-05-01', '%Y-%m-%d')
-    endDate = datetime.datetime.today()
-    
-    universeInfo = pd.read_csv(os.path.join(os.getcwd(), 'data', "UniverseInfo.csv"), index_col="Ticker")
-    
-    #portfolioPath = os.path.join(os.getcwd(), 'portfolios')
-    
-    filenames = os.listdir(os.path.join(os.getcwd(), 'portfolios'))  # [] if no file
-    
-    allTickers = []
-    portfolios = {}
-    
-    for x in filenames:
-        #portfolios[Path(x).stem] = pd.read_csv(os.path.join(os.getcwd(), 'portfolios', x), index_col="Ticker")
-        temp = pd.read_csv(os.path.join(os.getcwd(), 'portfolios', x), index_col="Ticker")
-        
-        tickers = []
-        quantities = []
-        entries = []
-        lasts = []
-        previouses = []
-        costBasii = []
-        currentValues = []
-        weights = []
-        pnls = []
-        dailyPnls = []
-        names = []
-        assetClasses = []
-        universes = []
-        factors = []
-        exposures = []
-        grids = []
-        
-        totalCash = 0.0
-        
-        if "SDBA Cash" in temp.index.values:
-            totalCash += temp.at["SDBA Cash", "Entry"]
-        
-        if "Cash" in temp.index.values:
-            totalCash += temp.at["Cash", "Entry"]
-        
-        tickers.append("Cash")
-        quantities.append(1.0)
-        entries.append(totalCash)
-        lasts.append(totalCash)
-        previouses.append(0.0)
-        costBasii.append(0.0)
-        currentValues.append(0.0)
-        weights.append(0.0)
-        pnls.append(0.0)
-        dailyPnls.append(0.0)
-        names.append("Cash")
-        assetClasses.append("Cash")
-        universes.append("Cash")
-        factors.append("Cash")
-        exposures.append("Cash")
-        grids.append("Cash")
-        
-        for i in temp.index.values:
-            if i != "SDBA Cash" and i != "Cash":
-                tickers.append(i)
-                quantities.append(temp.at[i, "Quantity"])
-                entries.append(temp.at[i, "Entry"])
-                lasts.append(0.0)
-                previouses.append(0.0)
-                costBasii.append(0.0)
-                currentValues.append(0.0)
-                weights.append(0.0)
-                pnls.append(0.0)
-                dailyPnls.append(0.0)
-                
-                #Ticker, Name, Asset Class,Universe, Factor, Exposure, GRID
-                
-                if i in universeInfo.index.values:
-                    names.append(universeInfo.at[i, "Name"])
-                    assetClasses.append(universeInfo.at[i, "Asset Class"])
-                    universes.append(universeInfo.at[i, "Universe"])
-                    factors.append(universeInfo.at[i, "Factor"])
-                    exposures.append(universeInfo.at[i, "Exposure"])
-                    grids.append(universeInfo.at[i, "GRID"])
-                else:
-                    names.append("")
-                    assetClasses.append("")
-                    universes.append("")
-                    factors.append("")
-                    exposures.append("")
-                    grids.append("")
-                
-                if i not in allTickers:
-                    allTickers.append(i)
-        
-        data = {
-            "Ticker": tickers,
-            "Quantity": quantities,
-            "Entry": entries,
-            "Last": lasts,
-            "Previous": previouses,
-            "CostBasis": costBasii,
-            "CurrentValue": currentValues,
-            "Weight": weights,
-            "DailyPnL": dailyPnls,
-            "PnL": pnls,
-            "Name": names,
-            "Asset Class": assetClasses,
-            "Universe": universes,
-            "Factor": factors,
-            "Exposure": exposures,
-            "GRID": grids
-            }   
-         
-        portfolios[Path(x).stem] = {"assets": pd.DataFrame(data, tickers)}
-     
-    data = dr.GetTdaDataForTickers(allTickers, 'month', 'daily', 1, startDate, endDate, False, True)
-     
-    for port in portfolios:
-        portfolios[port]["Total Value"] = 0.0
-        portfolios[port]["Cash"] = portfolios[port]["assets"].at["Cash", "Entry"]
-        
-        for pos_idx in portfolios[port]["assets"].index:
-            if pos_idx == "Cash":
-                portfolios[port]["Total Value"] += portfolios[port]["assets"].at[pos_idx, "Entry"]
-                portfolios[port]["assets"].at[pos_idx, "CostBasis"] = portfolios[port]["assets"].at[pos_idx, "Entry"]
-                portfolios[port]["assets"].at[pos_idx, "CurrentValue"] = portfolios[port]["assets"].at[pos_idx, "Entry"]
-            else:
-                portfolios[port]["assets"].at[pos_idx, "Previous"] = portfolios[port]["assets"].at[pos_idx, "Last"]
-                portfolios[port]["assets"].at[pos_idx, "Last"] = data[pos_idx].at[data[pos_idx].index[-1], "close"]
-                portfolios[port]["assets"].at[pos_idx, "CostBasis"] = portfolios[port]["assets"].at[pos_idx, "Quantity"] * portfolios[port]["assets"].at[pos_idx, "Entry"]    
-                portfolios[port]["assets"].at[pos_idx, "CurrentValue"] = portfolios[port]["assets"].at[pos_idx, "Quantity"] * portfolios[port]["assets"].at[pos_idx, "Last"]
-                portfolios[port]["Total Value"] += portfolios[port]["assets"].at[pos_idx, "CurrentValue"]           
-              
-        portfolios[port]["Cash"] = round(portfolios[port]["Cash"], 2)
-        portfolios[port]["Total Value"] = round(portfolios[port]["Total Value"], 2)
-            
-        for pos_idx in portfolios[port]["assets"].index:
-            portfolios[port]["assets"].at[pos_idx, "Weight"] = portfolios[port]["assets"].at[pos_idx, "CurrentValue"] / portfolios[port]["Total Value"]
-            portfolios[port]["assets"].at[pos_idx, "PnL"] = (portfolios[port]["assets"].at[pos_idx, "CurrentValue"] - portfolios[port]["assets"].at[pos_idx, "CostBasis"]) / portfolios[port]["assets"].at[pos_idx, "CurrentValue"]
-            
-            if pos_idx == "Cash":
-                portfolios[port]["assets"].at[pos_idx, "DailyPnL"] = 0.0
-            else:
-                portfolios[port]["assets"].at[pos_idx, "DailyPnL"] = (data[pos_idx].at[data[pos_idx].index[-1], "close"] - data[pos_idx].at[data[pos_idx].index[-2], "close"]) / data[pos_idx].at[data[pos_idx].index[-2], "close"]
-        
 
-        portfolios[port]["assets"] = portfolios[port]["assets"].round(4)
-    
-    return {
-        "tickers": allTickers,
-        "portfolios": portfolios
-        }
+def getVolumeStyle(asset):
+    styles = {}
 
+
+    if asset.VolumeDesc == "Weak" and asset.Chg1D < 0.0:
+        styles = {'backgroundColor': "#FCBCA2",
+        'color': '#272727'}
+    elif asset.VolumeDesc == "Moderate" and asset.Chg1D < 0.0:
+        styles = {'backgroundColor': "#FB6B4B",
+        'color': '#272727'}
+    elif asset.VolumeDesc == "Strong" and asset.Chg1D < 0.0:
+        styles = {'backgroundColor': "#CB181D",
+        'color': 'white'}
+    elif asset.VolumeDesc == "Absolute" and asset.Chg1D < 0.0:
+        styles = {'backgroundColor': "#67000D",
+        'color': 'white'}
+    elif asset.VolumeDesc == "Weak" and asset.Chg1D > 0.0: 
+        styles = {'backgroundColor': "#C7E9C0",
+        'color': '#272727'}
+    elif asset.VolumeDesc == "Moderate" and asset.Chg1D > 0.0:
+        styles = {'backgroundColor': "#73C476",
+        'color': '#272727'}
+    elif asset.VolumeDesc == "Strong" and asset.Chg1D > 0.0:
+        styles = {'backgroundColor': "#228A44",
+        'color': 'white'}
+    elif asset.VolumeDesc == "Absolute" and asset.Chg1D > 0.0:
+        styles = {'backgroundColor': "#00441B",
+        'color': 'white'}
+
+
+    return styles   
+      
+    
 #t = initializePortfolios()
 #t = updatePortfolios(t)

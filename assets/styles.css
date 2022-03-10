@@ -19,3 +19,15 @@
 #eth-btc-comparison-modal text[style*="font-size: 9px"] {
     font-size: 0 !important;
 }
+
+.white_table,
+.white_table th,
+.white_table td{
+  border: 1px solid #bbbbbb;
+}
+
+.compact_table,
+.compact_table th,
+.compact_table td{
+  padding: .35rem;
+}

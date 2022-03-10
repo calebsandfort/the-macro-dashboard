@@ -1,0 +1,37 @@
+Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Downside,Upside,Upside / Downside,Position on Range in %,30D HH/LL,Trend,Long Term: Lower Fractal Range,Long Term: Upper Fractal Range,Range spread,Relative Range
+03/08/2022,SPY,SSgA Active Trust - S&P 500 ETF TRUST ETF,404.392,436.553,420.66,-3.87%,3.78%,0.98,0.51,bearish,bearish,395.94,448.29,32.161,7.65%
+03/08/2022,TLT,BlackRock Institutional Trust Company N.A. - BTC iShares 20+ Year Treasury Bond ETF,135.716,142.83,137.86,-1.56%,3.61%,2.32,0.30,neutral,bearish,132.17,142.83,7.114000000000004,5.16%
+03/08/2022,URNM,Exchange Traded Concepts Trust - North Shore Global Uranium Mining ETF,67.898,83.004,81.44,-16.63%,1.92%,0.12,0.90,bullish,bullish,54.57,84.00,15.106000000000009,18.55%
+03/08/2022,US10Y.INDX,U.S. 10 Year Treasury,1.6,1.877,1.7725,-9.73%,5.90%,0.61,0.62,bearish,bullish,1.60,2.14,0.2769999999999999,15.63%
+03/08/2022,US30Y.INDX,U.S. 30 Year Treasury,2.05,2.273,2.1956,-6.63%,3.53%,0.53,0.65,bearish,bullish,2.05,2.46,0.2230000000000003,10.16%
+03/08/2022,UUP,Invesco DB US Dollar Index Trust - Invesco DB US Dollar Index Bullish Fund,26.147,26.665,26.545,-1.50%,0.45%,0.30,0.77,bullish,bullish,25.76,26.91,0.5180000000000007,1.95%
+03/08/2022,UUUU,Energy Fuels Inc,7.027,9.76,9.365,-24.97%,4.22%,0.17,0.86,bullish,bullish,4.98,9.94,2.7329999999999997,29.18%
+03/08/2022,VEGI,BlackRock Institutional Trust Company N.A. - iShares MSCI Global Agriculture Producers ETF,41.291,44.96,44.03,-6.22%,2.11%,0.34,0.75,bullish,bullish,41.27,46.06,3.669000000000004,8.33%
+03/08/2022,VIX.INDX,CBOE Volatility Index,29.53,40.541,36.45,-18.98%,11.22%,0.59,0.63,bullish,bullish,17.52,51.53,11.010999999999996,30.21%
+03/08/2022,ARCH,Arch Resources Inc - Class A,126.707,161.509,156.87,-19.23%,2.96%,0.15,0.87,bullish,bullish,113.85,161.51,34.80199999999999,22.19%
+03/08/2022,CHIX,Global X Funds - Global X MSCI China Financials ETF,13.499,14.101,13.49,0.07%,4.53%,67.89,-0.01,bearish,bearish,13.35,15.28,0.6020000000000003,4.46%
+03/08/2022,DBA,Invesco DB Multi-Sector Commodity Trust - Invesco DB Agriculture Fund,21.098,22.497,21.975,-3.99%,2.38%,0.60,0.63,bullish,bullish,20.89,22.73,1.399000000000001,6.37%
+03/08/2022,DBC,DB Commodity Services LLC - Invesco DB Commodity Index Tracking Fund,25.077,27.971,28.2,-11.07%,-0.81%,-0.07,1.08,bullish,bullish,23.96,28.30,2.8939999999999984,10.26%
+03/08/2022,DXY.INDX,US Dollar Index,97.819,99.772,99.242,-1.43%,0.53%,0.37,0.73,bullish,bullish,96.27,100.41,1.953000000000003,1.97%
+03/08/2022,EDV,Vanguard Group  Inc. - Vanguard Extended Duration Treasury ETF,125.214,133.19,127.39,-1.71%,4.55%,2.67,0.27,neutral,bearish,121.09,133.47,7.975999999999999,6.26%
+03/08/2022,ETHE,Grayscale Investments LLC - Grayscale Ethereum Trust,15.709,22.657,18.94,-17.06%,19.63%,1.15,0.47,bearish,bearish,10.95,26.54,6.948,36.68%
+03/08/2022,FXY,Rydex Investments - Invesco CurrencyShares Japanese Yen Trust,80.975,81.83,81.055,-0.10%,0.96%,9.69,0.09,neutral,neutral,79.81,82.94,0.855000000000004,1.05%
+03/08/2022,GRN,Barclays Bank PLC - ZC SP ETN REDEEM 08/09/2049 USD 50,20.406,27.842,26.95,-24.28%,3.31%,0.14,0.88,bearish,bearish,19.21,32.84,7.436,27.59%
+03/08/2022,HYG,BlackRock Institutional Trust Company N.A. - iShares iBoxx USD High Yield Corporate Bond ETF,81.57,83.292,81.84,-0.33%,1.77%,5.38,0.16,bearish,bearish,80.62,83.62,1.7220000000000084,2.10%
+03/08/2022,IWM,BlackRock Institutional Trust Company N.A. - iShares Russell 2000 ETF,184.734,204.242,196.81,-6.14%,3.78%,0.62,0.62,bearish,bearish,173.57,208.50,19.50799999999998,9.91%
+03/08/2022,KBA,Krane Shares Trust - KraneSharesBosera MSCI China A 50 Connect Index ETF,37.063,39.867,37.235,-0.46%,7.07%,15.30,0.06,bearish,bearish,33.80,40.06,2.803999999999995,7.53%
+03/08/2022,KRE,SPDR Series Trust - SPDR S&P Regional Banking ETF,64.624,71.747,68.08,-5.08%,5.39%,1.06,0.49,bearish,bearish,61.89,77.98,7.123000000000005,10.46%
+03/08/2022,LQD,BlackRock Institutional Trust Company N.A. - iShares iBoxx USD Investment Grade Corporate Bond ETF,120.792,124.808,121.215,-0.35%,2.96%,8.49,0.11,bearish,bearish,119.87,124.81,4.016000000000005,3.31%
+03/08/2022,PCT,PureCycle Technologies Inc,5.972,8.171,7.5,-20.37%,8.95%,0.44,0.69,bullish,bearish,3.33,8.48,2.198999999999999,29.32%
+03/08/2022,QQQ,Invesco Capital Management LLC - Invesco QQQ Trust Series 1,309.54,344.786,325.54,-4.91%,5.91%,1.20,0.45,bearish,bearish,299.01,353.88,35.24599999999998,10.83%
+03/08/2022,VIXM,ProShares Trust - ProShares VIX Mid-Term Futures ETF,32.424,36.216,35.288,-8.12%,2.63%,0.32,0.76,bullish,bullish,29.95,36.78,3.7920000000000016,10.75%
+03/08/2022,XLE,SSgA Active Trust - The Energy Select Sector SPDR Fund,69.383,77.378,79.74,-12.99%,-2.96%,-0.23,1.30,bullish,bullish,67.53,82.42,7.9950000000000045,10.03%
+03/08/2022,XLP,SSgA Active Trust - Consumer Staples Select Sector SPDR,72.467,76.716,73.12,-0.89%,4.92%,5.51,0.15,bearish,neutral,72.31,78.78,4.248999999999995,5.81%
+03/08/2022,ZROZ,Pimco Exchange Traded Fund - PIMCO 25+ Year Zero Coupon U.S. Treasury Index Exchange-Traded Fund,136.104,146.132,138.32,-1.60%,5.65%,3.53,0.22,neutral,bearish,130.77,146.13,10.027999999999992,7.25%
+03/08/2022,BNDD,Quadratic Deflation ETF,25.245,26.189,25.82,-2.23%,1.43%,0.64,0.61,bullish,neutral,24.50,26.34,0.9439999999999991,3.66%
+03/08/2022,CF,CF Industries Holdings Inc,86.077,97.904,92.74,-7.18%,5.57%,0.78,0.56,bullish,bullish,72.34,106.44,11.826999999999998,12.75%
+03/08/2022,BNO,United States Brent Crude Oil Fund,30.084,37.881,35.74,-15.83%,5.99%,0.38,0.73,bullish,bullish,27.16,37.88,7.797000000000001,21.82%
+03/08/2022,GLD,SPDR Gold Shares ETF,183.69,192.425,190.5,-3.57%,1.01%,0.28,0.78,bullish,bullish,176.60,192.86,8.735000000000014,4.59%
+03/08/2022,USO,USO,73.038,87.874,84.94,-14.01%,3.45%,0.25,0.80,bullish,bullish,68.19,89.05,14.835999999999999,17.47%
+03/08/2022,SARK,Tuttle Capital Short Innovation ETF,46.093,61.367,54.33,-15.16%,12.95%,0.85,0.54,bullish,bullish,44.70,65.39,15.273999999999994,28.11%
+03/08/2022,ARKK,ARK Innovation ETF,51.528,67.578,58.9,-12.52%,14.73%,1.18,0.46,bearish,bearish,47.77,69.27,16.050000000000004,27.25%

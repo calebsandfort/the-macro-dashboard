@@ -160,3 +160,122 @@ def calcVolumeMetrics(data):
             previousIndex = idx
     
     return data
+
+def CCI(df, ndays): 
+    tp = df['close']
+    sma = tp.rolling(ndays).mean()
+    mad = tp.rolling(ndays).apply(lambda x: pd.Series(x).mad(), raw=False)
+    cci = (tp - sma) / (0.015 * mad) 
+    
+    return cci
+
+def calcMatrix(data):
+    nn = 5
+    
+    # Sup/Res Detail
+    SupResPeriod = 50
+    SupResPercentage = 100
+    PricePeriod = 16
+    ob = 200
+    os = -200
+
+    pd = 22
+    bbl = 20
+    mult = 2.0
+    lb = 50
+    ph = .85
+    
+    ltLB = 40
+    mtLB = 14
+    _str = 3
+    
+    swvfm = 1
+    
+    # Williams Vix Fix Formula
+    wvf = ((data["close"].rolling(pd).max() - data["low"])/(data["close"].rolling(pd).max()))*100
+    sDev = mult * wvf.rolling(bbl).std()
+    midLine = wvf.rolling(bbl).mean()
+    lowerBand = midLine - sDev
+    upperBand = midLine + sDev
+    rangeHigh = wvf.rolling(lb).max() * ph
+    
+    # Filtered Bar Criteria
+    upRange = (data["low"] > data["low"].shift(1)) & (data["close"] > data["high"].shift(1))
+    upRange_Aggr = (data["close"] > data["close"].shift(1)) & (data["close"] > data["open"].shift(1))
+    
+    # Filtered Criteria
+    filtered = (wvf.shift(1) >= upperBand.shift(1)) | (wvf.shift(1) >= rangeHigh.shift(1)) & ((wvf < upperBand) & (wvf < rangeHigh))
+    filtered_Aggr = ((wvf.shift(1) >= upperBand.shift(1)) | (wvf.shift(1) >= rangeHigh.shift(1))) & ((wvf > upperBand) | (wvf > rangeHigh))
+    
+    # Alerts Criteria
+    alert1 = (wvf >= upperBand) | (wvf >= rangeHigh)
+    alert2 = ((wvf.shift(1) >= upperBand.shift(1)) | (wvf.shift(1) >= rangeHigh.shift(1))) & ((wvf < upperBand) & (wvf < rangeHigh))
+    alert3 = upRange & (data["close"] > data["close"].shift(_str)) & ((data["close"] < data["close"].shift(ltLB)) | (data["close"] < data["close"].shift(mtLB))) & filtered
+    alert4 = upRange_Aggr & (data["close"] > data["close"].shift(_str)) & ((data["close"].shift(_str) < data["close"].shift(ltLB)) | (data["close"] < data["close"].shift(mtLB))) & filtered_Aggr
+    
+    beware = ((wvf >= upperBand) | (wvf >= rangeHigh))
+    vol_buy = (((wvf.shift(1) >= upperBand.shift(1)) | (wvf.shift(1) >= rangeHigh.shift(1))) & ((wvf < upperBand) & (wvf < rangeHigh)))
+    pa_buy = alert3
+    aggressive = alert4
+    
+    wvf_blue = "#0CA4DE"
+    wvf_gray = "#758494"
+    
+    data["Matrix_wvf_color"] = np.where((wvf >= upperBand) | (wvf >= rangeHigh), wvf_blue, wvf_gray)
+     
+    ys1 = ( data["high"] + data["low"] + data["close"] * 2 ) / 4
+    rk3 = ys1.ewm(span = nn, adjust = False).mean()
+    rk4 = ys1.rolling(nn).std()
+    rk5 = (ys1 - rk3 ) * 200 / rk4
+    rk6 = rk5.ewm(span = nn, adjust = False).mean()
+    up = rk6.ewm(span = nn, adjust = False).mean()
+    down = up.ewm(span = nn, adjust = False).mean()
+    data["Matrix_Oo"] = np.where((up < down), up, down)
+    data["Matrix_Hh"] = data["Matrix_Oo"]
+    data["Matrix_Ll"] = np.where((up < down), down, up)
+    data["Matrix_Cc"] = data["Matrix_Ll"]
+    
+    chartSolidGreen = "#3D9970"
+    chartSolidRed = "#FF4136"
+    
+    data["Matrix_vcolor"] = np.select([(data["Matrix_Oo"] > data["Matrix_Cc"]), (up > down)], [chartSolidRed, chartSolidGreen], default = chartSolidRed)
+
+    # -------S/R Zones------
+    Lookback = SupResPeriod
+    PerCent = SupResPercentage
+    Pds = PricePeriod
+    
+    C3 = CCI(data,Pds )
+
+    Osc = C3
+    Value1 = Osc
+    Value2 = Value1.rolling(Lookback).max()
+    Value3 = Value1.rolling(Lookback).min()
+    Value4 = Value2 - Value3
+    Value5 = Value4 * ( PerCent / 100 )
+    ResistanceLine = Value3 + Value5
+    SupportLine = Value2 - Value5
+    
+    swvfm_precent = swvfm * (ResistanceLine-SupportLine)/(2.2 * rangeHigh)
+    
+    data["Matrix_wvf_plot"] = wvf * -1 * swvfm_precent
+    
+    data["Matrix_action_text"] = np.select([beware, vol_buy, pa_buy, aggressive], ["Beware Vola", "Vola Buy", "PA Buy", "Agro Buy"], default = "N/A")
+    data["Matrix_action_color"] = np.select([beware, vol_buy, pa_buy, aggressive], [chartSolidRed, chartSolidGreen, chartSolidGreen, "#FF0080"], default = "rgba(0,0,0,0)")
+    data["Matrix_action"] = np.select([beware, vol_buy, pa_buy, aggressive], [50.0, 50.0, 50.0, 50.0], default = 0.0)
+    
+    # Overbought/Oversold/Warning Detail
+    highest_up = up.rolling(1).max()
+    highest_down = down.rolling(1).max()
+    
+    data["Matrix_UPshape"] = np.select([((up > ob) & (up>down)), ((up > ob) & (up<down))], [highest_up + 20, highest_down + 20], np.NaN)
+    
+    lowest_up = up.rolling(1).min()
+    lowest_down = down.rolling(1).min()
+    
+    data["Matrix_DOWNshape"] = np.select([((down < os) & (up>down)), ((down < os) & (up<down))], [lowest_down - 20, lowest_up - 20], np.NaN)
+    
+    data["Matrix_ob"] = 200.0
+    data["Matrix_os"] = -200.0
+    
+    return data
