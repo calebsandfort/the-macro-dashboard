@@ -99,7 +99,7 @@ class MfrChange:
                 className = "bg-danger text-white"
             elif self.new_outlook == "Neutral":
                 className = "bg-warning text-white"
-            elif self.new_outlook == "Bullish text-white":
+            elif self.new_outlook == "Bullish":
                 className = "bg-success text-white"
         else:
             if self.new_outlook == "Bearish":
