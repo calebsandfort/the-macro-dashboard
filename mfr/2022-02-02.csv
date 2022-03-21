@@ -9,7 +9,7 @@ Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Down
 02/02/2022,DBA,Invesco DB Multi-Sector Commodity Trust - Invesco DB Agriculture Fund,19.99,20.888,20.4,-2.01%,2.39%,1.19,0.46,bullish,bullish,19.42,21.36,0.8980000000000032,4.40%
 02/02/2022,DBB,Invesco DB Multi-Sector Commodity Trust - Invesco DB Base Metals Fund,22.832,23.868,23.016,-0.80%,3.70%,4.63,0.18,bullish,bullish,21.88,24.03,1.0359999999999978,4.50%
 02/02/2022,DEF,Invesco Capital Management LLC - Invesco Defensive Equity ETF,66.782,69.763,69.77,-4.28%,-0.01%,-0.00,1.00,bearish,neutral,66.57,73.70,2.9810000000000088,4.27%
-02/02/2022,DXY.INDX,US Dollar Index,95.996,97.517,96.27,-0.28%,1.30%,4.59,0.18,bullish,neutral,94.66,97.55,1.5210000000000008,1.58%
+02/02/2022,^DXY,US Dollar Index,95.996,97.517,96.27,-0.28%,1.30%,4.59,0.18,bullish,neutral,94.66,97.55,1.5210000000000008,1.58%
 02/02/2022,ETHE,Grayscale Investments LLC - Grayscale Ethereum Trust,16.596,24.46,22.08,-24.84%,10.78%,0.43,0.70,bearish,bearish,16.60,27.18,7.864000000000001,35.62%
 02/02/2022,GLD,SSgA Active Trust - SPDR Gold Shares ETF,165.022,172.515,168.88,-2.28%,2.15%,0.94,0.51,bearish,neutral,160.26,174.88,7.492999999999995,4.44%
 02/02/2022,GRN,Barclays Bank PLC - ZC SP ETN REDEEM 08/09/2049 USD 50,33.531,36.625,37.11,-9.64%,-1.31%,-0.14,1.16,bullish,bullish,28.25,44.41,3.094000000000001,8.34%
@@ -24,7 +24,7 @@ Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Down
 02/02/2022,TLT,BlackRock Institutional Trust Company N.A. - BTC iShares 20+ Year Treasury Bond ETF,137.976,144.758,142.82,-3.39%,1.36%,0.40,0.71,bearish,bearish,136.90,151.48,6.782000000000011,4.75%
 02/02/2022,URNM,Exchange Traded Concepts Trust - North Shore Global Uranium Mining ETF,57.592,68.566,65.035,-11.44%,5.43%,0.47,0.68,bearish,bearish,55.88,76.27,10.974000000000004,16.87%
 02/02/2022,USO,United States Commodity Funds LLC - United States Oil Fund,61.01,65.429,62.535,-2.44%,4.63%,1.90,0.35,bullish,bullish,48.22,67.18,4.419000000000004,7.07%
-02/02/2022,VIX.INDX,CBOE Volatility Index,19.484,31.689,21.96,-11.28%,44.30%,3.93,0.20,neutral,bearish,11.93,34.75,12.204999999999998,55.58%
-02/02/2022,US10Y.INDX,U.S. 10 Year Treasury,1.704,1.944,1.7966,-4.92%,8.48%,1.72,0.37,bullish,bullish,1.40,2.01,0.24,13.36%
-02/02/2022,US30Y.INDX,U.S. 30 Year Treasury,2.027,2.251,2.1131,-4.16%,6.44%,1.55,0.39,bullish,bullish,1.69,2.33,0.22399999999999975,10.60%
+02/02/2022,^VIX,CBOE Volatility Index,19.484,31.689,21.96,-11.28%,44.30%,3.93,0.20,neutral,bearish,11.93,34.75,12.204999999999998,55.58%
+02/02/2022,^US10Y,U.S. 10 Year Treasury,1.704,1.944,1.7966,-4.92%,8.48%,1.72,0.37,bullish,bullish,1.40,2.01,0.24,13.36%
+02/02/2022,^US30Y,U.S. 30 Year Treasury,2.027,2.251,2.1131,-4.16%,6.44%,1.55,0.39,bullish,bullish,1.69,2.33,0.22399999999999975,10.60%
 02/02/2022,UUP,Invesco DB US Dollar Index Trust - Invesco DB US Dollar Index Bullish Fund,25.491,26.152,25.7,-0.81%,1.76%,2.16,0.32,bullish,neutral,25.38,26.46,0.6610000000000014,2.57%

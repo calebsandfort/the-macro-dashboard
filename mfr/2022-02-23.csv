@@ -1,9 +1,9 @@
 Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Downside,Upside,Upside / Downside,Position on Range in %,30D HH/LL,Trend,Long Term: Lower Fractal Range,Long Term: Upper Fractal Range,Range spread,Relative Range
-02/23/2022,US10Y.INDX,U.S. 10 Year Treasury,1.867,2.13,1.9442,-3.97%,9.56%,2.41,0.29,bullish,bullish,1.71,2.21,0.2629999999999999,13.53%
-02/23/2022,US30Y.INDX,U.S. 30 Year Treasury,2.192,2.406,2.2414,-2.20%,7.34%,3.33,0.23,bullish,bullish,2.08,2.47,0.21399999999999997,9.55%
+02/23/2022,^US10Y,U.S. 10 Year Treasury,1.867,2.13,1.9442,-3.97%,9.56%,2.41,0.29,bullish,bullish,1.71,2.21,0.2629999999999999,13.53%
+02/23/2022,^US30Y,U.S. 30 Year Treasury,2.192,2.406,2.2414,-2.20%,7.34%,3.33,0.23,bullish,bullish,2.08,2.47,0.21399999999999997,9.55%
 02/23/2022,USO,United States Commodity Funds LLC - United States Oil Fund,63.02,67.544,66.21,-4.82%,2.01%,0.42,0.71,bullish,bullish,53.56,70.78,4.523999999999994,6.83%
 02/23/2022,UUP,Invesco DB US Dollar Index Trust - Invesco DB US Dollar Index Bullish Fund,25.447,25.89,25.745,-1.16%,0.56%,0.49,0.67,neutral,neutral,25.32,26.25,0.4430000000000014,1.72%
-02/23/2022,VIX.INDX,CBOE Volatility Index,20.521,35.252,28.81,-28.77%,22.36%,0.78,0.56,bullish,bullish,11.60,41.24,14.731000000000002,51.13%
+02/23/2022,^VIX,CBOE Volatility Index,20.521,35.252,28.81,-28.77%,22.36%,0.78,0.56,bullish,bullish,11.60,41.24,14.731000000000002,51.13%
 02/23/2022,VXZ,Barclays Bank PLC - ZC SP ETN REDEEM 23/01/2043 USD 16.855272 - Ser B MidTerm Future,24.898,27.763,26.631,-6.51%,4.25%,0.65,0.60,bullish,neutral,23.77,29.24,2.865000000000002,10.76%
 02/23/2022,XLE,SSgA Active Trust - The Energy Select Sector SPDR Fund,65.772,70.739,67.75,-2.92%,4.41%,1.51,0.40,bullish,bullish,58.28,73.55,4.966999999999999,7.33%
 02/23/2022,XLF,SSgA Active Trust - Financial Select Sector SPDR,38.424,40.968,38.665,-0.62%,5.96%,9.56,0.09,neutral,neutral,36.38,42.22,2.544000000000004,6.58%
@@ -11,7 +11,7 @@ Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Down
 02/23/2022,XLRE,SSgA Active Trust - Real Estate Select Sector SPDR Fund (The),43.208,45.945,44.365,-2.61%,3.56%,1.37,0.42,bearish,bearish,41.98,49.93,2.737000000000002,6.17%
 02/23/2022,BNDD,Krane Shares Trust - Quadratic Deflation ETF,25.247,25.959,25.58,-1.30%,1.48%,1.14,0.47,bullish,bearish,24.31,26.87,0.7119999999999997,2.78%
 02/23/2022,DEF,Invesco Capital Management LLC - Invesco Defensive Equity ETF,65.79,68.891,66.59,-1.20%,3.46%,2.88,0.26,bearish,bearish,64.51,72.28,3.100999999999999,4.66%
-02/23/2022,DXY.INDX,US Dollar Index,95.175,96.645,96.066,-0.93%,0.60%,0.65,0.61,neutral,neutral,94.47,97.94,1.4699999999999989,1.53%
+02/23/2022,^DXY,US Dollar Index,95.175,96.645,96.066,-0.93%,0.60%,0.65,0.61,neutral,neutral,94.47,97.94,1.4699999999999989,1.53%
 02/23/2022,EDV,Vanguard Group  Inc. - Vanguard Extended Duration Treasury ETF,123.116,130.635,127.589,-3.51%,2.39%,0.68,0.59,bearish,bearish,122.70,138.32,7.518999999999991,5.89%
 02/23/2022,ETHE,Grayscale Investments LLC - Grayscale Ethereum Trust,18.686,27.446,20.95,-10.81%,31.01%,2.87,0.26,neutral,bearish,12.44,28.05,8.760000000000002,41.81%
 02/23/2022,GDX,VanEck ETF Trust - VanEck Gold Miners ETF,32.397,35.803,34.885,-7.13%,2.63%,0.37,0.73,bullish,bullish,29.39,36.31,3.405999999999999,9.76%

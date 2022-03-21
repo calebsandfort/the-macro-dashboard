@@ -1,8 +1,8 @@
 Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Downside,Upside,Upside / Downside,Position on Range in %,30D HH/LL,Trend,Long Term: Lower Fractal Range,Long Term: Upper Fractal Range,Range spread,Relative Range
-02/22/2022,US30Y.INDX,U.S. 30 Year Treasury,2.197,2.401,2.2453,-2.15%,6.93%,3.22,0.24,bullish,bullish,2.08,2.48,0.20399999999999974,9.09%
+02/22/2022,^US30Y,U.S. 30 Year Treasury,2.197,2.401,2.2453,-2.15%,6.93%,3.22,0.24,bullish,bullish,2.08,2.48,0.20399999999999974,9.09%
 02/22/2022,USO,United States Commodity Funds LLC - United States Oil Fund,63.132,67.095,66.145,-4.56%,1.44%,0.32,0.76,bullish,bullish,52.46,70.09,3.963000000000001,5.99%
 02/22/2022,UUP,Invesco DB US Dollar Index Trust - Invesco DB US Dollar Index Bullish Fund,25.329,25.876,25.7,-1.44%,0.68%,0.47,0.68,bearish,neutral,25.32,26.24,0.5470000000000006,2.13%
-02/22/2022,VIX.INDX,CBOE Volatility Index,18.648,33.889,27.75,-32.80%,22.12%,0.67,0.60,bullish,neutral,11.62,41.32,15.241000000000003,54.92%
+02/22/2022,^VIX,CBOE Volatility Index,18.648,33.889,27.75,-32.80%,22.12%,0.67,0.60,bullish,neutral,11.62,41.32,15.241000000000003,54.92%
 02/22/2022,VXZ,Barclays Bank PLC - ZC SP ETN REDEEM 23/01/2043 USD 16.855272 - Ser B MidTerm Future,24.891,27.807,26.5,-6.07%,4.93%,0.81,0.55,bullish,neutral,23.84,29.37,2.9160000000000004,11.00%
 02/22/2022,XLE,SSgA Active Trust - The Energy Select Sector SPDR Fund,66.638,71.237,67.08,-0.66%,6.20%,9.40,0.10,bullish,bullish,58.87,74.21,4.5989999999999895,6.86%
 02/22/2022,XLF,SSgA Active Trust - Financial Select Sector SPDR,38.641,41.234,39.24,-1.53%,5.08%,3.33,0.23,neutral,neutral,36.54,42.35,2.5930000000000035,6.61%
@@ -11,7 +11,7 @@ Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Down
 02/22/2022,XLU,SSgA Active Trust - Utilities Select Sector SPDR ETF,64.874,67.895,66.5,-2.45%,2.10%,0.86,0.54,bearish,bearish,63.98,71.65,3.021000000000001,4.54%
 02/22/2022,BNDD,Krane Shares Trust - Quadratic Deflation ETF,25.15,25.833,25.645,-1.93%,0.73%,0.38,0.72,bullish,bearish,24.23,27.18,0.6829999999999998,2.66%
 02/22/2022,DEF,Invesco Capital Management LLC - Invesco Defensive Equity ETF,66.231,69.535,67.37,-1.69%,3.21%,1.90,0.34,bearish,bearish,64.84,72.64,3.304000000000002,4.90%
-02/22/2022,DXY.INDX,US Dollar Index,94.94,96.651,96.136,-1.24%,0.54%,0.43,0.70,bearish,neutral,94.52,97.97,1.7109999999999985,1.78%
+02/22/2022,^DXY,US Dollar Index,94.94,96.651,96.136,-1.24%,0.54%,0.43,0.70,bearish,neutral,94.52,97.97,1.7109999999999985,1.78%
 02/22/2022,EDV,Vanguard Group  Inc. - Vanguard Extended Duration Treasury ETF,123.258,130.078,127.925,-3.65%,1.68%,0.46,0.68,bearish,bearish,122.67,140.25,6.820000000000007,5.33%
 02/22/2022,ETHE,Grayscale Investments LLC - Grayscale Ethereum Trust,19.842,28.859,22.51,-11.85%,28.21%,2.38,0.30,neutral,bearish,12.63,29.11,9.017000000000003,40.06%
 02/22/2022,GLD,SSgA Active Trust - SPDR Gold Shares ETF,174.408,179.349,177.73,-1.87%,0.91%,0.49,0.67,bullish,bullish,169.34,179.78,4.9410000000000025,2.78%
@@ -28,6 +28,6 @@ Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Down
 02/22/2022,SPLV,Invesco Capital Management LLC - Invesco S&P 500 Low Volatility ETF,62.211,64.754,63.295,-1.71%,2.31%,1.35,0.43,bearish,bearish,61.10,68.96,2.5430000000000064,4.02%
 02/22/2022,SPY,SSgA Active Trust - S&P 500 ETF TRUST ETF,424.197,453.365,430.7,-1.51%,5.26%,3.49,0.22,bearish,bearish,409.50,466.23,29.168000000000006,6.77%
 02/22/2022,TLT,BlackRock Institutional Trust Company N.A. - BTC iShares 20+ Year Treasury Bond ETF,133.963,139.929,138.02,-2.94%,1.38%,0.47,0.68,bearish,bearish,133.47,148.06,5.966000000000008,4.32%
-02/22/2022,US10Y.INDX,U.S. 10 Year Treasury,1.856,2.113,1.9277,-3.72%,9.61%,2.58,0.28,bullish,bullish,1.70,2.19,0.2569999999999999,13.33%
+02/22/2022,^US10Y,U.S. 10 Year Treasury,1.856,2.113,1.9277,-3.72%,9.61%,2.58,0.28,bullish,bullish,1.70,2.19,0.2569999999999999,13.33%
 02/22/2022,ZROZ,Pimco Exchange Traded Fund - PIMCO 25+ Year Zero Coupon U.S. Treasury Index Exchange-Traded Fund,133.14,141.458,138.89,-4.14%,1.85%,0.45,0.69,bearish,bearish,132.08,153.99,8.318000000000012,5.99%
 02/22/2022,GDX,VanEck Gold Miners ETF,32.409,35.752,34.035,-4.78%,5.04%,1.06,0.49,bullish,bullish,29.38,36.70,3.3430000000000035,9.82%

@@ -16,7 +16,7 @@ Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Down
 03/03/2022,CORN,Teucrium Trading  LLC - Teucrium Corn Fund,23.747,25.869,25.769,-7.85%,0.39%,0.05,0.95,bullish,bullish,23.39,25.87,2.122,8.23%
 03/03/2022,DBA,Invesco DB Multi-Sector Commodity Trust - Invesco DB Agriculture Fund,20.695,21.747,21.8,-5.07%,-0.24%,-0.05,1.05,bullish,bullish,20.55,22.12,1.0519999999999996,4.83%
 03/03/2022,DEF,Invesco Capital Management LLC - Invesco Defensive Equity ETF,65.464,69.446,68.24,-4.07%,1.77%,0.43,0.70,bearish,neutral,64.71,72.25,3.9819999999999993,5.84%
-03/03/2022,DXY.INDX,US Dollar Index,96.619,98.02,97.357,-0.76%,0.68%,0.90,0.53,bullish,neutral,95.29,98.94,1.4009999999999962,1.44%
+03/03/2022,^DXY,US Dollar Index,96.619,98.02,97.357,-0.76%,0.68%,0.90,0.53,bullish,neutral,95.29,98.94,1.4009999999999962,1.44%
 03/03/2022,EDV,Vanguard Group  Inc. - Vanguard Extended Duration Treasury ETF,122.57,131.545,128.09,-4.31%,2.70%,0.63,0.62,bearish,bearish,120.40,131.54,8.974999999999994,7.01%
 03/03/2022,ETHE,Grayscale Investments LLC - Grayscale Ethereum Trust,18.605,26.936,23.71,-22.80%,11.77%,0.52,0.66,neutral,bearish,11.60,31.08,8.331,35.14%
 03/03/2022,GDX,VanEck ETF Trust - VanEck Gold Miners ETF,34.052,38.11,35.55,-4.21%,7.20%,1.71,0.37,bullish,bullish,30.38,38.11,4.058,11.41%
@@ -29,12 +29,12 @@ Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Down
 03/03/2022,LQD,BlackRock Institutional Trust Company N.A. - iShares iBoxx USD Investment Grade Corporate Bond ETF,121.3,125.09,123.62,-1.88%,1.19%,0.63,0.61,bearish,bearish,120.70,125.49,3.7900000000000063,3.07%
 03/03/2022,PALL,abrdn ETF - Aberdeen Standard Physical Palladium Shares ETF,228.544,256.949,255.83,-10.67%,0.44%,0.04,0.96,bullish,bullish,201.19,286.67,28.405,11.10%
 03/03/2022,PCT,PureCycle Technologies Inc,5.711,7.922,7.16,-20.24%,10.64%,0.53,0.66,bullish,bearish,3.44,8.60,2.2109999999999994,30.88%
-03/03/2022,US10Y.INDX,U.S. 10 Year Treasury,1.695,1.99,1.8776,-9.73%,5.99%,0.62,0.62,bearish,bullish,1.70,2.19,0.29499999999999993,15.71%
-03/03/2022,US30Y.INDX,U.S. 30 Year Treasury,2.091,2.363,2.2539,-7.23%,4.84%,0.67,0.60,bullish,bullish,2.09,2.48,0.2719999999999998,12.07%
+03/03/2022,^US10Y,U.S. 10 Year Treasury,1.695,1.99,1.8776,-9.73%,5.99%,0.62,0.62,bearish,bullish,1.70,2.19,0.29499999999999993,15.71%
+03/03/2022,^US30Y,U.S. 30 Year Treasury,2.091,2.363,2.2539,-7.23%,4.84%,0.67,0.60,bullish,bullish,2.09,2.48,0.2719999999999998,12.07%
 03/03/2022,USO,United States Commodity Funds LLC - United States Oil Fund,67.695,76.534,75.57,-10.42%,1.28%,0.12,0.89,bullish,bullish,66.57,80.36,8.839000000000013,11.70%
 03/03/2022,UUP,Invesco DB US Dollar Index Trust - Invesco DB US Dollar Index Bullish Fund,25.844,26.211,26.194,-1.34%,0.06%,0.05,0.95,bullish,neutral,25.52,26.52,0.36699999999999733,1.40%
 03/03/2022,VEGI,BlackRock Institutional Trust Company N.A. - iShares MSCI Global Agriculture Producers ETF,41.113,44.372,43.89,-6.33%,1.10%,0.17,0.85,bullish,bullish,41.11,45.79,3.2590000000000003,7.43%
-03/03/2022,VIX.INDX,CBOE Volatility Index,25.554,38.66,30.74,-16.87%,25.76%,1.53,0.40,bullish,bullish,14.32,44.38,13.105999999999998,42.64%
+03/03/2022,^VIX,CBOE Volatility Index,25.554,38.66,30.74,-16.87%,25.76%,1.53,0.40,bullish,bullish,14.32,44.38,13.105999999999998,42.64%
 03/03/2022,VXZ,Barclays Bank PLC - ZC SP ETN REDEEM 23/01/2043 USD 16.855272 - Ser B MidTerm Future,25.901,28.944,27.69,-6.46%,4.53%,0.70,0.59,bullish,bullish,24.16,28.95,3.0429999999999993,10.99%
 03/03/2022,WEAT,Teucrium Trading  LLC - Teucrium Wheat Fund,8.453,10.042,10.69,-20.93%,-6.06%,-0.29,1.41,bullish,bullish,7.55,10.04,1.5890000000000004,14.86%
 03/03/2022,XLE,SSgA Active Trust - The Energy Select Sector SPDR Fund,67.717,74.653,73,-7.24%,2.26%,0.31,0.76,bullish,bullish,64.55,79.03,6.936000000000007,9.50%

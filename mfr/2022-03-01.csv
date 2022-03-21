@@ -7,13 +7,13 @@ Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Down
 03/01/2022,SPLV,Invesco Capital Management LLC - Invesco S&P 500 Low Volatility ETF,61.911,64.617,63.07,-1.84%,2.45%,1.33,0.43,bearish,neutral,60.99,69.29,2.706000000000003,4.29%
 03/01/2022,SPY,SSgA Active Trust - S&P 500 ETF TRUST ETF,416.591,448.052,430.26,-3.18%,4.14%,1.30,0.43,bearish,neutral,408.78,467.32,31.461000000000013,7.31%
 03/01/2022,TQQQ,ProShares Trust - ProShares UltraPro QQQ,42.175,58.041,50.42,-16.35%,15.12%,0.92,0.52,bearish,bearish,37.37,65.82,15.866,31.47%
-03/01/2022,US10Y.INDX,U.S. 10 Year Treasury,1.762,1.982,1.8276,-3.59%,8.45%,2.35,0.30,bearish,bullish,1.63,2.15,0.21999999999999997,12.04%
+03/01/2022,^US10Y,U.S. 10 Year Treasury,1.762,1.982,1.8276,-3.59%,8.45%,2.35,0.30,bearish,bullish,1.63,2.15,0.21999999999999997,12.04%
 03/01/2022,ARCH,Arch Resources Inc - Class A,112.877,129.246,121.39,-7.01%,6.47%,0.92,0.52,bullish,bullish,105.03,131.04,16.369000000000014,13.48%
 03/01/2022,ARKK,ARK Investment Management LLC - ARK Innovation ETF,58.417,74.31,68.31,-14.48%,8.78%,0.61,0.62,bearish,bearish,53.76,80.44,15.893,23.27%
 03/01/2022,BNDD,Krane Shares Trust - Quadratic Deflation ETF,25.297,26.043,25.83,-2.06%,0.82%,0.40,0.71,bullish,neutral,24.30,26.28,0.7459999999999987,2.89%
 03/01/2022,CORN,Teucrium Trading  LLC - Teucrium Corn Fund,23.454,25.013,25.565,-8.26%,-2.16%,-0.26,1.35,bullish,bullish,23.00,25.16,1.559000000000001,6.10%
 03/01/2022,DEF,Invesco Capital Management LLC - Invesco Defensive Equity ETF,65.552,69.192,67.02,-2.19%,3.24%,1.48,0.40,bearish,bearish,64.57,72.75,3.6399999999999864,5.43%
-03/01/2022,DXY.INDX,US Dollar Index,96.134,97.458,96.747,-0.63%,0.73%,1.16,0.46,bullish,neutral,94.89,98.47,1.323999999999998,1.37%
+03/01/2022,^DXY,US Dollar Index,96.134,97.458,96.747,-0.63%,0.73%,1.16,0.46,bullish,neutral,94.89,98.47,1.323999999999998,1.37%
 03/01/2022,ETHE,Grayscale Investments LLC - Grayscale Ethereum Trust,18.664,26.778,23.04,-18.99%,16.22%,0.85,0.54,neutral,bearish,11.85,30.25,8.113999999999997,35.22%
 03/01/2022,GDX,VanEck ETF Trust - VanEck Gold Miners ETF,32.883,36.907,35.465,-7.28%,4.07%,0.56,0.64,bullish,bullish,29.98,36.91,4.023999999999994,11.35%
 03/01/2022,GLD,SSgA Active Trust - SPDR Gold Shares ETF,176.269,181.608,180.62,-2.41%,0.55%,0.23,0.81,bullish,bullish,170.61,181.61,5.338999999999999,2.96%
@@ -24,9 +24,9 @@ Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Down
 03/01/2022,PALL,abrdn ETF - Aberdeen Standard Physical Palladium Shares ETF,218.169,241.425,241.3,-9.59%,0.05%,0.01,0.99,bullish,bullish,189.82,271.06,23.256,9.64%
 03/01/2022,PCT,PureCycle Technologies Inc,5.581,7.623,7.07,-21.06%,7.82%,0.37,0.73,neutral,bearish,3.45,8.32,2.042,28.88%
 03/01/2022,PINK,Simplify Exchange Traded Funds - Simplify Health Care ETF,24.334,26.294,25.77,-5.57%,2.03%,0.36,0.73,bullish,bearish,23.23,28.16,1.9600000000000009,7.61%
-03/01/2022,US30Y.INDX,U.S. 30 Year Treasury,2.111,2.32,2.1635,-2.43%,7.23%,2.98,0.25,neutral,bullish,2.02,2.42,0.20899999999999963,9.66%
+03/01/2022,^US30Y,U.S. 30 Year Treasury,2.111,2.32,2.1635,-2.43%,7.23%,2.98,0.25,neutral,bullish,2.02,2.42,0.20899999999999963,9.66%
 03/01/2022,UUP,Invesco DB US Dollar Index Trust - Invesco DB US Dollar Index Bullish Fund,25.709,26.047,26.09,-1.46%,-0.16%,-0.11,1.13,neutral,neutral,25.41,26.38,0.33800000000000097,1.30%
-03/01/2022,VIX.INDX,CBOE Volatility Index,24.014,37.599,30.15,-20.35%,24.71%,1.21,0.45,bullish,bullish,11.77,43.40,13.584999999999997,45.06%
+03/01/2022,^VIX,CBOE Volatility Index,24.014,37.599,30.15,-20.35%,24.71%,1.21,0.45,bullish,bullish,11.77,43.40,13.584999999999997,45.06%
 03/01/2022,VXZ,Barclays Bank PLC - ZC SP ETN REDEEM 23/01/2043 USD 16.855272 - Ser B MidTerm Future,25.485,28.471,28.09,-9.27%,1.36%,0.15,0.87,bullish,neutral,23.98,28.54,2.9860000000000007,10.63%
 03/01/2022,WEAT,Teucrium Trading  LLC - Teucrium Wheat Fund,8.105,9.337,9.275,-12.61%,0.67%,0.05,0.95,bullish,bullish,7.40,9.34,1.2319999999999993,13.28%
 03/01/2022,XLF,SSgA Active Trust - Financial Select Sector SPDR,37.397,39.722,37.075,0.87%,7.14%,8.22,-0.14,bearish,neutral,35.94,41.89,2.325000000000003,6.27%

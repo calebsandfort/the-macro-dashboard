@@ -17,7 +17,7 @@ import assetClassesMfr as ac
 #from Historic_Crypto import HistoricalData
 
 tda_client_id = "1W2ETS0ETWQBSTRLIARCBLZJACHJYICG"
-tda_refresh_token = "vuKpt8gS8BOFVJwM5jtELMhf4n24kogk4dlisS+VBAUxGv3hqjDmU6W4XMhhYZkVBUA1XvXI6HtAgcfmCEqONGqZON3YeZkF6PniyiV2TiiAylLd24jk+uWQ84wl/RWrBLhtPHkn0Qq2Rh97CI2aJF2Ly6cN50jjj9bbXtFFWTVWmvnZezmXbJUcJ8/3b2tT8Bn8M18Hc4VcWrqM3cSQtBvrN5SRapVg3DCxXUhy6D2Ta1GF1FUpFZcL4YjXr21OP6tOm4Zg8TR0SD62v2QIpyqK+6KfkqEsw9an8Zt5tm19gBNIfRIW7cDlAgz9wyCJPOpuYyjplhbGtXT2IEneDh+1FIJ4fHb++82uVQIwErCVBvA/jpPVrchS75f5+TmSMpezQe09HTeueOmiNo3O/m9LF0I3mXL7OYbG2OTTR0S8AHVyQHu5DVsGzJ7100MQuG4LYrgoVi/JHHvlGPckCSU1q2cLjnw/BKHj3ydPTwc9RAKxbt6HqMKp0KrrGTZxMW6Y5KWUlapmA1OAUSh51tTy4MtJd136eO3bE1hOitYO3blyVM/Fm2DZ6WFAF3gK+tI4dVeRDbog9JfWc2taU7mzF1cJzyoas6dZ1ztealijWVcKqIQdLqJvqQoucDiRSy7ojbX6WkB685n+uphJSWXXuC4E1JCL+4PHO5ue4em2VLk8ClWYqXB+v/DPOXHgaat0PVHv3L19d+9wLVhPwT0CAxDNgUxyjO2Sak5S7/v1f8Jkj8HXVEJXlHLYR4gU1uQdYPQ7VW/07OlyLvD9OJTyRXpivWiI5w8y6qHiU/pO78do27bL6E2etHuchRzTq2MSBr/3hKXGfQ77zl6AzdBDNEBOzKjgOQnLb+wpuZCHcqxlResXCUxsYebq+Ehig/+Mecib0RA=212FD3x19z9sWBHDJACbC00B75E",
+tda_refresh_token = "YQs9ADwVPLd6c82i1hC1k83NlvQTcfXpHSR0BsO6Mx4FnHNETwmdHnjf9HncI3ifTgCzQmrTwtFzgMc505v6FiV/xyNGKVj7xuJ8jslBEGiTtjROD8OV8ClNkuVw+Bc7FYNPOpWYVZ0Q+AoUqgjoCA7ni7eNILLj4Dfku4JocY0MiutERlO3TpAvo/1GjrjafKPqyOguO8qXRI7GjkkqVfe5VdX1oCSJYnTEgEwtrLJniEqk88aBz1pfoT7C5ws5liVNlkG49gp7KiBR8ksKYlJemuyBMM6nY3Hj85x8iyE4Zh8FY/PhRNnWpntHDQTypv1V8upj4Gbbn1cTEbC9A2QGlFhfLCfTFNvm4T1BxvBT0ABugnPGyVFhwyI8yRXPSJr39CDXuBx5BbKrcemo6QZvOpu//z7dkhRoP1SNTtBOnmXKzt/Z5xJEGfx100MQuG4LYrgoVi/JHHvluB0IDROD6vtJ3O9R/Wpfg9IkG/cNy3UXlNbTkALgAGGJ8NNp5mhGfh8i2DfEd/s6PYv//v8mNOKBom0PJ0s7QKvNXfu3wdxBthsljvxJ7kqpB4JnqdEr6WQnjH8pD4OuRjmyKBnn7J1HAmqZ0vLEZs7ztlQEifnk81njkRbaRVGC2JbHuxN+fu2iR+pN7HqOfKlm8zPkRPrbdBbMK08RBQUVheD4jj5aK3UDh92PhwESIhiZkdiVb68Nqv4tnI5VzG6nO2ILUrIV2zAMzALHGyedi57OA2wq22UtlW6aU6OZ0IohSK8swTZCYfa23xzHz16KCvhTx14HbPwZH+8s0POXIO6FqboUACh4BFXp1RrVIQFpCW7+C08ubsH54SiZ0D40BVA0peKrD/8wAqtVOAFbEkrGf44wlT5pG0HQ5gYbE597uVeF32I+qTE=212FD3x19z9sWBHDJACbC00B75E",
 #tda_access_token = "WrYYDRo0c7DcKuNNBO1YZL/DvAG7beI1/b2STi7u+wQxdBY9f+6nk+1X0u0JeC4jKQZ/8xThMxJeRFRwr+xNZqtckWHDoEao/rtWqoRKx4UQaCJcHJkxRjEcOe/dlTdB72iFxGjUe1MG1f/Uhd5nN0yks+GHLteqc5rmVrMzGVuBhpWP1Oc4HWucMn0LEGiy4fX5pxghy0W46tFRZ6pv9U8fyVqLlwfzs0JkRCu/k16bMJUkCOXH/hDuH5YOsaBYcZoOrlf1VbZySJkdAF6EVezUWXT3sRLZWXnoH+Fd+ZwX5hUfNY/4981gkIjrbhDwLk5Ma6v3iEjUSavwCPVHJp8Ako58DksF1WatQQUPKi/S74IUH3u1AtIWV6VJSciklgu/RWOLtQTw+Fg+5b3dhygq7XpxKDJCDG5IFXZqj1KA4IZsCjVSaVx2p3pJStnAmpq3PpGPUSSpGkz32zA72s9oobP5R1QX6TXX6RC4QKFgmxkVyvKr1vXeB25WNaomhlMY1kFupUWSwMI4J+/YOwaktiH17apyb9wCs6xzAaHv9GPQlA1oqe2XVen100MQuG4LYrgoVi/JHHvl3GzfqTlQqSuxCH3ZO82OAvYZk0B17ue59FTMYru3DKdV+JhqI3ESnmisiIbTIRcVFrqmBv0eb7wo9z8K3D3gjQeWmHWVd0ZTuXpAXhmH89UEjkLRPBiIIppwZssb93AslXtJRCtgPqxaByIhSxim5wntM/xYkGg5Vr7QsaZPmCUs9RGx4BZP4tbbU/urSpe0eGuMPckKS0tgT7iFq5gWkp/QiBNyshO/MApULpjNJFxH9qz5WiwmBfyzqVIROAE2cezKh69wXeeKTaRig+6IGk66HDkVQzwYNfiMe5LnJqUoBxvKQYEXST3WdAIh2rImXZ/N22u5dHJwZAJMhB8MzQRSJTuela8xSbV7C1smm6CBBzOSTQ5Q6iDZW8QS0qqMQoei+B1tOE89A2Tg4US1uQDe4riZfHGu3X56rC33kyKVhOotfsUVdhS/QJpJQ7C4/eR6mSM3uY8c5bBN949d+bS9u4t4Hxg8tBe5qPeqAOpsz97O7iAaSf+2Y7of223NBffhkNQVSiUtI3bTUwcgQwN7mberkRrDsezNkzSjplScAOEahJvd/Bh4BPA=212FD3x19z9sWBHDJACbC00B75E"
 
 nasdaqdatalink.ApiConfig.api_key = 'Y9Lf787ZrM5gcGKv-6W7'
@@ -29,9 +29,10 @@ def getAccessToken():
               'client_id': tda_client_id}
     
     x = requests.post(url, data = params)
+
     content = json.loads(x.text)
     tda_access_token = content['access_token']
-    #print(tda_access_token)
+
     return tda_access_token
 
 
@@ -162,6 +163,49 @@ startDatey = datetime.datetime.strptime('2019-05-01', '%Y-%m-%d')
 endDatey = datetime.datetime.today()
 
 # test = GetTdaDataForTickers(["DX-Y.NYB"], 'month', 'daily', 1, startDatey, endDatey, False, True)
+
+def GetAlphaQueryVolData(ticker):
+    df = None
+    
+    put_endpoint = 'https://www.alphaquery.com/data/option-statistic-chart?ticker={ticker}&perType=30-Day&identifier=iv-put'
+    
+    put_url = put_endpoint.format(ticker=ticker)
+    
+    put_page = requests.get(url=put_url)
+    
+    put_content = json.loads(put_page.content)
+    
+    put_index = []
+    
+    put_value = []
+    
+    for item in put_content:
+        put_index.append(datetime.datetime.strptime(item["x"].replace("T00:00:00Z", ""), '%Y-%m-%d'))
+        put_value.append(item["value"])
+        
+    
+    df = pd.DataFrame(index = put_index)
+    df["put_iv"] = put_value
+    df.index.names = ['datetime']
+    df.sort_index(inplace = True)
+       
+    df["skew"] = np.nan
+    
+    skew_endpoint = 'https://www.alphaquery.com/data/option-statistic-chart?ticker={ticker}&perType=90-Day&identifier=iv-mean-skew'
+    
+    skew_url = skew_endpoint.format(ticker=ticker)
+    
+    skew_page = requests.get(url=skew_url)
+    
+    skew_content = json.loads(skew_page.content)
+    
+    for item in skew_content:
+        df.at[datetime.datetime.strptime(item["x"].replace("T00:00:00Z", ""), '%Y-%m-%d'), 'skew'] = item["value"]
+    
+    return df
+    
+
+test = GetAlphaQueryVolData("VEGI")
 
 volTickerProxies = {
     "BNDD": "TLT",

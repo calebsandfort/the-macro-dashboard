@@ -1,9 +1,9 @@
 Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Downside,Upside,Upside / Downside,Position on Range in %,30D HH/LL,Trend,Long Term: Lower Fractal Range,Long Term: Upper Fractal Range,Range spread,Relative Range
 02/09/2022,VONG,Vanguard Russell 1000 Growth Index ETF,66.567,74.835,72.26,-7.88%,3.56%,0.45,0.69,bearish,bearish,64.81,76.58,8.268,11.44%
-02/09/2022,US30Y.INDX,U.S. 30 Year Treasury,2.099,2.305,2.2583,-7.05%,2.07%,0.29,0.77,bullish,bullish,1.80,2.48,0.20599999999999996,9.12%
+02/09/2022,^US30Y,U.S. 30 Year Treasury,2.099,2.305,2.2583,-7.05%,2.07%,0.29,0.77,bullish,bullish,1.80,2.48,0.20599999999999996,9.12%
 02/09/2022,USO,United States Commodity Funds LLC - United States Oil Fund,61.994,65.554,63.67,-2.63%,2.96%,1.12,0.47,bullish,bullish,50.57,68.47,3.5600000000000023,5.59%
 02/09/2022,UUP,Invesco DB US Dollar Index Trust - Invesco DB US Dollar Index Bullish Fund,25.379,26.056,25.565,-0.73%,1.92%,2.64,0.27,bearish,neutral,25.27,26.14,0.6769999999999996,2.65%
-02/09/2022,VIX.INDX,CBOE Volatility Index,17.199,29.214,21.44,-19.78%,36.26%,1.83,0.35,neutral,bearish,11.61,34.13,12.014999999999997,56.04%
+02/09/2022,^VIX,CBOE Volatility Index,17.199,29.214,21.44,-19.78%,36.26%,1.83,0.35,neutral,bearish,11.61,34.13,12.014999999999997,56.04%
 02/09/2022,VYM,Vanguard Group  Inc. - Vanguard High Dividend Yield Indx ETF,109.417,115.187,113.53,-3.62%,1.46%,0.40,0.71,bullish,bullish,106.98,118.18,5.769999999999996,5.08%
 02/09/2022,XLE,SSgA Active Trust - The Energy Select Sector SPDR Fund,65.069,70.832,68.655,-5.22%,3.17%,0.61,0.62,bullish,bullish,57.51,73.37,5.762999999999991,8.39%
 02/09/2022,XLP,SSgA Active Trust - Consumer Staples Select Sector SPDR,74.221,77.718,76.475,-2.95%,1.63%,0.55,0.64,bullish,bullish,72.26,81.61,3.497,4.57%
@@ -13,7 +13,7 @@ Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Down
 02/09/2022,DBA,Invesco DB Multi-Sector Commodity Trust - Invesco DB Agriculture Fund,20.227,21.123,21.075,-4.02%,0.23%,0.06,0.95,bullish,bullish,19.64,21.40,0.8960000000000008,4.25%
 02/09/2022,DBB,Invesco DB Multi-Sector Commodity Trust - Invesco DB Base Metals Fund,22.898,24.037,23.975,-4.49%,0.26%,0.06,0.95,bullish,bullish,22.20,24.41,1.1389999999999993,4.75%
 02/09/2022,DEF,Invesco Capital Management LLC - Invesco Defensive Equity ETF,66.916,70.788,70,-4.41%,1.13%,0.26,0.80,bearish,neutral,66.18,73.77,3.872,5.53%
-02/09/2022,DXY.INDX,US Dollar Index,94.677,97.199,95.627,-0.99%,1.64%,1.65,0.38,bearish,neutral,94.30,97.52,2.5219999999999914,2.64%
+02/09/2022,^DXY,US Dollar Index,94.677,97.199,95.627,-0.99%,1.64%,1.65,0.38,bearish,neutral,94.30,97.52,2.5219999999999914,2.64%
 02/09/2022,ETHE,Grayscale Investments LLC - Grayscale Ethereum Trust,16.669,27.527,25.6,-34.89%,7.53%,0.22,0.82,bearish,bearish,13.98,30.73,10.858,42.41%
 02/09/2022,GLD,SSgA Active Trust - SPDR Gold Shares ETF,165.706,173.399,171.28,-3.25%,1.24%,0.38,0.72,bullish,neutral,162.01,174.57,7.693000000000012,4.49%
 02/09/2022,HAL,Halliburton Co.,29.895,34.341,32.505,-8.03%,5.65%,0.70,0.59,bullish,bullish,25.06,35.01,4.4460000000000015,13.68%
@@ -27,5 +27,5 @@ Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Down
 02/09/2022,SPY,SSgA Active Trust - S&P 500 ETF TRUST ETF,427.855,467.377,455.6,-6.09%,2.58%,0.42,0.70,bearish,neutral,422.06,477.18,39.52199999999999,8.67%
 02/09/2022,TLT,BlackRock Institutional Trust Company N.A. - BTC iShares 20+ Year Treasury Bond ETF,136.464,142.149,139.06,-1.87%,2.22%,1.19,0.46,bearish,bearish,133.75,148.13,5.685000000000002,4.09%
 02/09/2022,URNM,Exchange Traded Concepts Trust - North Shore Global Uranium Mining ETF,56.625,70.34,69.93,-19.03%,0.59%,0.03,0.97,bearish,bearish,54.77,75.40,13.715000000000003,19.61%
-02/09/2022,US10Y.INDX,U.S. 10 Year Treasury,1.793,2.045,1.9642,-8.72%,4.11%,0.47,0.68,bullish,bullish,1.51,2.17,0.252,12.83%
+02/09/2022,^US10Y,U.S. 10 Year Treasury,1.793,2.045,1.9642,-8.72%,4.11%,0.47,0.68,bullish,bullish,1.51,2.17,0.252,12.83%
 02/09/2022,GRN,GRN,35.02,38.731,35.985,-2.68%,7.63%,2.85,0.26,bullish,bullish,28.73,44.89,3.7109999999999985,10.31%

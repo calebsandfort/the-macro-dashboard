@@ -8,14 +8,14 @@ Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Down
 02/28/2022,SPY,SSgA Active Trust - S&P 500 ETF TRUST ETF,418.139,450.68,436.45,-4.20%,3.26%,0.78,0.56,bearish,neutral,409.81,468.18,32.541,7.46%
 02/28/2022,TLT,BlackRock Institutional Trust Company N.A. - BTC iShares 20+ Year Treasury Bond ETF,133.027,139.395,138.97,-4.28%,0.31%,0.07,0.93,bearish,bearish,132.27,140.75,6.368000000000023,4.58%
 02/28/2022,TQQQ,ProShares Trust - ProShares UltraPro QQQ,42.829,58.574,52.39,-18.25%,11.80%,0.65,0.61,bearish,bearish,37.54,65.44,15.744999999999997,30.05%
-02/28/2022,US10Y.INDX,U.S. 10 Year Treasury,1.876,2.076,1.9686,-4.70%,5.46%,1.16,0.46,bullish,bullish,1.73,2.24,0.20000000000000018,10.16%
+02/28/2022,^US10Y,U.S. 10 Year Treasury,1.876,2.076,1.9686,-4.70%,5.46%,1.16,0.46,bullish,bullish,1.73,2.24,0.20000000000000018,10.16%
 02/28/2022,ARCH,Arch Resources Inc - Class A,111.631,126.922,117.03,-4.61%,8.45%,1.83,0.35,bullish,bullish,103.38,128.78,15.290999999999997,13.07%
 02/28/2022,ARKK,ARK Investment Management LLC - ARK Innovation ETF,58.477,74.754,70.63,-17.21%,5.84%,0.34,0.75,bearish,bearish,53.20,77.93,16.277000000000008,23.05%
 02/28/2022,BNDD,Krane Shares Trust - Quadratic Deflation ETF,25.024,25.783,25.6,-2.25%,0.71%,0.32,0.76,bullish,bearish,24.11,25.96,0.7590000000000003,2.96%
 02/28/2022,CORN,Teucrium Trading  LLC - Teucrium Corn Fund,22.814,24.544,24.46,-6.73%,0.34%,0.05,0.95,bullish,neutral,22.23,24.54,1.7300000000000004,7.07%
 02/28/2022,DBA,Invesco DB Multi-Sector Commodity Trust - Invesco DB Agriculture Fund,20.587,21.427,20.975,-1.85%,2.15%,1.16,0.46,bullish,neutral,20.05,21.59,0.8399999999999999,4.00%
 02/28/2022,DEF,Invesco Capital Management LLC - Invesco Defensive Equity ETF,65.79,69.663,67.65,-2.75%,2.98%,1.08,0.48,bearish,neutral,64.89,73.14,3.8729999999999905,5.73%
-02/28/2022,DXY.INDX,US Dollar Index,95.979,97.258,96.541,-0.58%,0.74%,1.28,0.44,bullish,neutral,94.76,98.32,1.2789999999999964,1.32%
+02/28/2022,^DXY,US Dollar Index,95.979,97.258,96.541,-0.58%,0.74%,1.28,0.44,bullish,neutral,94.76,98.32,1.2789999999999964,1.32%
 02/28/2022,EDV,Vanguard Group  Inc. - Vanguard Extended Duration Treasury ETF,121.999,129.674,128.77,-5.26%,0.70%,0.13,0.88,bearish,bearish,121.22,131.38,7.675000000000011,5.96%
 02/28/2022,ETHE,Grayscale Investments LLC - Grayscale Ethereum Trust,18.482,28.306,21.69,-14.79%,30.50%,2.06,0.33,bullish,bearish,11.97,28.96,9.824000000000002,45.29%
 02/28/2022,GLD,SSgA Active Trust - SPDR Gold Shares ETF,174.637,180.296,176.58,-1.10%,2.10%,1.91,0.34,bullish,neutral,169.68,180.30,5.658999999999992,3.20%
@@ -29,10 +29,10 @@ Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Down
 02/28/2022,PCT,PureCycle Technologies Inc,5.493,6.918,6.76,-18.74%,2.34%,0.12,0.89,neutral,bearish,3.44,7.62,1.4249999999999998,21.08%
 02/28/2022,PINK,Simplify Exchange Traded Funds - Simplify Health Care ETF,24.37,26.402,25.81,-5.58%,2.29%,0.41,0.71,bullish,bearish,23.32,28.27,2.032,7.87%
 02/28/2022,PPLT,abrdn ETF - Aberdeen Standard Physical Platinum Shares ETF,96.676,103.406,97.17,-0.51%,6.42%,12.62,0.07,bullish,bullish,92.91,105.53,6.730000000000004,6.93%
-02/28/2022,US30Y.INDX,U.S. 30 Year Treasury,2.193,2.394,2.2767,-3.68%,5.15%,1.40,0.42,bullish,bullish,2.11,2.48,0.20100000000000007,8.83%
+02/28/2022,^US30Y,U.S. 30 Year Treasury,2.193,2.394,2.2767,-3.68%,5.15%,1.40,0.42,bullish,bullish,2.11,2.48,0.20100000000000007,8.83%
 02/28/2022,USO,United States Commodity Funds LLC - United States Oil Fund,63.082,67.851,67.39,-6.39%,0.68%,0.11,0.90,bullish,bullish,60.34,71.47,4.768999999999998,7.08%
 02/28/2022,UUP,Invesco DB US Dollar Index Trust - Invesco DB US Dollar Index Bullish Fund,25.677,26.008,25.89,-0.82%,0.46%,0.55,0.64,neutral,neutral,25.38,26.34,0.3309999999999995,1.28%
-02/28/2022,VIX.INDX,CBOE Volatility Index,21.186,34.816,27.59,-23.21%,26.19%,1.13,0.47,bullish,neutral,11.52,40.31,13.630000000000003,49.40%
+02/28/2022,^VIX,CBOE Volatility Index,21.186,34.816,27.59,-23.21%,26.19%,1.13,0.47,bullish,neutral,11.52,40.31,13.630000000000003,49.40%
 02/28/2022,VXZ,Barclays Bank PLC - ZC SP ETN REDEEM 23/01/2043 USD 16.855272 - Ser B MidTerm Future,24.817,27.756,26.87,-7.64%,3.30%,0.43,0.70,bullish,bearish,23.65,27.95,2.939,10.94%
 02/28/2022,WEAT,Teucrium Trading  LLC - Teucrium Wheat Fund,7.76,8.904,8.75,-11.31%,1.76%,0.16,0.87,bullish,neutral,7.22,8.90,1.1440000000000001,13.07%
 02/28/2022,XLE,SSgA Active Trust - The Energy Select Sector SPDR Fund,66.418,71.022,70.31,-5.54%,1.01%,0.18,0.85,bullish,bullish,61.48,75.34,4.603999999999999,6.55%

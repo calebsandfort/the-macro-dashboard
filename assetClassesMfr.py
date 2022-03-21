@@ -17,10 +17,10 @@ import dash_bootstrap_components as dbc
 from dash import html
 
 tickerLookup = {
-    "VIX": { "tda": "$VIX.X", "mfr": "VIX.INDX" },
-    "DXY": { "tda": "$DXY.X", "mfr": "DXY.INDX", "yahoo": "DX-Y.NYB" },
-    "US10Y": { "tda": "$TNX.X", "mfr": "US10Y.INDX", "divisor": 10.0, "isPercent": True },
-    "US30Y": { "tda": "$TYX.X", "mfr": "US30Y.INDX", "divisor": 10.0, "isPercent": True }
+    "VIX": { "tda": "$VIX.X", "mfr": "^VIX" },
+    "DXY": { "tda": "$DXY.X", "mfr": "^DXY", "yahoo": "DX-Y.NYB" },
+    "US10Y": { "tda": "$TNX.X", "mfr": "^US10Y", "divisor": 10.0, "isPercent": True },
+    "US30Y": { "tda": "$TYX.X", "mfr": "^US30Y", "divisor": 10.0, "isPercent": True }
     }
 
 correlationTickers = ["DXY", "SPY", "US10Y", "US30Y", "VIX"]

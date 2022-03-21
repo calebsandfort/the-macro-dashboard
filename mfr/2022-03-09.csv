@@ -4,8 +4,8 @@ Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Down
 03/09/2022,SPY,SSgA Active Trust - S&P 500 ETF TRUST ETF,401.63,434.83,427.09,-5.96%,1.81%,0.30,0.77,bearish,bearish,393.43,445.80,33.19999999999999,7.77%
 03/09/2022,TLT,BlackRock Institutional Trust Company N.A. - BTC iShares 20+ Year Treasury Bond ETF,133.675,142.262,136.9,-2.36%,3.92%,1.66,0.38,bearish,bearish,131.72,142.26,8.586999999999989,6.27%
 03/09/2022,URNM,Exchange Traded Concepts Trust - North Shore Global Uranium Mining ETF,71.223,87.301,80.9,-11.96%,7.91%,0.66,0.60,bullish,bullish,55.82,88.90,16.078000000000003,19.87%
-03/09/2022,US10Y.INDX,U.S. 10 Year Treasury,1.637,1.979,1.8482,-11.43%,7.08%,0.62,0.62,bearish,bullish,1.64,2.19,0.3420000000000001,18.50%
-03/09/2022,US30Y.INDX,U.S. 30 Year Treasury,2.058,2.353,2.2256,-7.53%,5.72%,0.76,0.57,bearish,bullish,2.06,2.48,0.2950000000000004,13.25%
+03/09/2022,^US10Y,U.S. 10 Year Treasury,1.637,1.979,1.8482,-11.43%,7.08%,0.62,0.62,bearish,bullish,1.64,2.19,0.3420000000000001,18.50%
+03/09/2022,^US30Y,U.S. 30 Year Treasury,2.058,2.353,2.2256,-7.53%,5.72%,0.76,0.57,bearish,bullish,2.06,2.48,0.2950000000000004,13.25%
 03/09/2022,UUP,Invesco DB US Dollar Index Trust - Invesco DB US Dollar Index Bullish Fund,26.161,26.655,26.235,-0.28%,1.60%,5.68,0.15,bullish,bullish,25.75,26.88,0.4939999999999998,1.88%
 03/09/2022,UUUU,Energy Fuels Inc,7.421,10.219,9.21,-19.42%,10.96%,0.56,0.64,bullish,bullish,5.10,10.47,2.797999999999999,30.38%
 03/09/2022,ARCH,Arch Resources Inc - Class A,128.339,165.787,148.36,-13.49%,11.75%,0.87,0.53,bullish,bullish,116.20,165.79,37.44800000000001,25.24%
@@ -13,7 +13,7 @@ Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Down
 03/09/2022,BNDD,Krane Shares Trust - Quadratic Deflation ETF,25.307,26.228,25.735,-1.66%,1.92%,1.15,0.46,bullish,neutral,24.54,26.43,0.9210000000000029,3.58%
 03/09/2022,CHIX,Global X Funds - Global X MSCI China Financials ETF,13.258,13.942,13.415,-1.17%,3.93%,3.36,0.23,bearish,bearish,13.07,15.10,0.684000000000001,5.10%
 03/09/2022,DBA,Invesco DB Multi-Sector Commodity Trust - Invesco DB Agriculture Fund,21.202,22.578,21.84,-2.92%,3.38%,1.16,0.46,bullish,bullish,20.95,22.75,1.3759999999999977,6.30%
-03/09/2022,DXY.INDX,US Dollar Index,98.062,99.663,99.083,-1.03%,0.59%,0.57,0.64,bullish,bullish,96.24,100.28,1.600999999999999,1.62%
+03/09/2022,^DXY,US Dollar Index,98.062,99.663,99.083,-1.03%,0.59%,0.57,0.64,bullish,bullish,96.24,100.28,1.600999999999999,1.62%
 03/09/2022,EDV,Vanguard Group  Inc. - Vanguard Extended Duration Treasury ETF,122.726,132.503,126.5,-2.98%,4.75%,1.59,0.39,bearish,bearish,120.56,132.50,9.776999999999987,7.73%
 03/09/2022,ETHE,Grayscale Investments LLC - Grayscale Ethereum Trust,16.203,23.349,20.01,-19.03%,16.69%,0.88,0.53,bearish,bearish,10.94,27.68,7.146000000000001,35.71%
 03/09/2022,FXY,Rydex Investments - Invesco CurrencyShares Japanese Yen Trust,80.67,81.673,80.93,-0.32%,0.92%,2.86,0.26,bearish,neutral,79.59,82.71,1.0030000000000001,1.24%
@@ -26,7 +26,7 @@ Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Down
 03/09/2022,PCT,PureCycle Technologies Inc,6.287,8.698,8.03,-21.71%,8.32%,0.38,0.72,bullish,bearish,3.33,9.09,2.4110000000000005,30.02%
 03/09/2022,QQQ,Invesco Capital Management LLC - Invesco QQQ Trust Series 1,307.804,343.707,332.74,-7.49%,3.30%,0.44,0.69,bearish,bearish,297.59,352.54,35.90300000000002,10.79%
 03/09/2022,VEGI,BlackRock Institutional Trust Company N.A. - iShares MSCI Global Agriculture Producers ETF,40.707,44.866,43.605,-6.65%,2.89%,0.44,0.70,bullish,bullish,40.71,45.39,4.158999999999999,9.54%
-03/09/2022,VIX.INDX,CBOE Volatility Index,28.717,39.733,35.13,-18.26%,13.10%,0.72,0.58,bullish,bullish,17.41,50.15,11.015999999999998,31.36%
+03/09/2022,^VIX,CBOE Volatility Index,28.717,39.733,35.13,-18.26%,13.10%,0.72,0.58,bullish,bullish,17.41,50.15,11.015999999999998,31.36%
 03/09/2022,VIXM,ProShares Trust - ProShares VIX Mid-Term Futures ETF,32.765,36.472,33.72,-2.83%,8.16%,2.88,0.26,bullish,bullish,30.00,36.91,3.7070000000000007,10.99%
 03/09/2022,XLE,SSgA Active Trust - The Energy Select Sector SPDR Fund,71.314,78.649,76.72,-7.05%,2.51%,0.36,0.74,bullish,bullish,69.19,83.62,7.335000000000008,9.56%
 03/09/2022,XLP,SSgA Active Trust - Consumer Staples Select Sector SPDR,71.012,75.53,73.42,-3.28%,2.87%,0.88,0.53,bearish,bearish,70.75,77.10,4.518000000000001,6.15%

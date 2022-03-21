@@ -1,7 +1,7 @@
 Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Downside,Upside,Upside / Downside,Position on Range in %,30D HH/LL,Trend,Long Term: Lower Fractal Range,Long Term: Upper Fractal Range,Range spread,Relative Range
 02/04/2022,USO,United States Commodity Funds LLC - United States Oil Fund,61.744,65.605,65.12,-5.18%,0.74%,0.14,0.87,bullish,bullish,48.77,68.22,3.861000000000004,5.93%
 02/04/2022,UUP,Invesco DB US Dollar Index Trust - Invesco DB US Dollar Index Bullish Fund,25.511,26.106,25.56,-0.19%,2.14%,11.14,0.08,bullish,neutral,25.26,26.27,0.5950000000000024,2.33%
-02/04/2022,VIX.INDX,CBOE Volatility Index,19.627,34.123,24.35,-19.40%,40.14%,2.07,0.33,bullish,bearish,12.10,38.09,14.495999999999999,59.53%
+02/04/2022,^VIX,CBOE Volatility Index,19.627,34.123,24.35,-19.40%,40.14%,2.07,0.33,bullish,bearish,12.10,38.09,14.495999999999999,59.53%
 02/04/2022,VONG,Vanguard Group  Inc. - Vanguard Russell 1000 Growth Index ETF,65.403,73.517,70.69,-7.48%,4.00%,0.53,0.65,bearish,bearish,65.24,76.13,8.11399999999999,11.48%
 02/04/2022,VYM,Vanguard Group  Inc. - Vanguard High Dividend Yield Indx ETF,108.238,113.988,111.98,-3.34%,1.79%,0.54,0.65,bearish,neutral,106.47,117.59,5.75,5.13%
 02/04/2022,XLE,SSgA Active Trust - The Energy Select Sector SPDR Fund,64.58,69.778,69.03,-6.45%,1.08%,0.17,0.86,bullish,bullish,56.06,72.54,5.1980000000000075,7.53%
@@ -12,7 +12,7 @@ Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Down
 02/04/2022,DBA,Invesco DB Multi-Sector Commodity Trust - Invesco DB Agriculture Fund,20.002,20.9,20.545,-2.64%,1.73%,0.65,0.60,bullish,bullish,19.41,21.34,0.8979999999999997,4.37%
 02/04/2022,DBB,Invesco DB Multi-Sector Commodity Trust - Invesco DB Base Metals Fund,22.741,23.667,23.23,-2.11%,1.88%,0.89,0.53,bullish,bullish,21.80,24.07,0.9260000000000019,3.99%
 02/04/2022,DEF,Invesco Capital Management LLC - Invesco Defensive Equity ETF,66.66,70.379,68.91,-3.27%,2.13%,0.65,0.61,bearish,neutral,66.59,73.95,3.7190000000000083,5.40%
-02/04/2022,DXY.INDX,US Dollar Index,95.254,97.233,95.353,-0.10%,1.97%,18.99,0.05,bullish,neutral,94.17,97.35,1.9789999999999992,2.08%
+02/04/2022,^DXY,US Dollar Index,95.254,97.233,95.353,-0.10%,1.97%,18.99,0.05,bullish,neutral,94.17,97.35,1.9789999999999992,2.08%
 02/04/2022,ETHE,Grayscale Investments LLC - Grayscale Ethereum Trust,15.296,22.628,19.67,-22.24%,15.04%,0.68,0.60,bearish,bearish,15.30,25.42,7.332000000000001,37.28%
 02/04/2022,GLD,SSgA Active Trust - SPDR Gold Shares ETF,164.787,172.074,168.86,-2.41%,1.90%,0.79,0.56,bearish,neutral,160.50,173.17,7.287000000000006,4.32%
 02/04/2022,GRN,Barclays Bank PLC - ZC SP ETN REDEEM 08/09/2049 USD 50,35.588,38.638,37.75,-5.73%,2.35%,0.41,0.71,bullish,bullish,29.51,46.39,3.049999999999997,8.08%
@@ -26,5 +26,5 @@ Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Down
 02/04/2022,SPY,SSgA Active Trust - S&P 500 ETF TRUST ETF,423.044,460.349,446.62,-5.28%,3.07%,0.58,0.63,bearish,neutral,423.04,474.73,37.30500000000001,8.35%
 02/04/2022,TLT,BlackRock Institutional Trust Company N.A. - BTC iShares 20+ Year Treasury Bond ETF,137.393,144.353,139.38,-1.43%,3.57%,2.50,0.29,bearish,bearish,136.32,150.88,6.960000000000008,4.99%
 02/04/2022,URNM,Exchange Traded Concepts Trust - North Shore Global Uranium Mining ETF,55.703,67.213,62.87,-11.40%,6.91%,0.61,0.62,bearish,bearish,53.48,72.00,11.509999999999991,18.31%
-02/04/2022,US10Y.INDX,U.S. 10 Year Treasury,1.733,1.989,1.8389,-5.76%,8.16%,1.42,0.41,bullish,bullish,1.43,2.06,0.256,13.92%
-02/04/2022,US30Y.INDX,U.S. 30 Year Treasury,2.053,2.29,2.1574,-4.84%,6.15%,1.27,0.44,bullish,bullish,1.73,2.38,0.2370000000000001,10.99%
+02/04/2022,^US10Y,U.S. 10 Year Treasury,1.733,1.989,1.8389,-5.76%,8.16%,1.42,0.41,bullish,bullish,1.43,2.06,0.256,13.92%
+02/04/2022,^US30Y,U.S. 30 Year Treasury,2.053,2.29,2.1574,-4.84%,6.15%,1.27,0.44,bullish,bullish,1.73,2.38,0.2370000000000001,10.99%

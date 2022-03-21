@@ -4,16 +4,16 @@ Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Down
 02/24/2022,SPLV,Invesco Capital Management LLC - Invesco S&P 500 Low Volatility ETF,61.379,63.861,61.305,0.12%,4.17%,34.54,-0.03,bearish,bearish,60.48,68.27,2.4819999999999993,4.05%
 02/24/2022,SPY,SSgA Active Trust - S&P 500 ETF TRUST ETF,413.49,439.533,416.23,-0.66%,5.60%,8.50,0.11,bearish,bearish,401.13,457.70,26.043000000000006,6.26%
 02/24/2022,TLT,BlackRock Institutional Trust Company N.A. - BTC iShares 20+ Year Treasury Bond ETF,133.037,138.919,137.81,-3.46%,0.80%,0.23,0.81,bearish,bearish,132.20,142.03,5.882000000000005,4.27%
-02/24/2022,US10Y.INDX,U.S. 10 Year Treasury,1.9,2.171,1.9973,-4.87%,8.70%,1.79,0.36,bullish,bullish,1.75,2.25,0.2709999999999999,13.57%
-02/24/2022,US30Y.INDX,U.S. 30 Year Treasury,2.214,2.438,2.2989,-3.69%,6.05%,1.64,0.38,bullish,bullish,2.12,2.54,0.2240000000000002,9.74%
+02/24/2022,^US10Y,U.S. 10 Year Treasury,1.9,2.171,1.9973,-4.87%,8.70%,1.79,0.36,bullish,bullish,1.75,2.25,0.2709999999999999,13.57%
+02/24/2022,^US30Y,U.S. 30 Year Treasury,2.214,2.438,2.2989,-3.69%,6.05%,1.64,0.38,bullish,bullish,2.12,2.54,0.2240000000000002,9.74%
 02/24/2022,USO,United States Commodity Funds LLC - United States Oil Fund,63.404,68.178,68.33,-7.21%,-0.22%,-0.03,1.03,bullish,bullish,60.59,71.42,4.773999999999994,6.99%
 02/24/2022,UUP,Invesco DB US Dollar Index Trust - Invesco DB US Dollar Index Bullish Fund,25.517,25.917,26.05,-2.05%,-0.51%,-0.25,1.33,neutral,neutral,25.34,26.28,0.40000000000000213,1.54%
-02/24/2022,VIX.INDX,CBOE Volatility Index,22.542,37.763,31.02,-27.33%,21.74%,0.80,0.56,bullish,bullish,11.56,43.85,15.220999999999997,49.07%
+02/24/2022,^VIX,CBOE Volatility Index,22.542,37.763,31.02,-27.33%,21.74%,0.80,0.56,bullish,bullish,11.56,43.85,15.220999999999997,49.07%
 02/24/2022,ARCH,Arch Resources Inc - Class A,112.521,126.498,114.99,-2.15%,10.01%,4.66,0.18,bullish,bullish,103.32,128.13,13.977000000000004,12.15%
 02/24/2022,BNDD,Krane Shares Trust - Quadratic Deflation ETF,25.059,25.774,25.435,-1.48%,1.33%,0.90,0.53,bullish,bearish,24.15,26.51,0.7149999999999999,2.81%
 02/24/2022,CORN,Teucrium Trading  LLC - Teucrium Corn Fund,23.523,24.762,24.46,-3.83%,1.23%,0.32,0.76,bullish,bullish,22.51,24.92,1.2390000000000008,5.07%
 02/24/2022,DEF,Invesco Capital Management LLC - Invesco Defensive Equity ETF,65.054,68.152,65.456,-0.61%,4.12%,6.71,0.13,bearish,bearish,63.96,71.67,3.097999999999999,4.73%
-02/24/2022,DXY.INDX,US Dollar Index,95.539,96.747,96.197,-0.68%,0.57%,0.84,0.54,neutral,neutral,94.55,98.04,1.2079999999999984,1.26%
+02/24/2022,^DXY,US Dollar Index,95.539,96.747,96.197,-0.68%,0.57%,0.84,0.54,neutral,neutral,94.55,98.04,1.2079999999999984,1.26%
 02/24/2022,EDV,Vanguard Group  Inc. - Vanguard Extended Duration Treasury ETF,122.123,129.174,127.39,-4.13%,1.40%,0.34,0.75,bearish,bearish,121.47,133.00,7.051000000000002,5.53%
 02/24/2022,ETHE,Grayscale Investments LLC - Grayscale Ethereum Trust,18.493,27.238,20.71,-10.70%,31.52%,2.94,0.25,neutral,bearish,12.26,27.93,8.745000000000001,42.23%
 02/24/2022,GDX,VanEck ETF Trust - VanEck Gold Miners ETF,32.827,36.395,34.605,-5.14%,5.17%,1.01,0.50,bullish,bullish,29.59,36.97,3.568000000000005,10.31%

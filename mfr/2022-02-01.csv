@@ -5,7 +5,7 @@ Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Down
 02/01/2022,DBA,Invesco DB Multi-Sector Commodity Trust - Invesco DB Agriculture Fund,19.911,20.66,20.465,-2.71%,0.95%,0.35,0.74,bullish,bullish,19.20,21.11,0.7489999999999988,3.66%
 02/01/2022,DBB,Invesco DB Multi-Sector Commodity Trust - Invesco DB Base Metals Fund,22.643,23.696,22.98,-1.47%,3.12%,2.12,0.32,bullish,bullish,21.65,23.88,1.0530000000000008,4.58%
 02/01/2022,DEF,Invesco Capital Management LLC - Invesco Defensive Equity ETF,66.897,69.688,68.73,-2.67%,1.39%,0.52,0.66,bearish,neutral,66.34,74.03,2.790999999999997,4.06%
-02/01/2022,DXY.INDX,US Dollar Index,96.221,97.639,96.644,-0.44%,1.02%,2.31,0.30,bullish,neutral,94.79,97.89,1.4179999999999922,1.47%
+02/01/2022,^DXY,US Dollar Index,96.221,97.639,96.644,-0.44%,1.02%,2.31,0.30,bullish,neutral,94.79,97.89,1.4179999999999922,1.47%
 02/01/2022,GLD,SSgA Active Trust - SPDR Gold Shares ETF,166.041,172.612,168.44,-1.42%,2.48%,1.74,0.37,bullish,neutral,160.18,176.40,6.570999999999998,3.90%
 02/01/2022,GRN,Barclays Bank PLC - ZC SP ETN REDEEM 08/09/2049 USD 50,32.602,36.524,35.15,-7.25%,3.91%,0.54,0.65,bullish,bullish,28.22,44.27,3.922000000000004,11.16%
 02/01/2022,HAL,Halliburton Co.,28.602,32.842,31.21,-8.36%,5.23%,0.63,0.62,bullish,bullish,23.23,33.22,4.239999999999998,13.59%
@@ -16,7 +16,7 @@ Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Down
 02/01/2022,SPY,SSgA Active Trust - S&P 500 ETF TRUST ETF,427.322,457.823,450.255,-5.09%,1.68%,0.33,0.75,bearish,neutral,427.32,476.61,30.500999999999976,6.77%
 02/01/2022,TLT,BlackRock Institutional Trust Company N.A. - BTC iShares 20+ Year Treasury Bond ETF,138.545,145.164,141.265,-1.93%,2.76%,1.43,0.41,bearish,bearish,137.43,152.10,6.619,4.69%
 02/01/2022,USO,United States Commodity Funds LLC - United States Oil Fund,60.913,65.235,62.15,-1.99%,4.96%,2.49,0.29,bullish,bullish,48.17,67.08,4.322000000000003,6.95%
-02/01/2022,VIX.INDX,CBOE Volatility Index,21.565,33.308,24.83,-13.15%,34.14%,2.60,0.28,bullish,bearish,12.30,38.63,11.742999999999999,47.29%
+02/01/2022,^VIX,CBOE Volatility Index,21.565,33.308,24.83,-13.15%,34.14%,2.60,0.28,bullish,bearish,12.30,38.63,11.742999999999999,47.29%
 02/01/2022,XLP,SSgA Active Trust - Consumer Staples Select Sector SPDR,73.966,76.449,75.45,-1.97%,1.32%,0.67,0.60,bearish,bullish,71.69,80.96,2.483000000000004,3.29%
 02/01/2022,XLU,SSgA Active Trust - Utilities Select Sector SPDR ETF,66.276,69.818,67.97,-2.49%,2.72%,1.09,0.48,bearish,neutral,66.16,73.61,3.5420000000000016,5.21%
 02/01/2022,SPHB,Invesco Capital Management LLC - Invesco S&P 500 High Beta ETF,69.468,76.642,75.29,-7.73%,1.80%,0.23,0.81,bearish,bearish,69.16,80.89,7.173999999999992,9.53%

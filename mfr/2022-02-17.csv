@@ -4,7 +4,7 @@ Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Down
 02/17/2022,ZROZ,Pimco Exchange Traded Fund - PIMCO 25+ Year Zero Coupon U.S. Treasury Index Exchange-Traded Fund,132.967,140.576,136.6,-2.66%,2.91%,1.09,0.48,bearish,bearish,129.38,150.40,7.6089999999999804,5.57%
 02/17/2022,BNDD,Krane Shares Trust - Quadratic Deflation ETF,25.038,25.715,25.285,-0.98%,1.70%,1.74,0.36,bullish,bearish,24.12,26.92,0.6769999999999996,2.68%
 02/17/2022,DEF,Invesco Capital Management LLC - Invesco Defensive Equity ETF,66.971,70.546,67.86,-1.31%,3.96%,3.02,0.25,bearish,bearish,65.36,73.22,3.575000000000003,5.27%
-02/17/2022,DXY.INDX,US Dollar Index,94.367,96.393,95.783,-1.48%,0.64%,0.43,0.70,bearish,neutral,94.33,97.71,2.0259999999999962,2.12%
+02/17/2022,^DXY,US Dollar Index,94.367,96.393,95.783,-1.48%,0.64%,0.43,0.70,bearish,neutral,94.33,97.71,2.0259999999999962,2.12%
 02/17/2022,EDV,Vanguard Group  Inc. - Vanguard Extended Duration Treasury ETF,123.029,129.417,126.295,-2.59%,2.47%,0.96,0.51,bearish,bearish,120.76,137.63,6.388000000000005,5.06%
 02/17/2022,ETHE,Grayscale Investments LLC - Grayscale Ethereum Trust,23.025,32.287,27.2,-15.35%,18.70%,1.22,0.45,bullish,bearish,12.34,32.29,9.262,34.05%
 02/17/2022,GLD,SSgA Active Trust - SPDR Gold Shares ETF,171.382,176.266,177.43,-3.41%,-0.66%,-0.19,1.24,bullish,bullish,166.84,177.96,4.883999999999986,2.75%
@@ -17,10 +17,10 @@ Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Down
 02/17/2022,SPLV,Invesco Capital Management LLC - Invesco S&P 500 Low Volatility ETF,62.673,65.686,63.36,-1.08%,3.67%,3.39,0.23,bearish,bearish,61.34,69.12,3.0130000000000052,4.76%
 02/17/2022,SPY,SSgA Active Trust - S&P 500 ETF TRUST ETF,433.933,468.387,438.775,-1.10%,6.75%,6.12,0.14,neutral,neutral,417.00,474.40,34.45400000000001,7.85%
 02/17/2022,TLT,BlackRock Institutional Trust Company N.A. - BTC iShares 20+ Year Treasury Bond ETF,133.72,138.96,136.37,-1.94%,1.90%,0.98,0.51,bearish,bearish,131.46,145.75,5.240000000000009,3.84%
-02/17/2022,US10Y.INDX,U.S. 10 Year Treasury,1.88,2.145,2.0417,-7.92%,5.06%,0.64,0.61,bullish,bullish,1.73,2.27,0.2650000000000001,12.98%
-02/17/2022,US30Y.INDX,U.S. 30 Year Treasury,2.221,2.409,2.3487,-5.44%,2.57%,0.47,0.68,bullish,bullish,2.08,2.58,0.18799999999999972,8.00%
+02/17/2022,^US10Y,U.S. 10 Year Treasury,1.88,2.145,2.0417,-7.92%,5.06%,0.64,0.61,bullish,bullish,1.73,2.27,0.2650000000000001,12.98%
+02/17/2022,^US30Y,U.S. 30 Year Treasury,2.221,2.409,2.3487,-5.44%,2.57%,0.47,0.68,bullish,bullish,2.08,2.58,0.18799999999999972,8.00%
 02/17/2022,USO,United States Commodity Funds LLC - United States Oil Fund,62.603,66.551,64.3,-2.64%,3.50%,1.33,0.43,bullish,bullish,51.56,68.98,3.9480000000000004,6.14%
 02/17/2022,UUP,Invesco DB US Dollar Index Trust - Invesco DB US Dollar Index Bullish Fund,25.288,25.874,25.65,-1.41%,0.87%,0.62,0.62,bearish,neutral,25.28,26.18,0.5859999999999985,2.28%
-02/17/2022,VIX.INDX,CBOE Volatility Index,16.952,30.042,24.29,-30.21%,23.68%,0.78,0.56,bearish,bearish,11.59,36.37,13.09,53.89%
+02/17/2022,^VIX,CBOE Volatility Index,16.952,30.042,24.29,-30.21%,23.68%,0.78,0.56,bearish,bearish,11.59,36.37,13.09,53.89%
 02/17/2022,KBA,KraneSharesBosera MSCI China A 50 Connect Index ET,39.353,41.112,40.65,-3.19%,1.14%,0.36,0.74,bearish,bearish,36.49,43.77,1.7590000000000003,4.33%
 02/17/2022,VXZ,iPath Series B SP 500 VIX MidTerm Futures ETN,23.49,26.818,25.96,-9.51%,3.31%,0.35,0.74,bearish,bearish,23.02,28.14,3.328000000000003,12.82%
