@@ -1,0 +1,40 @@
+Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Downside,Upside,Upside / Downside,Position on Range in %,30D HH/LL,Trend,Long Term: Lower Fractal Range,Long Term: Upper Fractal Range,Long Term: Upside / Downside,Long Term: Position on Range in %,Range spread,Relative Range
+03/22/2022,ARCH,Arch Resources  Inc.,132.674,178.046,145.29,-8.68%,22.55%,2.60,0.28,bullish,bullish,123.63,179.75,1.08,0.48,45.371999999999986,31.23%
+03/22/2022,ARKK,ARK Innovation ETF,49.011,68.327,65.96,-25.70%,3.59%,0.14,0.88,bearish,bearish,48.21,73.78,0.41,0.71,19.315999999999995,29.28%
+03/22/2022,BNDD,Quadratic Deflation ETF,24.511,25.839,24.785,-1.11%,4.25%,3.85,0.21,bearish,bearish,24.07,26.07,1.07,0.48,1.3279999999999994,5.36%
+03/22/2022,BNO,United States Brent Oil Fund  LP,25.427,38.795,31.69,-19.76%,22.42%,1.13,0.47,bullish,bullish,25.43,39.19,1.04,0.49,13.368000000000002,42.18%
+03/22/2022,CF,CF Industries Holdings  Inc.,88.959,110.522,99.51,-10.60%,11.07%,1.04,0.49,bullish,bullish,77.72,112.84,0.49,0.67,21.563000000000002,21.67%
+03/22/2022,CHIX,Global X MSCI China Financials ETF,12.285,14.161,13.77,-10.78%,2.84%,0.26,0.79,bearish,bearish,12.23,15.15,1.18,0.46,1.8759999999999994,13.62%
+03/22/2022,DBA,Invesco DB Agriculture Fund,21.316,23.024,22.0105,-3.16%,4.60%,1.46,0.41,bullish,bullish,21.19,23.13,1.17,0.46,1.708000000000002,7.76%
+03/22/2022,DBC,Invesco DB Commodity Index Tracking Fund,23.812,29.781,26.48,-10.08%,12.47%,1.24,0.45,bullish,bullish,23.81,29.93,1.17,0.46,5.968999999999998,22.54%
+03/22/2022,EDV,Vanguard Extended Duration Treasury Index Fund ETF Shares,114.861,124.128,117.823,-2.51%,5.35%,2.13,0.32,bearish,bearish,114.71,127.72,1.90,0.35,9.266999999999996,7.87%
+03/22/2022,ETHE,Grayscale Ethereum Trust,18.094,25.135,24.66,-26.63%,1.93%,0.07,0.93,bearish,bearish,10.36,31.97,0.62,0.62,7.041,28.55%
+03/22/2022,FXY,Invesco CurrencyShares Japanese Yen Trust,77.716,79.397,77.81,-0.12%,2.04%,16.88,0.06,bearish,bearish,77.62,81.13,3.08,0.25,1.6810000000000116,2.16%
+03/22/2022,GLD,SPDR Gold Shares,174.202,192.58,179.49,-2.95%,7.29%,2.48,0.29,bullish,neutral,173.03,194.86,1.86,0.35,18.378000000000014,10.24%
+03/22/2022,GRN,iPath Series B Carbon ETN,20.299,36.483,31.6403,-35.84%,15.31%,0.43,0.70,bearish,bullish,18.03,38.27,0.54,0.65,16.183999999999997,51.15%
+03/22/2022,HYG,iShares iBoxx $ High Yield Corporate Bond ETF,79.266,82.908,81.585,-2.84%,1.62%,0.57,0.64,bearish,bearish,79.27,83.06,0.64,0.61,3.641999999999996,4.46%
+03/22/2022,IWM,iShares Russell 2000 ETF,192.761,210.366,206.04,-6.44%,2.10%,0.33,0.75,bullish,neutral,178.10,217.42,0.44,0.70,17.605000000000018,8.54%
+03/22/2022,KBA,KraneShares Bosera MSCI China A ETF,33.07,39.035,37.38,-11.53%,4.43%,0.38,0.72,bearish,bearish,33.07,39.46,0.49,0.67,5.964999999999996,15.96%
+03/22/2022,KRE,SPDR S&P Regional Banking ETF,64.848,74.196,72.02,-9.96%,3.02%,0.30,0.77,bearish,neutral,64.70,79.71,1.33,0.43,9.347999999999999,12.98%
+03/22/2022,LQD,iShares iBoxx $ Investment Grade Corporate Bond ETF,116.73,122.238,119.845,-2.60%,2.00%,0.77,0.57,bearish,bearish,116.73,123.12,0.88,0.53,5.507999999999996,4.60%
+03/22/2022,PCT,PureCycle Technologies  Inc.,7.805,10.875,8.6,-9.24%,26.45%,2.86,0.26,bullish,bullish,3.27,11.13,0.44,0.69,3.0700000000000003,35.70%
+03/22/2022,PFIX,PFIX,43.799,49.411,47.26,-7.32%,4.55%,0.62,0.62,bullish,bullish,42.82,50.93,1.10,0.48,5.612000000000002,11.87%
+03/22/2022,QQQ,Invesco QQQ Trust,317.719,360.257,355.325,-10.58%,1.39%,0.13,0.88,bearish,bearish,308.29,376.11,0.62,0.62,42.53800000000001,11.97%
+03/22/2022,SARK,Collaborative Investment Series Trust - Tuttle Capital Short Innovation ETF,45.21,60.249,47.1,-4.01%,27.92%,6.96,0.13,neutral,neutral,41.90,60.84,1.89,0.35,15.039000000000001,31.93%
+03/22/2022,SJB,ProShares Short High Yield,17.987,18.8,18.28,-1.60%,2.84%,1.77,0.36,bullish,neutral,17.96,18.80,1.73,0.37,0.8130000000000024,4.45%
+03/22/2022,SPY,SPDR S&P 500 ETF Trust,417.79,452.764,448.09,-6.76%,1.04%,0.15,0.87,neutral,neutral,408.48,468.88,0.61,0.62,34.97399999999999,7.81%
+03/22/2022,TLT,iShares 20+ Year Treasury Bond ETF,126.567,134.822,129.1267,-1.98%,4.41%,2.22,0.31,bearish,bearish,126.44,138.09,4.00,0.20,8.25500000000001,6.39%
+03/22/2022,URNM,North Shore Global Uranium Mining ETF,74.32,95.559,84.575,-12.13%,12.99%,1.07,0.48,bullish,bullish,57.20,95.56,0.38,0.73,21.239000000000004,25.11%
+03/22/2022,USO,United States Oil Fund  LP,65.28,93.069,78.19,-16.51%,19.03%,1.15,0.46,bullish,bullish,65.28,93.71,1.12,0.47,27.789,35.54%
+03/22/2022,UUP,Invesco DB US Dollar Index Bullish Fund,26.08,26.865,26.345,-1.01%,1.97%,1.96,0.34,bullish,neutral,25.78,26.89,0.94,0.52,0.7850000000000001,2.98%
+03/22/2022,UUUU,Energy Fuels Inc.,8.117,11.369,10,-18.83%,13.69%,0.73,0.58,bullish,bullish,5.31,12.07,0.42,0.71,3.251999999999999,32.52%
+03/22/2022,VEGI,iShares MSCI Global Agriculture Producers ETF,45.141,48.408,47.261,-4.49%,2.43%,0.54,0.65,bullish,bullish,42.64,48.74,0.28,0.78,3.267000000000003,6.91%
+03/22/2022,VIXM,ProShares VIX Mid-Term Futures ETF,31.355,35.338,31.92,-1.77%,10.71%,6.05,0.14,neutral,neutral,29.26,35.92,1.27,0.44,3.9830000000000005,12.48%
+03/22/2022,XLE,Energy Select Sector SPDR Fund,70.773,80.985,75.05,-5.70%,7.91%,1.39,0.42,bullish,bullish,70.42,83.13,1.22,0.45,10.212000000000003,13.61%
+03/22/2022,XLP,Consumer Staples Select Sector SPDR Fund,70.363,75.446,74.15,-5.11%,1.75%,0.34,0.75,bearish,neutral,70.36,76.56,0.73,0.58,5.082999999999998,6.86%
+03/22/2022,ZROZ,PIMCO 25+ Year Zero Coupon U.S. Treasury Index Exchange-Traded Fund,123.806,134.932,127.63,-3.00%,5.72%,1.91,0.34,bearish,bearish,123.73,139.82,1.90,0.34,11.12599999999999,8.72%
+03/22/2022,^DXY,US Dollar Index,97.379,100.125,98.478,-1.12%,1.67%,1.50,0.40,bullish,neutral,96.39,100.52,0.98,0.51,2.745999999999995,2.79%
+03/22/2022,^US10Y,U.S. 10 Year Treasury,2.044,2.462,2.2943,-10.91%,7.31%,0.67,0.60,bullish,bullish,1.77,2.59,0.56,0.64,0.41800000000000015,18.22%
+03/22/2022,^US30Y,U.S. 30 Year Treasury,2.369,2.657,2.5177,-5.91%,5.53%,0.94,0.52,bullish,bullish,2.16,2.73,0.59,0.63,0.2879999999999998,11.44%
+03/22/2022,^VIX,CBOE Volatility Index,22.091,29.939,23.03,-4.08%,30.00%,7.36,0.12,neutral,bearish,14.40,36.36,1.41,0.42,7.847999999999999,34.08%
+03/22/2022,BITO,ProShares Trust - ProShares Bitcoin Strategy ETF,22.123,28.234,26.77,-17.36%,5.47%,0.32,0.76,bullish,bearish,18.39,30.98,0.50,0.67,6.111000000000001,22.83%

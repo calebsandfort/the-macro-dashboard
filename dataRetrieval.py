@@ -98,7 +98,6 @@ def GetTdaData(ticker, periodType, frequencyType, frequency, startDate, endDate,
         
         content = json.loads(page.content)
     
-    
         df = pd.DataFrame.from_dict(content["candles"])
         df.set_index(df['datetime'].apply(lambda x: datetime.datetime.utcfromtimestamp(x/1000).date()).astype('datetime64'), inplace=True)
         df.drop('datetime', inplace=True, axis = 1)
@@ -164,14 +163,32 @@ endDatey = datetime.datetime.today()
 
 # test = GetTdaDataForTickers(["DX-Y.NYB"], 'month', 'daily', 1, startDatey, endDatey, False, True)
 
+def GetAlphaQueryVolDataForTickers(stockTickers):
+    data = {}
+    
+    for ticker in stockTickers:
+        volData = GetAlphaQueryVolData(ticker)
+        if volData is not None:
+            data[ticker] = volData
+        
+    return data
+
 def GetAlphaQueryVolData(ticker):
     df = None
+    
+    if (ticker.startswith("^") or ticker.startswith("$")):
+        return df
+    
+    file_path = "data/{0}.Vol.csv".format(ticker);
     
     put_endpoint = 'https://www.alphaquery.com/data/option-statistic-chart?ticker={ticker}&perType=30-Day&identifier=iv-put'
     
     put_url = put_endpoint.format(ticker=ticker)
     
     put_page = requests.get(url=put_url)
+    
+    if put_page.status_code == 404:
+        return None
     
     put_content = json.loads(put_page.content)
     
@@ -197,15 +214,21 @@ def GetAlphaQueryVolData(ticker):
     
     skew_page = requests.get(url=skew_url)
     
+    if skew_page.status_code == 404:
+        return None
+    
     skew_content = json.loads(skew_page.content)
     
     for item in skew_content:
         df.at[datetime.datetime.strptime(item["x"].replace("T00:00:00Z", ""), '%Y-%m-%d'), 'skew'] = item["value"]
     
+    df.to_csv(file_path)
+    print("Saved {0}.Vol.csv".format(ticker))
+    
     return df
     
 
-test = GetAlphaQueryVolData("VEGI")
+# test = GetAlphaQueryVolData("VEGI")
 
 volTickerProxies = {
     "BNDD": "TLT",
@@ -275,9 +298,11 @@ def GetDataFromCsv(tickers, getVolData = False):
         file_path = "data/{0}.csv".format(tda_ticker);
         price_data[ticker] = pd.read_csv(file_path, index_col="datetime", parse_dates=True)
         
-        if getVolData:
+        if (getVolData and exists("data/{0}.Vol.csv".format(ticker))):
             file_path = "data/{0}.Vol.csv".format(ticker);
-            vol_data[ticker] = pd.read_csv(file_path, index_col="Date", parse_dates=True)
+            vol_data[ticker] = pd.read_csv(file_path, index_col="datetime", parse_dates=True)
+        else:
+            vol_data[ticker] = None
     
     return price_data, vol_data
 

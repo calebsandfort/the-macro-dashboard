@@ -119,6 +119,8 @@ def get_assets_data_table(name, assetCollection):
          format={"specifier": ".2%"}),
     dict(id='Chg3M', name='3M', type='numeric',
          format={"specifier": ".2%"}),
+    dict(id='CATS', name='CATS', type='numeric',
+         format={"specifier": ".2f"}),
     ])
 
 
@@ -256,11 +258,14 @@ def get_assets_data_table(name, assetCollection):
     
     styles.extend(portUtils.get_column_cmap_values(assetCollection.df, 'RPos', 0.0, 1.0, cmap='RdYlGn', reverse=False, low=0, high=0,
                                                    st_threshold_1=0.75, st_threshold_2=0.25, white_threshold_1=0.75, white_threshold_2=0.25))
+    
+    styles.extend(portUtils.get_column_cmap_values(assetCollection.df, 'CATS', -100.0, 100.0, cmap='RdYlGn', reverse=False, low=0, high=0,
+                                                   st_threshold_1=50.0, st_threshold_2=-50.0, white_threshold_1=50.0, white_threshold_2=-50.0))
 
     styles.append({
         'if': {
             'filter_query': '{Ticker} = "Cash"',
-            'column_id': ["PnL", "Chg1D", "Chg1M", "Chg3M", "TrendEmoji", "MomentumEmoji", "RPos", "VolumeDesc", "LR", "TR"]
+            'column_id': ["PnL", "Chg1D", "Chg1M", "Chg3M", "TrendEmoji", "MomentumEmoji", "RPos", "VolumeDesc", "LR", "TR", "CATS"]
         },
         'color': 'transparent',
         'backgroundColor': 'rgb(39, 39, 39)'
@@ -1047,7 +1052,7 @@ app.layout = html.Div(
                          dbc.Row(
                              [
                                  dbc.Col(dbc.NavbarBrand(
-                                     html.H4("42MFR Risk Mgmt Dashboard"),
+                                     html.Div(html.Img(src=app.get_asset_url('logo.png'))),
                                      className="ml-2")),
                              ],
                              align="center",

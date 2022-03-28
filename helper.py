@@ -32,8 +32,11 @@ def refreshData():
     endDate = datetime.datetime.today()
     
     dr.GetTdaDataForTickers(allTickers, 'month', 'daily', 1, startDate, endDate, False, True)
+    dr.GetAlphaQueryVolDataForTickers(allTickers)
 
 
 refreshData()
+
+# portfolio = ac.AssetCollection("Portfolio.csv")
 
 # test = ac.AssetCollection("Potentials.csv")

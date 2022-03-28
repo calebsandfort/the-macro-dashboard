@@ -193,6 +193,7 @@ class Asset:
             #Calculated Properties
             self.Weight = 0.0
             self.PnL = 0.0
+            self.CATS = 0.0
 
         else:
             self.__dict__ = json.loads(j)
@@ -202,7 +203,7 @@ class Asset:
     def df_row(self):
         return [self.id, self.ticker, self.quantity, self.entry, self.last, self.Chg1D, self.Chg1M, self.Chg3M,
                 self.Momentum, self.MomentumEmoji, self.Trend, self.TrendEmoji, self.LR, self.TR, self.RPos, self.VolumeDesc,
-                self.MfrAction] 
+                self.MfrAction, self.CATS] 
        
     def toJson(self):
         d = self.__dict__.copy()
@@ -211,7 +212,7 @@ class Asset:
         return json.dumps(d);
 
     
-    def setDataAndTechnicals(self, price_data, mfr_data_dict):
+    def setDataAndTechnicals(self, price_data, mfr_data_dict, vol_data):
         self.price_data = price_data
         
         self.last = self.price_data.at[self.price_data.index[-1], "close"]
@@ -302,6 +303,112 @@ class Asset:
         
         #%%
         
+        #%% IV
+        self.price_data["put_iv"] = np.nan
+        self.price_data["skew"] = np.nan
+        self.price_data["skew_zscore"] = np.nan
+        self.price_data["vol_surface"] = np.nan
+        
+        if vol_data is not None:
+            
+            for idx in vol_data.index:
+                if idx in self.price_data.index:
+                    self.price_data.at[idx, "put_iv"] = vol_data.at[idx, "put_iv"]
+                    self.price_data.at[idx, "skew"] = vol_data.at[idx, "skew"]
+            
+            hvMean = technicals.calcHvMean(self.price_data)
+            self.price_data["skew_zscore"] = technicals.calcZScore(self.price_data, "skew", 251)
+            self.price_data["vol_surface"] = self.price_data["put_iv"] / hvMean - 1.0
+            
+                
+        #%%
+        
+        #%% CATS
+        # data["Matrix_wvf_color"] = np.where((wvf >= upperBand) | (wvf >= rangeHigh), wvf_blue, wvf_gray)
+        # data["Matrix_vcolor"] = np.select([(data["Matrix_Oo"] > data["Matrix_Cc"]), (up > down)], [chartSolidRed, chartSolidGreen], default = chartSolidRed)
+        # data["Matrix_UPshape"] = np.select([((up > ob) & (up>down)), ((up > ob) & (up<down))], [highest_up + 20, highest_down + 20], np.NaN)
+        
+        cats_divisor = 0.0
+        up = self.price_data["close"] > self.price_data["close"].shift(1)
+        
+        self.price_data["CATS"] = np.where((self.price_data["Trend"] == ''), np.NaN, 0.0)
+        
+        valid_cats = ~pd.isna(self.price_data["CATS"])
+        
+        cats_divisor += 3.0
+        self.price_data["CATS"] += np.select([(valid_cats & (self.price_data["Trend"] == 'bullish')),
+                                              (valid_cats & (self.price_data["Trend"] == 'bearish')),
+                                              (valid_cats & (self.price_data["Trend"] == 'neutral'))],
+                                             [self.price_data["RPos"] * 3.0,
+                                              (self.price_data["RPos"] - 1.0) * 3.0,
+                                              self.price_data["RPos"]],
+                                             default = np.NaN)
+        
+        cats_divisor += 2.0
+        self.price_data["CATS"] += np.select([(valid_cats & (self.price_data["Trend"] == 'bullish')),
+                                              (valid_cats & (self.price_data["Trend"] == 'bearish')),
+                                              (valid_cats & (self.price_data["Trend"] == 'neutral'))],
+                                             [2.0, -2.0, 0.0], default = np.NaN)
+        
+        cats_divisor += 2.0
+        self.price_data["CATS"] += np.select([(valid_cats & (self.price_data["Momentum"] == 'bullish')),
+                                              (valid_cats & (self.price_data["Momentum"] == 'bearish')),
+                                              (valid_cats & (self.price_data["Momentum"] == 'neutral'))],
+                                             [1.0, -1.0, 0.0], default = np.NaN)
+        
+        # Volume
+        # self.price_data.loc[(self.price_data['VolumeEnum'] == 0.0) & (self.price_data["IsUp"] == True), 'VolumeDesc'] = 'Weak'
+        # self.price_data.loc[(self.price_data['VolumeEnum'] == 1.0) & (self.price_data["IsUp"] == True), 'VolumeDesc'] = 'Moderate'
+        # self.price_data.loc[(self.price_data['VolumeEnum'] == 2.0) & (self.price_data["IsUp"] == True), 'VolumeDesc'] = 'Strong'
+        # self.price_data.loc[(self.price_data['VolumeEnum'] == 3.0) & (self.price_data["IsUp"] == True), 'VolumeDesc'] = 'Absolute'
+        
+        # self.price_data.loc[(self.price_data['VolumeEnum'] == -0.0) & (self.price_data["IsUp"] == False), 'VolumeDesc'] = 'Weak'
+        # self.price_data.loc[(self.price_data['VolumeEnum'] == -1.0) & (self.price_data["IsUp"] == False), 'VolumeDesc'] = 'Moderate'
+        # self.price_data.loc[(self.price_data['VolumeEnum'] == -2.0) & (self.price_data["IsUp"] == False), 'VolumeDesc'] = 'Strong'
+        # self.price_data.loc[(self.price_data['VolumeEnum'] == -3.0) & (self.price_data["IsUp"] == False), 'VolumeDesc'] = 'Absolute'
+        
+        
+        
+        
+        # Matrix
+        
+        # wvf
+        wvf_blue = "#0CA4DE"
+        wvf_gray = "#758494"
+        
+        # data["Matrix_wvf_color"] = np.where((wvf >= upperBand) | (wvf >= rangeHigh), wvf_blue, wvf_gray)
+        cats_divisor += 2.0
+        self.price_data["CATS"] += np.select([(valid_cats & (self.price_data["Matrix_wvf_color"] == wvf_gray)),
+                                              (valid_cats & (self.price_data["Matrix_wvf_color"] == wvf_blue))],
+                                             [2.0, -2.0], default = np.NaN)
+        
+        # candle
+        chartSolidGreen = "#3D9970"
+        chartSolidRed = "#FF4136"
+        
+        # data["Matrix_vcolor"] = np.select([(data["Matrix_Oo"] > data["Matrix_Cc"]), (up > down)], [chartSolidRed, chartSolidGreen], default = chartSolidRed)
+        cats_divisor += 1.0
+        self.price_data["CATS"] += np.select([(valid_cats & (self.price_data["Matrix_vcolor"] == chartSolidGreen)),
+                                              (valid_cats & (self.price_data["Matrix_vcolor"] == chartSolidRed))],
+                                             [1.0, -1.0], default = np.NaN)
+        
+        
+        # action?
+        # data["Matrix_action_text"] = np.select([beware, vol_buy, pa_buy, aggressive], ["Beware Vola", "Vola Buy", "PA Buy", "Agro Buy"], default = "N/A")
+        
+        # os/ob
+        # ~pd.isna(self.price_data["CATS"])
+        # data["Matrix_UPshape"] = np.select([((up > ob) & (up>down)), ((up > ob) & (up<down))], [highest_up + 20, highest_down + 20], np.NaN)
+        
+        # lowest_up = up.rolling(1).min()
+        # lowest_down = down.rolling(1).min()
+        
+        # data["Matrix_DOWNshape"] = np.select([((down < os) & (up>down)), ((down < os) & (up<down))], [lowest_down - 20, lowest_up - 20], np.NaN)
+        
+        self.price_data["CATS"] = self.price_data["CATS"] / cats_divisor * 100.0
+        self.CATS = self.procureLastValue("CATS")
+        #%%
+        
     def procureLastValue(self, col):
         return self.price_data.at[self.price_data.index[-1], col]
     
@@ -332,7 +439,7 @@ class AssetCollection:
                 self.collection[ticker] = existing[ticker]
                 
         self.df = pd.DataFrame(columns = ["id", "Ticker", "Quantity", "Entry", "Last", "Chg1D", "Chg1M", "Chg3M", "Momentum", "MomentumEmoji",
-                                          "Trend", "TrendEmoji", "LR", "TR", "RPos", "VolumeDesc", "MfrAction"])
+                                          "Trend", "TrendEmoji", "LR", "TR", "RPos", "VolumeDesc", "MfrAction", "CATS"])
         
         self.df.loc["Cash"] = self.collection["Cash"].df_row
         
@@ -340,12 +447,12 @@ class AssetCollection:
         endDate = datetime.datetime.today()
         allTickers = [ticker for ticker in self.collection]
         allTickers.remove("Cash")
-        price_data, vol_data = dr.GetDataFromCsv(allTickers)
+        price_data, vol_data = dr.GetDataFromCsv(allTickers, True)
         mfr_data = getMfrData()
         
         for ticker in allTickers:
             if ticker != "Cash":
-                self.collection[ticker].setDataAndTechnicals(price_data[ticker], mfr_data)
+                self.collection[ticker].setDataAndTechnicals(price_data[ticker], mfr_data, vol_data[ticker])
                 self.df.loc[ticker] = self.collection[ticker].df_row
              
         
