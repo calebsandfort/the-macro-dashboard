@@ -63,8 +63,11 @@ def extendAllAssets(collection):
         if ticker not in allAssets:
             allAssets[ticker] = collection[ticker]
 
+print("portfolio")
 portfolio = ac.AssetCollection("Portfolio.csv")
+print("marketSnapshot")
 marketSnapshot = ac.AssetCollection("MarketSnapshot.csv")
+print("potentials")
 potentials = ac.AssetCollection("Potentials.csv")
 
 allAssets = {}
@@ -81,7 +84,10 @@ for ticker in allAssets:
         watchlistDict[ticker] = allAssets[ticker]
 
 
+print("watchlist")
 watchlist = ac.AssetCollection(None, watchlistDict, isPortfolio = False)
+
+print("done")
 
 def get_assets_data_table(name, assetCollection):
     columns = [
@@ -1135,4 +1141,4 @@ def update_asset_modal(portfolio_assets_data_table_active_cell, watchlist_assets
     return content, f"{ticker} - Chart and Technicals", renderModal
 
 if __name__ == '__main__':
-    app.run_server(debug=True, port='5435')
+    app.run_server(debug=False, port='5435')

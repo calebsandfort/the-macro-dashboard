@@ -324,12 +324,10 @@ class Asset:
         #%%
         
         #%% CATS
-        # data["Matrix_wvf_color"] = np.where((wvf >= upperBand) | (wvf >= rangeHigh), wvf_blue, wvf_gray)
-        # data["Matrix_vcolor"] = np.select([(data["Matrix_Oo"] > data["Matrix_Cc"]), (up > down)], [chartSolidRed, chartSolidGreen], default = chartSolidRed)
-        # data["Matrix_UPshape"] = np.select([((up > ob) & (up>down)), ((up > ob) & (up<down))], [highest_up + 20, highest_down + 20], np.NaN)
-        
+
         cats_divisor = 0.0
         up = self.price_data["close"] > self.price_data["close"].shift(1)
+        down = self.price_data["close"] < self.price_data["close"].shift(1)
         
         self.price_data["CATS"] = np.where((self.price_data["Trend"] == ''), np.NaN, 0.0)
         
@@ -368,6 +366,68 @@ class Asset:
         # self.price_data.loc[(self.price_data['VolumeEnum'] == -3.0) & (self.price_data["IsUp"] == False), 'VolumeDesc'] = 'Absolute'
         
         
+        firstQuarter = self.price_data["RPos"] <= .25
+        secondQuarter = (self.price_data["RPos"] > .25) & (self.price_data["RPos"] <= .50)
+        thirdQuarter = (self.price_data["RPos"] > .50) & (self.price_data["RPos"] < .75)
+        fourthQuarter = self.price_data["RPos"] >= .75
+        volumeEnumAbs = self.price_data['VolumeEnum'].abs()
+        
+        cats_divisor += 3.0
+        self.price_data["CATS"] += np.select([(valid_cats & up & firstQuarter & (volumeEnumAbs == 0.0)),
+                                              (valid_cats & up & firstQuarter & (volumeEnumAbs == 1.0)),
+                                              (valid_cats & up & firstQuarter & (volumeEnumAbs == 2.0)),
+                                              (valid_cats & up & firstQuarter & (volumeEnumAbs == 3.0)),
+                                              
+                                              (valid_cats & down & firstQuarter & (volumeEnumAbs == 0.0)),
+                                              (valid_cats & down & firstQuarter & (volumeEnumAbs == 1.0)),
+                                              (valid_cats & down & firstQuarter & (volumeEnumAbs == 2.0)),
+                                              (valid_cats & down & firstQuarter & (volumeEnumAbs == 3.0)),
+                                              
+                                              (valid_cats & up & secondQuarter & (volumeEnumAbs == 0.0)),
+                                              (valid_cats & up & secondQuarter & (volumeEnumAbs == 1.0)),
+                                              (valid_cats & up & secondQuarter & (volumeEnumAbs == 2.0)),
+                                              (valid_cats & up & secondQuarter & (volumeEnumAbs == 3.0)),
+                                            
+                                              (valid_cats & down & secondQuarter & (volumeEnumAbs == 0.0)),
+                                              (valid_cats & down & secondQuarter & (volumeEnumAbs == 1.0)),
+                                              (valid_cats & down & secondQuarter & (volumeEnumAbs == 2.0)),
+                                              (valid_cats & down & secondQuarter & (volumeEnumAbs == 3.0)),
+                                              
+                                              (valid_cats & up & thirdQuarter & (volumeEnumAbs == 0.0)),
+                                              (valid_cats & up & thirdQuarter & (volumeEnumAbs == 1.0)),
+                                              (valid_cats & up & thirdQuarter & (volumeEnumAbs == 2.0)),
+                                              (valid_cats & up & thirdQuarter & (volumeEnumAbs == 3.0)),
+                                            
+                                              (valid_cats & down & thirdQuarter & (volumeEnumAbs == 0.0)),
+                                              (valid_cats & down & thirdQuarter & (volumeEnumAbs == 1.0)),
+                                              (valid_cats & down & thirdQuarter & (volumeEnumAbs == 2.0)),
+                                              (valid_cats & down & thirdQuarter & (volumeEnumAbs == 3.0)),
+                                              
+                                              (valid_cats & up & fourthQuarter & (volumeEnumAbs == 0.0)),
+                                              (valid_cats & up & fourthQuarter & (volumeEnumAbs == 1.0)),
+                                              (valid_cats & up & fourthQuarter & (volumeEnumAbs == 2.0)),
+                                              (valid_cats & up & fourthQuarter & (volumeEnumAbs == 3.0)),
+                                            
+                                              (valid_cats & down & fourthQuarter & (volumeEnumAbs == 0.0)),
+                                              (valid_cats & down & fourthQuarter & (volumeEnumAbs == 1.0)),
+                                              (valid_cats & down & fourthQuarter & (volumeEnumAbs == 2.0)),
+                                              (valid_cats & down & fourthQuarter & (volumeEnumAbs == 3.0))],
+                                             [-3.0, -1.0, 1.0, 3.0,
+                                              
+                                              2.0, 0.5, -0.5, -3.0,
+                                              
+                                              -2.0, -1.0, 1.0, 2.0,
+                                               
+                                              1.0, 0.5, -0.5, -1.0,
+                                               
+                                              -1.0, -0.5, 0.5, 1.0,
+                                              
+                                              2.0, 1.0, -1.0, -2.0,
+                                               
+                                              -2.0, -0.5, 0.5, 3.0,
+                                              
+                                              3.0, 1.0, -1.0, -3.0,
+                                              ], default = np.NaN)
         
         
         # Matrix
@@ -396,14 +456,11 @@ class Asset:
         # action?
         # data["Matrix_action_text"] = np.select([beware, vol_buy, pa_buy, aggressive], ["Beware Vola", "Vola Buy", "PA Buy", "Agro Buy"], default = "N/A")
         
-        # os/ob
-        # ~pd.isna(self.price_data["CATS"])
-        # data["Matrix_UPshape"] = np.select([((up > ob) & (up>down)), ((up > ob) & (up<down))], [highest_up + 20, highest_down + 20], np.NaN)
-        
-        # lowest_up = up.rolling(1).min()
-        # lowest_down = down.rolling(1).min()
-        
-        # data["Matrix_DOWNshape"] = np.select([((down < os) & (up>down)), ((down < os) & (up<down))], [lowest_down - 20, lowest_up - 20], np.NaN)
+        cats_divisor += 1.0
+        self.price_data["CATS"] += np.select([(valid_cats & ~pd.isna(self.price_data["Matrix_UPshape"])),
+                                              (valid_cats & ~pd.isna(self.price_data["Matrix_DOWNshape"]))],
+                                             [-1.0, 1.0], default = 0.0)
+    
         
         self.price_data["CATS"] = self.price_data["CATS"] / cats_divisor * 100.0
         self.CATS = self.procureLastValue("CATS")

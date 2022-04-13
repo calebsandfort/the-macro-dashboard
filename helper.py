@@ -37,6 +37,6 @@ def refreshData():
 
 refreshData()
 
-# portfolio = ac.AssetCollection("Portfolio.csv")
+# portfolio = ac.AssetCollection("Test.csv")
 
 # test = ac.AssetCollection("Potentials.csv")
