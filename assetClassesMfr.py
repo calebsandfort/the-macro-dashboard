@@ -374,7 +374,7 @@ class Asset:
         volumeEnumAbs = self.price_data['VolumeEnum'].abs()
         
         if self.procureLastValue("volume") > 0:
-            cats_divisor += 3.0
+            cats_divisor += 1.5
             self.price_data["CATS"] += np.select([(valid_cats & up & firstQuarter & (volumeEnumAbs == 0.0)),
                                                   (valid_cats & up & firstQuarter & (volumeEnumAbs == 1.0)),
                                                   (valid_cats & up & firstQuarter & (volumeEnumAbs == 2.0)),
@@ -414,21 +414,21 @@ class Asset:
                                                   (valid_cats & down & fourthQuarter & (volumeEnumAbs == 1.0)),
                                                   (valid_cats & down & fourthQuarter & (volumeEnumAbs == 2.0)),
                                                   (valid_cats & down & fourthQuarter & (volumeEnumAbs == 3.0))],
-                                                 [-3.0, -1.0, 1.0, 3.0,
+                                                 [-3.0 / 2.0, -1.0 / 2.0, 1.0 / 2.0, 3.0 / 2.0,
                                                   
-                                                  2.0, 0.5, -0.5, -3.0,
+                                                  2.0 / 2.0, 0.5 / 2.0, -0.5 / 2.0, -3.0 / 2.0,
                                                   
-                                                  -2.0, -1.0, 1.0, 2.0,
+                                                  -2.0 / 2.0, -1.0 / 2.0, 1.0 / 2.0, 2.0 / 2.0,
                                                    
-                                                  1.0, 0.5, -0.5, -1.0,
+                                                  1.0 / 2.0, 0.5 / 2.0, -0.5 / 2.0, -1.0 / 2.0,
                                                    
-                                                  -1.0, -0.5, 0.5, 1.0,
+                                                  -1.0 / 2.0, -0.5 / 2.0, 0.5 / 2.0, 1.0 / 2.0,
                                                   
-                                                  2.0, 1.0, -1.0, -2.0,
+                                                  2.0 / 2.0, 1.0 / 2.0, -1.0 / 2.0, -2.0 / 2.0,
                                                    
-                                                  -2.0, -0.5, 0.5, 3.0,
+                                                  -2.0 / 2.0, -0.5 / 2.0, 0.5 / 2.0, 3.0 / 2.0,
                                                   
-                                                  3.0, 1.0, -1.0, -3.0,
+                                                  3.0 / 2.0, 1.0 / 2.0, -1.0 / 2.0, -3.0 / 2.0,
                                                   ], default = np.NaN)
             
         

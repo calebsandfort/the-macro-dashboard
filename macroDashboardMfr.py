@@ -670,9 +670,9 @@ def getCharts(asset, lookback):
     
     noVolume = asset.ticker in ac.noVolumeTickers
     
-    row_count = 2 if noVolume else 3
-    row_heights = [.7, .3] if noVolume else [.7, .15, .15]
-    subplot_titles = ("Price, Trend & Range", "Matrix") if noVolume else ("Price, Trend & Range", "Volume", "Matrix")
+    row_count = 3 if noVolume else 4
+    row_heights = [.7, .15, .15] if noVolume else [.6, .13, .13, .14]
+    subplot_titles = ("Price, Trend & Range", "Matrix", "CATS") if noVolume else ("Price, Trend & Range", "Volume", "Matrix", "CATS")
     
     fig = make_subplots(rows=row_count, cols=1, row_heights = row_heights, figure = layout_fig,
                         subplot_titles=subplot_titles, vertical_spacing=0.05)
@@ -777,6 +777,36 @@ def getCharts(asset, lookback):
     
     #%% Matrix Chart
     
+    #%% CATS Chart
+    cats_row = 3 if noVolume else 4
+    
+    # portUtils.get_cmap_value(volume["VolumeEnum"], -3, 1, 'Reds', True)
+    
+    fig.add_trace(go.Bar(
+        x=df.index.values,
+        y=df["CATS"],
+        marker_color = portUtils.get_cmap_value(df["CATS"], -100.0, 100.0, 'RdYlGn'),
+        showlegend = False
+    ), row=cats_row, col=1)
+    
+    fig.add_trace(go.Scatter(x=df.index.values, y=len(df["CATS"]) * [100.0],
+                             mode='lines',
+                             line=dict(color="gray", width=2, dash = "dash"),
+                             showlegend = False), row=cats_row, col=1)
+    
+    fig.add_trace(go.Scatter(x=df.index.values, y=len(df["CATS"]) * [-100.0],
+                             mode='lines',
+                             line=dict(color="gray", width=2, dash = "dash"),
+                             showlegend = False), row=cats_row, col=1)
+    
+    fig.update_yaxes({
+            "title": {"text": "CATS", "standoff": 25},
+            "side": "right",
+            "tickprefix": "     ",
+            'showgrid': False
+        }, row=cats_row, col=1)
+    #%%
+    
     fig.layout.annotations[0].update(x=0.065)
     fig.layout.annotations[0].update(y=0.9875)
     
@@ -784,6 +814,7 @@ def getCharts(asset, lookback):
         fig.layout.annotations[1].update(x=0.025)
     
     fig.layout.annotations[1 if noVolume else 2].update(x=0.025)
+    fig.layout.annotations[2 if noVolume else 3].update(x=0.025)
     
     fig.update_layout(height=1100, barmode='overlay')
     
