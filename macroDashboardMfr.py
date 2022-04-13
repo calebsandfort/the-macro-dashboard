@@ -271,7 +271,7 @@ def get_assets_data_table(name, assetCollection):
     styles.append({
         'if': {
             'filter_query': '{Ticker} = "Cash"',
-            'column_id': ["PnL", "Chg1D", "Chg1M", "Chg3M", "TrendEmoji", "MomentumEmoji", "RPos", "VolumeDesc", "LR", "TR", "CATS"]
+            'column_id': ["PnL", "Chg1D", "Chg1M", "Chg3M", "TrendEmoji", "MomentumEmoji", "RPos", "VolumeDesc", "LR", "TR", "Last", "CATS"]
         },
         'color': 'transparent',
         'backgroundColor': 'rgb(39, 39, 39)'
@@ -471,7 +471,8 @@ def addUpVolume(fig, df, name, enumValue, row, col):
                 showlegend=True,
                 name=name,
                 legendgroup="Volume",
-                marker=dict(color= volume_colors)),
+                width = 86400000,
+                marker_color = volume_colors),
                 row=row, col=col)
     
 def addDownVolume(fig, df, name, enumValue, row, col):
@@ -483,7 +484,8 @@ def addDownVolume(fig, df, name, enumValue, row, col):
                 showlegend=True,
                 name=name,
                 legendgroup="Volume",
-                marker=dict(color= volume_colors)),
+                width = 86400000,
+                marker_color= volume_colors),
                   row=row, col=col)
 
 def drawCandlestickChart(fig, df, isPercent, row, col, showLegend = True):
@@ -1141,4 +1143,4 @@ def update_asset_modal(portfolio_assets_data_table_active_cell, watchlist_assets
     return content, f"{ticker} - Chart and Technicals", renderModal
 
 if __name__ == '__main__':
-    app.run_server(debug=False, port='5435')
+    app.run_server(debug=True, port='5435')

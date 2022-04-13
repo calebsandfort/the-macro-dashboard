@@ -158,6 +158,7 @@ class Asset:
             
             self.tda_ticker = self.ticker
             self.mfr_ticker = self.ticker
+            self.data_and_technicals_set = False
             
             if self.ticker in tickerLookup:
                 self.tda_ticker = tickerLookup[self.ticker]["tda"]
@@ -372,63 +373,64 @@ class Asset:
         fourthQuarter = self.price_data["RPos"] >= .75
         volumeEnumAbs = self.price_data['VolumeEnum'].abs()
         
-        cats_divisor += 3.0
-        self.price_data["CATS"] += np.select([(valid_cats & up & firstQuarter & (volumeEnumAbs == 0.0)),
-                                              (valid_cats & up & firstQuarter & (volumeEnumAbs == 1.0)),
-                                              (valid_cats & up & firstQuarter & (volumeEnumAbs == 2.0)),
-                                              (valid_cats & up & firstQuarter & (volumeEnumAbs == 3.0)),
-                                              
-                                              (valid_cats & down & firstQuarter & (volumeEnumAbs == 0.0)),
-                                              (valid_cats & down & firstQuarter & (volumeEnumAbs == 1.0)),
-                                              (valid_cats & down & firstQuarter & (volumeEnumAbs == 2.0)),
-                                              (valid_cats & down & firstQuarter & (volumeEnumAbs == 3.0)),
-                                              
-                                              (valid_cats & up & secondQuarter & (volumeEnumAbs == 0.0)),
-                                              (valid_cats & up & secondQuarter & (volumeEnumAbs == 1.0)),
-                                              (valid_cats & up & secondQuarter & (volumeEnumAbs == 2.0)),
-                                              (valid_cats & up & secondQuarter & (volumeEnumAbs == 3.0)),
-                                            
-                                              (valid_cats & down & secondQuarter & (volumeEnumAbs == 0.0)),
-                                              (valid_cats & down & secondQuarter & (volumeEnumAbs == 1.0)),
-                                              (valid_cats & down & secondQuarter & (volumeEnumAbs == 2.0)),
-                                              (valid_cats & down & secondQuarter & (volumeEnumAbs == 3.0)),
-                                              
-                                              (valid_cats & up & thirdQuarter & (volumeEnumAbs == 0.0)),
-                                              (valid_cats & up & thirdQuarter & (volumeEnumAbs == 1.0)),
-                                              (valid_cats & up & thirdQuarter & (volumeEnumAbs == 2.0)),
-                                              (valid_cats & up & thirdQuarter & (volumeEnumAbs == 3.0)),
-                                            
-                                              (valid_cats & down & thirdQuarter & (volumeEnumAbs == 0.0)),
-                                              (valid_cats & down & thirdQuarter & (volumeEnumAbs == 1.0)),
-                                              (valid_cats & down & thirdQuarter & (volumeEnumAbs == 2.0)),
-                                              (valid_cats & down & thirdQuarter & (volumeEnumAbs == 3.0)),
-                                              
-                                              (valid_cats & up & fourthQuarter & (volumeEnumAbs == 0.0)),
-                                              (valid_cats & up & fourthQuarter & (volumeEnumAbs == 1.0)),
-                                              (valid_cats & up & fourthQuarter & (volumeEnumAbs == 2.0)),
-                                              (valid_cats & up & fourthQuarter & (volumeEnumAbs == 3.0)),
-                                            
-                                              (valid_cats & down & fourthQuarter & (volumeEnumAbs == 0.0)),
-                                              (valid_cats & down & fourthQuarter & (volumeEnumAbs == 1.0)),
-                                              (valid_cats & down & fourthQuarter & (volumeEnumAbs == 2.0)),
-                                              (valid_cats & down & fourthQuarter & (volumeEnumAbs == 3.0))],
-                                             [-3.0, -1.0, 1.0, 3.0,
-                                              
-                                              2.0, 0.5, -0.5, -3.0,
-                                              
-                                              -2.0, -1.0, 1.0, 2.0,
-                                               
-                                              1.0, 0.5, -0.5, -1.0,
-                                               
-                                              -1.0, -0.5, 0.5, 1.0,
-                                              
-                                              2.0, 1.0, -1.0, -2.0,
-                                               
-                                              -2.0, -0.5, 0.5, 3.0,
-                                              
-                                              3.0, 1.0, -1.0, -3.0,
-                                              ], default = np.NaN)
-        
+        if self.procureLastValue("volume") > 0:
+            cats_divisor += 3.0
+            self.price_data["CATS"] += np.select([(valid_cats & up & firstQuarter & (volumeEnumAbs == 0.0)),
+                                                  (valid_cats & up & firstQuarter & (volumeEnumAbs == 1.0)),
+                                                  (valid_cats & up & firstQuarter & (volumeEnumAbs == 2.0)),
+                                                  (valid_cats & up & firstQuarter & (volumeEnumAbs == 3.0)),
+                                                  
+                                                  (valid_cats & down & firstQuarter & (volumeEnumAbs == 0.0)),
+                                                  (valid_cats & down & firstQuarter & (volumeEnumAbs == 1.0)),
+                                                  (valid_cats & down & firstQuarter & (volumeEnumAbs == 2.0)),
+                                                  (valid_cats & down & firstQuarter & (volumeEnumAbs == 3.0)),
+                                                  
+                                                  (valid_cats & up & secondQuarter & (volumeEnumAbs == 0.0)),
+                                                  (valid_cats & up & secondQuarter & (volumeEnumAbs == 1.0)),
+                                                  (valid_cats & up & secondQuarter & (volumeEnumAbs == 2.0)),
+                                                  (valid_cats & up & secondQuarter & (volumeEnumAbs == 3.0)),
+                                                
+                                                  (valid_cats & down & secondQuarter & (volumeEnumAbs == 0.0)),
+                                                  (valid_cats & down & secondQuarter & (volumeEnumAbs == 1.0)),
+                                                  (valid_cats & down & secondQuarter & (volumeEnumAbs == 2.0)),
+                                                  (valid_cats & down & secondQuarter & (volumeEnumAbs == 3.0)),
+                                                  
+                                                  (valid_cats & up & thirdQuarter & (volumeEnumAbs == 0.0)),
+                                                  (valid_cats & up & thirdQuarter & (volumeEnumAbs == 1.0)),
+                                                  (valid_cats & up & thirdQuarter & (volumeEnumAbs == 2.0)),
+                                                  (valid_cats & up & thirdQuarter & (volumeEnumAbs == 3.0)),
+                                                
+                                                  (valid_cats & down & thirdQuarter & (volumeEnumAbs == 0.0)),
+                                                  (valid_cats & down & thirdQuarter & (volumeEnumAbs == 1.0)),
+                                                  (valid_cats & down & thirdQuarter & (volumeEnumAbs == 2.0)),
+                                                  (valid_cats & down & thirdQuarter & (volumeEnumAbs == 3.0)),
+                                                  
+                                                  (valid_cats & up & fourthQuarter & (volumeEnumAbs == 0.0)),
+                                                  (valid_cats & up & fourthQuarter & (volumeEnumAbs == 1.0)),
+                                                  (valid_cats & up & fourthQuarter & (volumeEnumAbs == 2.0)),
+                                                  (valid_cats & up & fourthQuarter & (volumeEnumAbs == 3.0)),
+                                                
+                                                  (valid_cats & down & fourthQuarter & (volumeEnumAbs == 0.0)),
+                                                  (valid_cats & down & fourthQuarter & (volumeEnumAbs == 1.0)),
+                                                  (valid_cats & down & fourthQuarter & (volumeEnumAbs == 2.0)),
+                                                  (valid_cats & down & fourthQuarter & (volumeEnumAbs == 3.0))],
+                                                 [-3.0, -1.0, 1.0, 3.0,
+                                                  
+                                                  2.0, 0.5, -0.5, -3.0,
+                                                  
+                                                  -2.0, -1.0, 1.0, 2.0,
+                                                   
+                                                  1.0, 0.5, -0.5, -1.0,
+                                                   
+                                                  -1.0, -0.5, 0.5, 1.0,
+                                                  
+                                                  2.0, 1.0, -1.0, -2.0,
+                                                   
+                                                  -2.0, -0.5, 0.5, 3.0,
+                                                  
+                                                  3.0, 1.0, -1.0, -3.0,
+                                                  ], default = np.NaN)
+            
         
         # Matrix
         
@@ -465,6 +467,9 @@ class Asset:
         self.price_data["CATS"] = self.price_data["CATS"] / cats_divisor * 100.0
         self.CATS = self.procureLastValue("CATS")
         #%%
+        
+        
+        self.data_and_technicals_set = True
         
     def procureLastValue(self, col):
         return self.price_data.at[self.price_data.index[-1], col]
@@ -509,7 +514,9 @@ class AssetCollection:
         
         for ticker in allTickers:
             if ticker != "Cash":
-                self.collection[ticker].setDataAndTechnicals(price_data[ticker], mfr_data, vol_data[ticker])
+                if not self.collection[ticker].data_and_technicals_set:
+                    self.collection[ticker].setDataAndTechnicals(price_data[ticker], mfr_data, vol_data[ticker])
+                
                 self.df.loc[ticker] = self.collection[ticker].df_row
              
         
