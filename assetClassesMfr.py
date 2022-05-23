@@ -101,6 +101,8 @@ class MfrChange:
                 className = "bg-warning text-white"
             elif self.new_outlook == "Bullish":
                 className = "bg-success text-white"
+            elif self.new_outlook == "Neutraldanger":
+                className = "bg-primary text-white"
         else:
             if self.new_outlook == "Bearish":
                 className = "border border-danger text-danger bg-white"
@@ -108,6 +110,8 @@ class MfrChange:
                 className = "border border-warning text-warning bg-white"
             elif self.new_outlook == "Bullish":
                 className = "border border-success text-success bg-white"
+            elif self.new_outlook == "Neutraldanger":
+                className = "border border-primary text-primary bg-white"
             
         
         listGroupItem = dbc.ListGroupItem(html.Div(self.toString(showTicker), style=dict(fontSize = fontSize)), className=f"{className} py-3 font-weight-bold")
@@ -195,6 +199,9 @@ class Asset:
             self.Weight = 0.0
             self.PnL = 0.0
             self.CATS = 0.0
+            
+            self.IV_Premium = np.nan
+            self.IV_Skew = np.nan
 
         else:
             self.__dict__ = json.loads(j)
@@ -308,7 +315,7 @@ class Asset:
         self.price_data["put_iv"] = np.nan
         self.price_data["skew"] = np.nan
         self.price_data["skew_zscore"] = np.nan
-        self.price_data["vol_surface"] = np.nan
+        self.price_data["iv_premium"] = np.nan
         
         if vol_data is not None:
             
@@ -318,154 +325,148 @@ class Asset:
                     self.price_data.at[idx, "skew"] = vol_data.at[idx, "skew"]
             
             hvMean = technicals.calcHvMean(self.price_data)
-            self.price_data["skew_zscore"] = technicals.calcZScore(self.price_data, "skew", 251)
-            self.price_data["vol_surface"] = self.price_data["put_iv"] / hvMean - 1.0
+            self.price_data["iv_premium"] = (self.price_data["put_iv"] / hvMean - 1.0).shift(1)
+            self.price_data["skew_zscore"] = technicals.calcZScore(self.price_data, "skew", 251).shift(1)
+            
+            self.IV_Premium = self.procureLastValue("iv_premium")
+            self.IV_Skew = self.procureLastValue("skew_zscore")
             
                 
         #%%
         
         #%% CATS
 
-        cats_divisor = 0.0
-        up = self.price_data["close"] > self.price_data["close"].shift(1)
-        down = self.price_data["close"] < self.price_data["close"].shift(1)
+        # cats_divisor = 0.0
+        # up = self.price_data["close"] > self.price_data["close"].shift(1)
+        # down = self.price_data["close"] < self.price_data["close"].shift(1)
         
-        self.price_data["CATS"] = np.where((self.price_data["Trend"] == ''), np.NaN, 0.0)
+        # self.price_data["CATS"] = np.where((self.price_data["Trend"] == ''), np.NaN, 0.0)
         
-        valid_cats = ~pd.isna(self.price_data["CATS"])
+        # valid_cats = ~pd.isna(self.price_data["CATS"])
         
-        cats_divisor += 3.0
-        self.price_data["CATS"] += np.select([(valid_cats & (self.price_data["Trend"] == 'bullish')),
-                                              (valid_cats & (self.price_data["Trend"] == 'bearish')),
-                                              (valid_cats & (self.price_data["Trend"] == 'neutral'))],
-                                             [self.price_data["RPos"] * 3.0,
-                                              (self.price_data["RPos"] - 1.0) * 3.0,
-                                              self.price_data["RPos"]],
-                                             default = np.NaN)
+        # cats_divisor += 3.0
+        # self.price_data["CATS"] += np.select([(valid_cats & (self.price_data["Trend"] == 'bullish')),
+        #                                       (valid_cats & (self.price_data["Trend"] == 'bearish')),
+        #                                       (valid_cats & (self.price_data["Trend"] == 'neutral'))],
+        #                                      [self.price_data["RPos"] * 3.0,
+        #                                       (self.price_data["RPos"] - 1.0) * 3.0,
+        #                                       self.price_data["RPos"]],
+        #                                      default = np.NaN)
         
-        cats_divisor += 2.0
-        self.price_data["CATS"] += np.select([(valid_cats & (self.price_data["Trend"] == 'bullish')),
-                                              (valid_cats & (self.price_data["Trend"] == 'bearish')),
-                                              (valid_cats & (self.price_data["Trend"] == 'neutral'))],
-                                             [2.0, -2.0, 0.0], default = np.NaN)
+        # cats_divisor += 2.0
+        # self.price_data["CATS"] += np.select([(valid_cats & (self.price_data["Trend"] == 'bullish')),
+        #                                       (valid_cats & (self.price_data["Trend"] == 'bearish')),
+        #                                       (valid_cats & (self.price_data["Trend"] == 'neutral'))],
+        #                                      [2.0, -2.0, 0.0], default = np.NaN)
         
-        cats_divisor += 2.0
-        self.price_data["CATS"] += np.select([(valid_cats & (self.price_data["Momentum"] == 'bullish')),
-                                              (valid_cats & (self.price_data["Momentum"] == 'bearish')),
-                                              (valid_cats & (self.price_data["Momentum"] == 'neutral'))],
-                                             [1.0, -1.0, 0.0], default = np.NaN)
-        
-        # Volume
-        # self.price_data.loc[(self.price_data['VolumeEnum'] == 0.0) & (self.price_data["IsUp"] == True), 'VolumeDesc'] = 'Weak'
-        # self.price_data.loc[(self.price_data['VolumeEnum'] == 1.0) & (self.price_data["IsUp"] == True), 'VolumeDesc'] = 'Moderate'
-        # self.price_data.loc[(self.price_data['VolumeEnum'] == 2.0) & (self.price_data["IsUp"] == True), 'VolumeDesc'] = 'Strong'
-        # self.price_data.loc[(self.price_data['VolumeEnum'] == 3.0) & (self.price_data["IsUp"] == True), 'VolumeDesc'] = 'Absolute'
-        
-        # self.price_data.loc[(self.price_data['VolumeEnum'] == -0.0) & (self.price_data["IsUp"] == False), 'VolumeDesc'] = 'Weak'
-        # self.price_data.loc[(self.price_data['VolumeEnum'] == -1.0) & (self.price_data["IsUp"] == False), 'VolumeDesc'] = 'Moderate'
-        # self.price_data.loc[(self.price_data['VolumeEnum'] == -2.0) & (self.price_data["IsUp"] == False), 'VolumeDesc'] = 'Strong'
-        # self.price_data.loc[(self.price_data['VolumeEnum'] == -3.0) & (self.price_data["IsUp"] == False), 'VolumeDesc'] = 'Absolute'
+        # cats_divisor += 2.0
+        # self.price_data["CATS"] += np.select([(valid_cats & (self.price_data["Momentum"] == 'bullish')),
+        #                                       (valid_cats & (self.price_data["Momentum"] == 'bearish')),
+        #                                       (valid_cats & (self.price_data["Momentum"] == 'neutral'))],
+        #                                      [1.0, -1.0, 0.0], default = np.NaN)
         
         
-        firstQuarter = self.price_data["RPos"] <= .25
-        secondQuarter = (self.price_data["RPos"] > .25) & (self.price_data["RPos"] <= .50)
-        thirdQuarter = (self.price_data["RPos"] > .50) & (self.price_data["RPos"] < .75)
-        fourthQuarter = self.price_data["RPos"] >= .75
-        volumeEnumAbs = self.price_data['VolumeEnum'].abs()
+        # firstQuarter = self.price_data["RPos"] <= .25
+        # secondQuarter = (self.price_data["RPos"] > .25) & (self.price_data["RPos"] <= .50)
+        # thirdQuarter = (self.price_data["RPos"] > .50) & (self.price_data["RPos"] < .75)
+        # fourthQuarter = self.price_data["RPos"] >= .75
+        # volumeEnumAbs = self.price_data['VolumeEnum'].abs()
         
-        if self.procureLastValue("volume") > 0:
-            cats_divisor += 1.5
-            self.price_data["CATS"] += np.select([(valid_cats & up & firstQuarter & (volumeEnumAbs == 0.0)),
-                                                  (valid_cats & up & firstQuarter & (volumeEnumAbs == 1.0)),
-                                                  (valid_cats & up & firstQuarter & (volumeEnumAbs == 2.0)),
-                                                  (valid_cats & up & firstQuarter & (volumeEnumAbs == 3.0)),
+        # if self.procureLastValue("volume") > 0:
+        #     cats_divisor += 1.5
+        #     self.price_data["CATS"] += np.select([(valid_cats & up & firstQuarter & (volumeEnumAbs == 0.0)),
+        #                                           (valid_cats & up & firstQuarter & (volumeEnumAbs == 1.0)),
+        #                                           (valid_cats & up & firstQuarter & (volumeEnumAbs == 2.0)),
+        #                                           (valid_cats & up & firstQuarter & (volumeEnumAbs == 3.0)),
                                                   
-                                                  (valid_cats & down & firstQuarter & (volumeEnumAbs == 0.0)),
-                                                  (valid_cats & down & firstQuarter & (volumeEnumAbs == 1.0)),
-                                                  (valid_cats & down & firstQuarter & (volumeEnumAbs == 2.0)),
-                                                  (valid_cats & down & firstQuarter & (volumeEnumAbs == 3.0)),
+        #                                           (valid_cats & down & firstQuarter & (volumeEnumAbs == 0.0)),
+        #                                           (valid_cats & down & firstQuarter & (volumeEnumAbs == 1.0)),
+        #                                           (valid_cats & down & firstQuarter & (volumeEnumAbs == 2.0)),
+        #                                           (valid_cats & down & firstQuarter & (volumeEnumAbs == 3.0)),
                                                   
-                                                  (valid_cats & up & secondQuarter & (volumeEnumAbs == 0.0)),
-                                                  (valid_cats & up & secondQuarter & (volumeEnumAbs == 1.0)),
-                                                  (valid_cats & up & secondQuarter & (volumeEnumAbs == 2.0)),
-                                                  (valid_cats & up & secondQuarter & (volumeEnumAbs == 3.0)),
+        #                                           (valid_cats & up & secondQuarter & (volumeEnumAbs == 0.0)),
+        #                                           (valid_cats & up & secondQuarter & (volumeEnumAbs == 1.0)),
+        #                                           (valid_cats & up & secondQuarter & (volumeEnumAbs == 2.0)),
+        #                                           (valid_cats & up & secondQuarter & (volumeEnumAbs == 3.0)),
                                                 
-                                                  (valid_cats & down & secondQuarter & (volumeEnumAbs == 0.0)),
-                                                  (valid_cats & down & secondQuarter & (volumeEnumAbs == 1.0)),
-                                                  (valid_cats & down & secondQuarter & (volumeEnumAbs == 2.0)),
-                                                  (valid_cats & down & secondQuarter & (volumeEnumAbs == 3.0)),
+        #                                           (valid_cats & down & secondQuarter & (volumeEnumAbs == 0.0)),
+        #                                           (valid_cats & down & secondQuarter & (volumeEnumAbs == 1.0)),
+        #                                           (valid_cats & down & secondQuarter & (volumeEnumAbs == 2.0)),
+        #                                           (valid_cats & down & secondQuarter & (volumeEnumAbs == 3.0)),
                                                   
-                                                  (valid_cats & up & thirdQuarter & (volumeEnumAbs == 0.0)),
-                                                  (valid_cats & up & thirdQuarter & (volumeEnumAbs == 1.0)),
-                                                  (valid_cats & up & thirdQuarter & (volumeEnumAbs == 2.0)),
-                                                  (valid_cats & up & thirdQuarter & (volumeEnumAbs == 3.0)),
+        #                                           (valid_cats & up & thirdQuarter & (volumeEnumAbs == 0.0)),
+        #                                           (valid_cats & up & thirdQuarter & (volumeEnumAbs == 1.0)),
+        #                                           (valid_cats & up & thirdQuarter & (volumeEnumAbs == 2.0)),
+        #                                           (valid_cats & up & thirdQuarter & (volumeEnumAbs == 3.0)),
                                                 
-                                                  (valid_cats & down & thirdQuarter & (volumeEnumAbs == 0.0)),
-                                                  (valid_cats & down & thirdQuarter & (volumeEnumAbs == 1.0)),
-                                                  (valid_cats & down & thirdQuarter & (volumeEnumAbs == 2.0)),
-                                                  (valid_cats & down & thirdQuarter & (volumeEnumAbs == 3.0)),
+        #                                           (valid_cats & down & thirdQuarter & (volumeEnumAbs == 0.0)),
+        #                                           (valid_cats & down & thirdQuarter & (volumeEnumAbs == 1.0)),
+        #                                           (valid_cats & down & thirdQuarter & (volumeEnumAbs == 2.0)),
+        #                                           (valid_cats & down & thirdQuarter & (volumeEnumAbs == 3.0)),
                                                   
-                                                  (valid_cats & up & fourthQuarter & (volumeEnumAbs == 0.0)),
-                                                  (valid_cats & up & fourthQuarter & (volumeEnumAbs == 1.0)),
-                                                  (valid_cats & up & fourthQuarter & (volumeEnumAbs == 2.0)),
-                                                  (valid_cats & up & fourthQuarter & (volumeEnumAbs == 3.0)),
+        #                                           (valid_cats & up & fourthQuarter & (volumeEnumAbs == 0.0)),
+        #                                           (valid_cats & up & fourthQuarter & (volumeEnumAbs == 1.0)),
+        #                                           (valid_cats & up & fourthQuarter & (volumeEnumAbs == 2.0)),
+        #                                           (valid_cats & up & fourthQuarter & (volumeEnumAbs == 3.0)),
                                                 
-                                                  (valid_cats & down & fourthQuarter & (volumeEnumAbs == 0.0)),
-                                                  (valid_cats & down & fourthQuarter & (volumeEnumAbs == 1.0)),
-                                                  (valid_cats & down & fourthQuarter & (volumeEnumAbs == 2.0)),
-                                                  (valid_cats & down & fourthQuarter & (volumeEnumAbs == 3.0))],
-                                                 [-3.0 / 2.0, -1.0 / 2.0, 1.0 / 2.0, 3.0 / 2.0,
+        #                                           (valid_cats & down & fourthQuarter & (volumeEnumAbs == 0.0)),
+        #                                           (valid_cats & down & fourthQuarter & (volumeEnumAbs == 1.0)),
+        #                                           (valid_cats & down & fourthQuarter & (volumeEnumAbs == 2.0)),
+        #                                           (valid_cats & down & fourthQuarter & (volumeEnumAbs == 3.0))],
+        #                                          [-3.0 / 2.0, -1.0 / 2.0, 1.0 / 2.0, 3.0 / 2.0,
                                                   
-                                                  2.0 / 2.0, 0.5 / 2.0, -0.5 / 2.0, -3.0 / 2.0,
+        #                                           2.0 / 2.0, 0.5 / 2.0, -0.5 / 2.0, -3.0 / 2.0,
                                                   
-                                                  -2.0 / 2.0, -1.0 / 2.0, 1.0 / 2.0, 2.0 / 2.0,
+        #                                           -2.0 / 2.0, -1.0 / 2.0, 1.0 / 2.0, 2.0 / 2.0,
                                                    
-                                                  1.0 / 2.0, 0.5 / 2.0, -0.5 / 2.0, -1.0 / 2.0,
+        #                                           1.0 / 2.0, 0.5 / 2.0, -0.5 / 2.0, -1.0 / 2.0,
                                                    
-                                                  -1.0 / 2.0, -0.5 / 2.0, 0.5 / 2.0, 1.0 / 2.0,
+        #                                           -1.0 / 2.0, -0.5 / 2.0, 0.5 / 2.0, 1.0 / 2.0,
                                                   
-                                                  2.0 / 2.0, 1.0 / 2.0, -1.0 / 2.0, -2.0 / 2.0,
+        #                                           2.0 / 2.0, 1.0 / 2.0, -1.0 / 2.0, -2.0 / 2.0,
                                                    
-                                                  -2.0 / 2.0, -0.5 / 2.0, 0.5 / 2.0, 3.0 / 2.0,
+        #                                           -2.0 / 2.0, -0.5 / 2.0, 0.5 / 2.0, 3.0 / 2.0,
                                                   
-                                                  3.0 / 2.0, 1.0 / 2.0, -1.0 / 2.0, -3.0 / 2.0,
-                                                  ], default = np.NaN)
+        #                                           3.0 / 2.0, 1.0 / 2.0, -1.0 / 2.0, -3.0 / 2.0,
+        #                                           ], default = np.NaN)
             
         
-        # Matrix
+        # # Matrix
         
-        # wvf
-        wvf_blue = "#0CA4DE"
-        wvf_gray = "#758494"
+        # # wvf
+        # wvf_blue = "#0CA4DE"
+        # wvf_gray = "#758494"
         
-        # data["Matrix_wvf_color"] = np.where((wvf >= upperBand) | (wvf >= rangeHigh), wvf_blue, wvf_gray)
-        cats_divisor += 2.0
-        self.price_data["CATS"] += np.select([(valid_cats & (self.price_data["Matrix_wvf_color"] == wvf_gray)),
-                                              (valid_cats & (self.price_data["Matrix_wvf_color"] == wvf_blue))],
-                                             [2.0, -2.0], default = np.NaN)
+        # # data["Matrix_wvf_color"] = np.where((wvf >= upperBand) | (wvf >= rangeHigh), wvf_blue, wvf_gray)
+        # cats_divisor += 2.0
+        # self.price_data["CATS"] += np.select([(valid_cats & (self.price_data["Matrix_wvf_color"] == wvf_gray)),
+        #                                       (valid_cats & (self.price_data["Matrix_wvf_color"] == wvf_blue))],
+        #                                      [2.0, -2.0], default = np.NaN)
         
-        # candle
-        chartSolidGreen = "#3D9970"
-        chartSolidRed = "#FF4136"
+        # # candle
+        # chartSolidGreen = "#3D9970"
+        # chartSolidRed = "#FF4136"
         
-        # data["Matrix_vcolor"] = np.select([(data["Matrix_Oo"] > data["Matrix_Cc"]), (up > down)], [chartSolidRed, chartSolidGreen], default = chartSolidRed)
-        cats_divisor += 1.0
-        self.price_data["CATS"] += np.select([(valid_cats & (self.price_data["Matrix_vcolor"] == chartSolidGreen)),
-                                              (valid_cats & (self.price_data["Matrix_vcolor"] == chartSolidRed))],
-                                             [1.0, -1.0], default = np.NaN)
+        # # data["Matrix_vcolor"] = np.select([(data["Matrix_Oo"] > data["Matrix_Cc"]), (up > down)], [chartSolidRed, chartSolidGreen], default = chartSolidRed)
+        # cats_divisor += 1.0
+        # self.price_data["CATS"] += np.select([(valid_cats & (self.price_data["Matrix_vcolor"] == chartSolidGreen)),
+        #                                       (valid_cats & (self.price_data["Matrix_vcolor"] == chartSolidRed))],
+        #                                      [1.0, -1.0], default = np.NaN)
         
         
-        # action?
-        # data["Matrix_action_text"] = np.select([beware, vol_buy, pa_buy, aggressive], ["Beware Vola", "Vola Buy", "PA Buy", "Agro Buy"], default = "N/A")
+        # # action?
+        # # data["Matrix_action_text"] = np.select([beware, vol_buy, pa_buy, aggressive], ["Beware Vola", "Vola Buy", "PA Buy", "Agro Buy"], default = "N/A")
         
-        cats_divisor += 1.0
-        self.price_data["CATS"] += np.select([(valid_cats & ~pd.isna(self.price_data["Matrix_UPshape"])),
-                                              (valid_cats & ~pd.isna(self.price_data["Matrix_DOWNshape"]))],
-                                             [-1.0, 1.0], default = 0.0)
+        # cats_divisor += 1.0
+        # self.price_data["CATS"] += np.select([(valid_cats & ~pd.isna(self.price_data["Matrix_UPshape"])),
+        #                                       (valid_cats & ~pd.isna(self.price_data["Matrix_DOWNshape"]))],
+        #                                      [-1.0, 1.0], default = 0.0)
     
         
-        self.price_data["CATS"] = self.price_data["CATS"] / cats_divisor * 100.0
-        self.CATS = self.procureLastValue("CATS")
+        # self.price_data["CATS"] = self.price_data["CATS"] / cats_divisor * 100.0
+        # self.CATS = self.procureLastValue("CATS")
+        
+        self.price_data["CATS"] = 0
         #%%
         
         
@@ -556,6 +557,8 @@ def getSentimentEmoji(x):
         emoji = '❌'
     elif x == "neutral":
         emoji = '⚠️'
+    elif x == "neutralDanger":
+        emoji = '🎽'
     
     return emoji
 
@@ -568,6 +571,8 @@ def getTrendInt(x):
         i = -1
     elif x == "neutral":
         i = 0
+    elif x == "neutralDanger":
+        i = -2
     
     #print(i)
     
@@ -579,13 +584,13 @@ def getMfrAction(trend, momentum):
     
     if trend == "bullish" and momentum == "bullish":
         action = 'Add on dips'
-    elif trend == "bullish" and momentum == "neutral":
+    elif trend == ("bullish" and (momentum == "neutral" or momentum == "neutralDanger")):
         action = "Caution, don't add, get smaller"
     elif trend == "bullish" and momentum == "bearish":
         action = 'Get out / Potentionally short'
     elif trend == "bearish" and momentum == "bearish":
         action = 'Short, keep adding'
-    elif trend == "bearish" and momentum == "neutral":
+    elif trend == ("bearish" and (momentum == "neutral" or momentum == "neutralDanger")):
         action = "Caution, don't add, get smaller"
     elif trend == "bearish" and momentum == "bullish":
         action = 'Stop shorting / Get long'

@@ -25,6 +25,16 @@ import constants
 import assetClassesMfr as ac
 from scipy.stats import pearsonr
 import numpy as np
+import argparse
+import helper
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-r", "--refresh", help="refresh data",
+                    action="store_true")
+
+args = parser.parse_args()
+if args.refresh:
+    helper.refreshData()
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.CYBORG])
 
@@ -57,6 +67,8 @@ chartSolidRed = "#FF4136"
 chartTransRed = 'rgba(255,65,54,0.2)'
 chartSolidNeutral = "#ffff1c"
 chartTransNeutral = 'rgba(255,255,28,0.2)'
+chartSolidNeutralDanger = "#0085FF"
+chartTransNeutralDanger = 'rgba(49,77,102,0.2)'
 
 def extendAllAssets(collection):
     for ticker in collection:
@@ -125,8 +137,8 @@ def get_assets_data_table(name, assetCollection):
          format={"specifier": ".2%"}),
     dict(id='Chg3M', name='3M', type='numeric',
          format={"specifier": ".2%"}),
-    dict(id='CATS', name='CATS', type='numeric',
-         format={"specifier": ".2f"}),
+    # dict(id='CATS', name='CATS', type='numeric',
+    #      format={"specifier": ".2f"}),
     ])
 
 
@@ -265,13 +277,15 @@ def get_assets_data_table(name, assetCollection):
     styles.extend(portUtils.get_column_cmap_values(assetCollection.df, 'RPos', 0.0, 1.0, cmap='RdYlGn', reverse=False, low=0, high=0,
                                                    st_threshold_1=0.75, st_threshold_2=0.25, white_threshold_1=0.75, white_threshold_2=0.25))
     
-    styles.extend(portUtils.get_column_cmap_values(assetCollection.df, 'CATS', -100.0, 100.0, cmap='RdYlGn', reverse=False, low=0, high=0,
-                                                   st_threshold_1=50.0, st_threshold_2=-50.0, white_threshold_1=50.0, white_threshold_2=-50.0))
+    # styles.extend(portUtils.get_column_cmap_values(assetCollection.df, 'CATS', -100.0, 100.0, cmap='RdYlGn', reverse=False, low=0, high=0,
+    #                                                st_threshold_1=50.0, st_threshold_2=-50.0, white_threshold_1=50.0, white_threshold_2=-50.0))
 
     styles.append({
         'if': {
             'filter_query': '{Ticker} = "Cash"',
-            'column_id': ["PnL", "Chg1D", "Chg1M", "Chg3M", "TrendEmoji", "MomentumEmoji", "RPos", "VolumeDesc", "LR", "TR", "Last", "CATS"]
+            'column_id': ["PnL", "Chg1D", "Chg1M", "Chg3M", "TrendEmoji", "MomentumEmoji", "RPos", "VolumeDesc", "LR", "TR", "Last",
+                          # "CATS"
+                          ]
         },
         'color': 'transparent',
         'backgroundColor': 'rgb(39, 39, 39)'
@@ -670,9 +684,14 @@ def getCharts(asset, lookback):
     
     noVolume = asset.ticker in ac.noVolumeTickers
     
-    row_count = 3 if noVolume else 4
-    row_heights = [.7, .15, .15] if noVolume else [.6, .13, .13, .14]
-    subplot_titles = ("Price, Trend & Range", "Matrix", "CATS") if noVolume else ("Price, Trend & Range", "Volume", "Matrix", "CATS")
+    # row_count = 3 if noVolume else 4
+    # row_heights = [.7, .15, .15] if noVolume else [.6, .13, .13, .14]
+    # subplot_titles = ("Price, Trend & Range", "Matrix", "CATS") if noVolume else ("Price, Trend & Range", "Volume", "Matrix", "CATS")
+    
+    row_count = 2 if noVolume else 3
+    row_heights = [.7, .3] if noVolume else [.6, .2, .2]
+    subplot_titles = ("Price, Trend & Range", "Matrix") if noVolume else ("Price, Trend & Range", "Volume", "Matrix")
+    
     
     fig = make_subplots(rows=row_count, cols=1, row_heights = row_heights, figure = layout_fig,
                         subplot_titles=subplot_titles, vertical_spacing=0.05)
@@ -723,27 +742,42 @@ def getCharts(asset, lookback):
         x=df.index.values,
         y=df["Matrix_wvf_plot"],
         marker_color=df["Matrix_wvf_color"].tolist(),
-        showlegend = False
+        showlegend = False,
+        width = 86400000
     ), row=matrix_row, col=1)
     
     fig.add_trace(go.Bar(
         x=df.index.values,
         y=df["Matrix_action"],
         marker_color=df["Matrix_action_color"].tolist(),
-        showlegend = False
+        showlegend = False,
+        width = 86400000
     ), row=matrix_row, col=1)
     
+    # fig.add_trace(go.Scatter(x=df.index.values, y=df["Matrix_UPshape"],
+    #                           mode='markers',
+    #                           marker=dict(symbol='cross', size = 6, color = "white"),
+    #                           showlegend = False),
+    #               row=matrix_row, col=1)
+    
+    # fig.add_trace(go.Scatter(x=df.index.values, y=df["Matrix_DOWNshape"],
+    #                           mode='markers',
+    #                           marker=dict(symbol='cross', size = 6, color = "white"),
+    #                           showlegend = False),
+    #               row=matrix_row, col=1)
+    
     fig.add_trace(go.Scatter(x=df.index.values, y=df["Matrix_UPshape"],
-                             mode='markers',
-                             marker=dict(symbol='cross', size = 6, color = "white"),
-                             showlegend = False),
+                              mode='lines',
+                              line=dict(color="white", width=6, dash="dot"),
+                              showlegend = False),
                   row=matrix_row, col=1)
     
     fig.add_trace(go.Scatter(x=df.index.values, y=df["Matrix_DOWNshape"],
-                             mode='markers',
-                             marker=dict(symbol='cross', size = 6, color = "white"),
-                             showlegend = False),
+                              mode='lines',
+                              line=dict(color="white", width=6, dash="dot"),
+                              showlegend = False),
                   row=matrix_row, col=1)
+    
     
     fig.add_trace(go.Candlestick(
         x=df.index.values,
@@ -757,14 +791,14 @@ def getCharts(asset, lookback):
     ), row=matrix_row, col=1)
     
     fig.add_trace(go.Scatter(x=df.index.values, y=df["Matrix_ob"],
-                             mode='lines',
-                             line=dict(color="gray", width=2, dash = "dash"),
-                             showlegend = False), row=matrix_row, col=1)
+                              mode='lines',
+                              line=dict(color="gray", width=2, dash = "dash"),
+                              showlegend = False), row=matrix_row, col=1)
     
     fig.add_trace(go.Scatter(x=df.index.values, y=df["Matrix_os"],
-                             mode='lines',
-                             line=dict(color="gray", width=2, dash = "dash"),
-                             showlegend = False), row=matrix_row, col=1)
+                              mode='lines',
+                              line=dict(color="gray", width=2, dash = "dash"),
+                              showlegend = False), row=matrix_row, col=1)
     
     fig.update_xaxes(row=matrix_row, col=1, rangeslider_visible=False)
     
@@ -778,33 +812,33 @@ def getCharts(asset, lookback):
     #%% Matrix Chart
     
     #%% CATS Chart
-    cats_row = 3 if noVolume else 4
+    # cats_row = 3 if noVolume else 4
     
-    # portUtils.get_cmap_value(volume["VolumeEnum"], -3, 1, 'Reds', True)
+    # # portUtils.get_cmap_value(volume["VolumeEnum"], -3, 1, 'Reds', True)
     
-    fig.add_trace(go.Bar(
-        x=df.index.values,
-        y=df["CATS"],
-        marker_color = portUtils.get_cmap_value(df["CATS"], -100.0, 100.0, 'RdYlGn'),
-        showlegend = False
-    ), row=cats_row, col=1)
+    # fig.add_trace(go.Bar(
+    #     x=df.index.values,
+    #     y=df["CATS"],
+    #     marker_color = portUtils.get_cmap_value(df["CATS"], -100.0, 100.0, 'RdYlGn'),
+    #     showlegend = False
+    # ), row=cats_row, col=1)
     
-    fig.add_trace(go.Scatter(x=df.index.values, y=len(df["CATS"]) * [100.0],
-                             mode='lines',
-                             line=dict(color="gray", width=2, dash = "dash"),
-                             showlegend = False), row=cats_row, col=1)
+    # fig.add_trace(go.Scatter(x=df.index.values, y=len(df["CATS"]) * [100.0],
+    #                          mode='lines',
+    #                          line=dict(color="gray", width=2, dash = "dash"),
+    #                          showlegend = False), row=cats_row, col=1)
     
-    fig.add_trace(go.Scatter(x=df.index.values, y=len(df["CATS"]) * [-100.0],
-                             mode='lines',
-                             line=dict(color="gray", width=2, dash = "dash"),
-                             showlegend = False), row=cats_row, col=1)
+    # fig.add_trace(go.Scatter(x=df.index.values, y=len(df["CATS"]) * [-100.0],
+    #                          mode='lines',
+    #                          line=dict(color="gray", width=2, dash = "dash"),
+    #                          showlegend = False), row=cats_row, col=1)
     
-    fig.update_yaxes({
-            "title": {"text": "CATS", "standoff": 25},
-            "side": "right",
-            "tickprefix": "     ",
-            'showgrid': False
-        }, row=cats_row, col=1)
+    # fig.update_yaxes({
+    #         "title": {"text": "CATS", "standoff": 25},
+    #         "side": "right",
+    #         "tickprefix": "     ",
+    #         'showgrid': False
+    #     }, row=cats_row, col=1)
     #%%
     
     fig.layout.annotations[0].update(x=0.065)
@@ -814,7 +848,7 @@ def getCharts(asset, lookback):
         fig.layout.annotations[1].update(x=0.025)
     
     fig.layout.annotations[1 if noVolume else 2].update(x=0.025)
-    fig.layout.annotations[2 if noVolume else 3].update(x=0.025)
+    # fig.layout.annotations[2 if noVolume else 3].update(x=0.025)
     
     fig.update_layout(height=1100, barmode='overlay')
     
@@ -864,6 +898,171 @@ def getAssetStats(asset):
     
     return table
 
+def getMiniChartTabs(asset):
+    
+    asset_crowding_tab_content = html.Div(getAssetCrowdingContent(asset))
+    
+    correlation_tab_content = html.Div(getCorrelationContent(asset))
+    
+    tabs = dbc.Tabs(
+        [
+            dbc.Tab(asset_crowding_tab_content, label="Crowding"),
+            dbc.Tab(correlation_tab_content, label="Correlations"),
+        ]
+    )
+    
+    return tabs
+
+def getAssetCrowdingContent(asset):
+    
+    table_header = [
+        html.Thead(html.Tr([html.Th("Crowding", colSpan = 1, className="bg-danger font-weight-bolder text-center h5")]))
+    ]
+    
+    rows = []
+    
+    rows.append(html.Tr(html.Td(getAssetCrowdingChart(asset), id="asset_crowding_chart_wrapper", colSpan = 1)))
+    
+    table_body = [html.Tbody(rows)]
+    
+    asset_crowding_table = dbc.Table(table_header + table_body, bordered=False, id="asset_crowding_table", className="white_table compact_table")
+    
+    return asset_crowding_table
+
+def getAssetCrowdingChart(asset):
+    
+    content = ""
+    
+    lookback = 10
+    
+    if not np.isnan(asset.IV_Premium):
+        layout = {
+            "template": "plotly_dark",
+            "xaxis_rangeslider_visible": False,
+            "margin": {"r": 10, "t": 10, "l": 10, "b": 10},
+            "title": {
+                'text': f"{asset.ticker}",
+                'y':0.925,
+                'x':0.5,
+                'xanchor': 'center',
+                'yanchor': 'top'
+            }
+        }
+        
+        layout_fig = go.Figure(layout=layout)
+        
+        # subplot_titles = (f"{asset.ticker} - {asset.price_data.index.values[-1]}")
+        subplot_titles = (f"{asset.ticker}")
+
+        fig = make_subplots(rows=1, cols=1, row_heights = [1.0], figure = layout_fig,
+                            # subplot_titles=subplot_titles,
+                            vertical_spacing=0.05)
+        
+        
+        
+        
+        # fig.update_yaxes({
+        #         "title": {"text": "Price", "standoff": 25},
+        #         "tickformat": ".2f",
+        #         "side": "right",
+        #         "tickprefix": "      " if isPercent else "     $",
+        #         "ticksuffix": "%" if isPercent else ""
+        #     }, row=row, col=col)
+        
+        # self.price_data["iv_premium"] = self.price_data["put_iv"] / hvMean - 1.0
+        # self.price_data["skew_zscore"] = technicals.calcZScore(self.price_data, "skew", 251)
+        
+        
+        
+        x_list = asset.price_data["skew_zscore"].tolist()
+        x_list = [x for x in x_list if np.isnan(x) == False]
+        x_list = x_list[-lookback:]
+        
+        y_list = asset.price_data["iv_premium"].tolist()
+        y_list = [y * 100.0 for y in y_list if np.isnan(y) == False]
+        y_list = y_list[-lookback:]
+        
+        if ((len(x_list) == 0) or (len(x_list) != len(y_list))):
+            return "No vol data"
+        
+        colors_range = range(lookback)
+        colors_df = pd.DataFrame({
+            "i": colors_range
+            })
+        
+        iv_colors = portUtils.get_cmap_value(colors_df["i"], 0, 9, 'Crowding', False)
+        
+        marker_sizes = []
+        for i in range(lookback):
+            marker_sizes.append(5 + (i * 2))
+        
+        marker_sizes = [ele for ele in reversed(marker_sizes)]
+        
+        fig.add_trace(go.Scatter(x = x_list, y = y_list,
+                                 mode='markers+lines',
+                                 marker=dict(symbol='circle', size = marker_sizes, color = iv_colors),
+                                 opacity= 1,
+                                 line_color="#D3D3D3",
+                                 line_width=1,
+                                 line_shape="spline",
+                                 showlegend = False,
+                                 hovertemplate =
+                                '<b>Skew</b>: %{x:.2f}'+
+                                '<br><b>IV PD</b>: %{y:.0f}%<br>',
+                                 # hoverinfo="text",
+                                 # hovertext="test"
+                                 ),
+                      row=1, col=1)
+        
+        x_max = max([abs(min(x_list)), max(x_list)])
+        y_max = max([abs(min(y_list)), max(y_list)])
+        
+        fig.update_xaxes({
+            "range" : [-x_max * 1 - .5, x_max + .5],
+            "dtick": .5,
+            "zerolinewidth": 3,
+            "zerolinecolor": "#91a3b0",
+            "title": "Skew Z-Score",
+            "tickfont": {
+                "size": 14
+                }
+            # "ticklabelstep": 2
+            }, row=1, col=1)
+        
+        fig.update_yaxes({
+            "range" : [-y_max - 10, y_max + 10],
+            "dtick": 10,
+            "tick0": 0,
+            # "ticklabelstep": 0,
+            "zerolinewidth": 3,
+            "zerolinecolor": "#91a3b0",
+            "title": "IV Premium/Discount",
+            "ticksuffix": "%",
+            "tickfont": {
+                "size": 14
+                }
+            }, row=1, col=1)
+        
+        
+        # fig.update_xaxes({
+        #         "title": {"text": "CATS", "standoff": 25},
+        #         "side": "right",
+        #         "tickprefix": "     ",
+        #         'showgrid': False
+        #     }, row=1, col=1)
+        
+        # fig.layout.annotations[0].update(x=0.065)
+        # fig.layout.annotations[0].update(y=1.99)
+        
+        fig.update_layout(height=350)
+        
+        
+        content = dcc.Graph(figure=fig)
+    else:
+        content = "No vol data:("
+    
+    return content
+
 def getCorrelationContent(asset):
     
     table_header = [
@@ -889,9 +1088,13 @@ def getCorrelationContent(asset):
     maxCorr = 0.0
     maxCorrTicker = ""
     
+    # print(asset.ticker)
+    
     for ticker in ac.correlationTickers:
-        corrAsset = allAssets[ticker]
+        # print(asset.ticker)
         
+        corrAsset = allAssets[ticker]
+        # print(corrAsset.ticker)
         w1Corr = getCorrelation(asset, corrAsset, 5)
         m1Corr = getCorrelation(asset, corrAsset, 21)
         m3Corr = getCorrelation(asset, corrAsset, 63)
@@ -1043,7 +1246,7 @@ def getAssetModalContent(asset):
                 dbc.Row(
                     [
                         dbc.Col(
-                            getCorrelationContent(asset),
+                            getMiniChartTabs(asset),
                             xs=12,
                             className="dbc_dark"
                         )]
@@ -1174,4 +1377,4 @@ def update_asset_modal(portfolio_assets_data_table_active_cell, watchlist_assets
     return content, f"{ticker} - Chart and Technicals", renderModal
 
 if __name__ == '__main__':
-    app.run_server(debug=True, port='5435')
+    app.run_server(debug=(not args.refresh), port='5435')

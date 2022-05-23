@@ -1,0 +1,41 @@
+Current Date,Ticker,Name,Lower Fractal Range,Upper Fractal Range,Last Price,Downside,Upside,Upside / Downside,Position on Range in %,30D HH/LL,Trend,Long Term: Lower Fractal Range,Long Term: Upper Fractal Range,Long Term: Upside / Downside,Long Term: Position on Range in %,Range spread,Relative Range,3-month Hurst,1-year Hurst
+05/19/2022,ARKK,ARK Innovation ETF,31.719,46.842,43.598,-27.25%,7.44%,0.27,0.79,bearish,bearish,31.72,56.68,1.64,0.38,15.122999999999998,34.69%,0.72,0.68
+05/19/2022,CLDS,Direxion Daily Cloud Computing Bear 2X Shares,35.392,51.616,39,-9.25%,32.35%,3.50,0.22,bullish,bullish,23.05,52.42,0.48,0.68,16.223999999999997,41.60%,0.7,0.66
+05/19/2022,DBA,Invesco DB Agriculture Fund,21.349,23.149,22.43,-4.82%,3.21%,0.67,0.60,bullish,bullish,21.16,23.82,1.15,0.46,1.8000000000000007,8.02%,0.71,0.56
+05/19/2022,EEM,iShares MSCI Emerging Markets ETF,37.877,42.147,41.02,-7.66%,2.75%,0.36,0.74,bearish,bearish,36.12,45.45,0.93,0.52,4.269999999999996,10.41%,0.71,0.61
+05/19/2022,EPV,ProShares UltraShort FTSE Europe,13.779,16.579,14.3944,-4.28%,15.18%,3.55,0.22,bullish,bullish,10.55,18.46,0.88,0.53,2.8000000000000007,19.45%,0.74,0.63
+05/19/2022,ETHE,Grayscale Ethereum Trust,9.984,16.173,13.56,-26.37%,19.27%,0.73,0.58,bearish,bearish,9.98,20.47,2.28,0.30,6.188999999999998,45.64%,0.76,0.69
+05/19/2022,EUM,ProShares Short MSCI Emerging Markets,14.268,15.838,14.675,-2.77%,7.93%,2.86,0.26,bullish,bullish,12.98,16.50,0.79,0.56,1.5699999999999985,10.70%,0.71,0.6
+05/19/2022,FDN,First Trust Dow Jones Internet Index Fund,122.711,147.397,138.015,-11.09%,6.80%,0.61,0.62,bearish,bearish,122.71,168.42,2.59,0.28,24.685999999999993,17.89%,0.71,0.66
+05/19/2022,FILL,iShares MSCI Global Energy Producers ETF,21.934,25.05,23.97,-8.49%,4.51%,0.53,0.65,bullish,bullish,21.68,25.73,0.98,0.51,3.1159999999999997,13.00%,0.56,0.61
+05/19/2022,FNGD,MicroSectors FANG+ Index -3X Inverse Leveraged ETN,56.468,101.657,77.5801,-27.21%,31.03%,1.14,0.47,bullish,bullish,13.12,108.52,0.42,0.71,45.18899999999999,58.25%,0.75,0.65
+05/19/2022,GLD,SPDR Gold Shares,166.578,172.544,171.75,-3.01%,0.46%,0.15,0.87,bearish,bearish,159.95,184.06,1.55,0.39,5.966000000000008,3.47%,0.77,0.69
+05/19/2022,HYG,iShares iBoxx $ High Yield Corporate Bond ETF,74.411,77.533,76.45,-2.67%,1.42%,0.53,0.65,bearish,bearish,73.87,79.69,1.29,0.44,3.122,4.08%,0.67,0.65
+05/19/2022,IEF,iShares 7-10 Year Treasury Bond ETF,100.796,104.109,103.41,-2.53%,0.68%,0.27,0.79,bearish,bearish,98.60,106.05,0.70,0.59,3.312999999999988,3.20%,0.75,0.67
+05/19/2022,IWM,iShares Russell 2000 ETF,162.266,186.185,177.79,-8.73%,4.72%,0.54,0.65,bearish,bearish,162.27,199.07,1.63,0.38,23.91900000000001,13.45%,0.67,0.63
+05/19/2022,KSA,iShares MSCI Saudi Arabia ETF,43.964,47.766,45.2381,-2.82%,5.59%,1.98,0.34,bearish,bearish,43.96,50.75,3.66,0.21,3.8019999999999996,8.40%,0.74,0.68
+05/19/2022,LABD,Direxion Daily S&P Biotech Bear 3X Shares,47.509,87.498,56.0136,-15.18%,56.21%,3.70,0.21,bullish,neutral,20.67,87.50,0.68,0.59,39.989000000000004,71.39%,0.67,0.62
+05/19/2022,LQD,iShares iBoxx $ Investment Grade Corporate Bond ETF,109.277,113.392,111.77,-2.23%,1.45%,0.65,0.61,bearish,bearish,107.12,116.60,1.13,0.47,4.114999999999995,3.68%,0.68,0.67
+05/19/2022,PFIX,Simplify Interest Rate Hedge ETF,54.035,62.581,55.9997,-3.51%,11.75%,3.35,0.23,neutral,bullish,52.20,67.13,2.38,0.30,8.546000000000006,15.26%,0.67,0.68
+05/19/2022,QQQ,Invesco QQQ Trust,271.802,310.893,290.96,-6.58%,6.85%,1.04,0.49,bearish,bearish,271.80,342.95,2.68,0.27,39.09099999999995,13.44%,0.7,0.65
+05/19/2022,SARK,Collaborative Investment Series Trust - Tuttle Capital Short Innovation ETF,58.524,82.764,63.2,-7.40%,30.96%,4.18,0.19,bullish,bullish,42.61,82.76,0.63,0.61,24.239999999999995,38.35%,0.7,N/A
+05/19/2022,SJB,ProShares Short High Yield,18.902,19.748,19.21,-1.60%,2.80%,1.75,0.36,bullish,bullish,18.37,19.90,0.58,0.63,0.8460000000000001,4.40%,0.68,0.64
+05/19/2022,SMH,VanEck Vectors Semiconductor ETF,208.222,246.263,230.54,-9.68%,6.82%,0.70,0.59,bearish,bearish,203.97,269.81,1.74,0.37,38.041,16.50%,0.65,0.63
+05/19/2022,SOXS,Direxion Daily Semiconductor Bear 3X Shares,37.212,63.642,49.4081,-24.68%,28.81%,1.17,0.46,neutralDanger,neutral,22.78,69.37,0.68,0.60,26.43,53.49%,0.65,0.61
+05/19/2022,SPY,SPDR S&P 500 ETF Trust,373.243,412.291,390.65,-4.46%,5.54%,1.24,0.45,bearish,bearish,373.24,440.29,2.60,0.28,39.048,10.00%,0.68,0.62
+05/19/2022,SQQQ,ProShares UltraPro Short QQQ,45.573,68.165,56.92,-19.93%,19.76%,0.99,0.50,bullish,bullish,27.50,68.17,0.37,0.73,22.592000000000006,39.69%,0.7,0.64
+05/19/2022,TBT,ProShares UltraShort 20+ Year Treasury,24.347,28.006,25.56,-4.75%,9.57%,2.02,0.33,bullish,bullish,23.25,28.81,1.31,0.43,3.658999999999999,14.32%,0.7,0.67
+05/19/2022,TLT,iShares 20+ Year Treasury Bond ETF,111.311,119.983,117.195,-5.02%,2.38%,0.47,0.68,bearish,bearish,109.69,122.46,0.77,0.56,8.671999999999997,7.40%,0.69,0.67
+05/19/2022,TZA,Direxion Daily Small Cap Bear 3X Shares,37.363,55.09,43.09,-13.29%,27.85%,2.10,0.32,bullish,bullish,27.44,55.09,0.61,0.62,17.727000000000004,41.14%,0.67,0.62
+05/19/2022,UNG,United States Natural Gas Fund  LP,22.752,33.312,28.74,-20.84%,15.91%,0.76,0.57,bullish,bullish,22.75,34.95,1.13,0.47,10.559999999999999,36.74%,0.65,0.66
+05/19/2022,USO,United States Oil Fund  LP,72.288,84.657,81.0999,-10.87%,4.39%,0.40,0.71,neutralDanger,bullish,62.23,98.17,1.11,0.47,12.369,15.25%,0.66,0.65
+05/19/2022,UUP,Invesco DB US Dollar Index Bullish Fund,27.478,28.185,27.455,0.08%,2.66%,31.74,-0.03,bullish,bullish,26.98,28.36,1.75,0.36,0.7069999999999972,2.58%,0.67,0.61
+05/19/2022,VGK,Vanguard FTSE Europe Index Fund ETF Shares,52.889,58.385,57.1,-7.37%,2.25%,0.31,0.77,bearish,bearish,49.20,64.08,1.05,0.49,5.495999999999995,9.63%,0.75,0.63
+05/19/2022,VIXM,ProShares VIX Mid-Term Futures ETF,33.521,39.142,35.57,-5.76%,10.04%,1.74,0.36,bullish,bullish,30.85,39.69,0.67,0.60,5.621000000000002,15.80%,0.69,0.56
+05/19/2022,XBI,SPDR S&P Biotech ETF,57.315,73.42,69.53,-17.57%,5.59%,0.32,0.76,bearish,bearish,57.31,83.40,1.47,0.40,16.105000000000004,23.16%,0.67,0.64
+05/19/2022,XLE,Energy Select Sector SPDR Fund,74.812,87.126,82.015,-8.78%,6.23%,0.71,0.58,bullish,bullish,73.80,91.31,1.21,0.45,12.314000000000007,15.01%,0.63,0.63
+05/19/2022,^DXY,US Dollar Index,102.656,105.308,103.903,-1.20%,1.35%,1.13,0.47,bullish,bullish,100.83,106.26,0.77,0.57,2.652000000000001,2.55%,N/A,N/A
+05/19/2022,^US10Y,U.S. 10 Year Treasury,2.74,3.182,2.9705,-7.76%,7.12%,0.92,0.52,bullish,bullish,2.74,3.61,2.73,0.27,0.4419999999999997,14.88%,N/A,N/A
+05/19/2022,^US30Y,U.S. 30 Year Treasury,2.915,3.281,3.068,-4.99%,6.94%,1.39,0.42,bullish,bullish,2.74,3.43,1.10,0.48,0.3660000000000001,11.93%,N/A,N/A
+05/19/2022,^VIX,CBOE Volatility Index,23.049,38.808,29.79,-22.63%,30.27%,1.34,0.43,bullish,bullish,12.06,43.85,0.68,0.59,15.759,52.90%,0.71,0.52
+05/19/2022,^VVIX:^VIX,^VVIX:^VIX,3.306,4.213,3.5783820073850285,-7.61%,17.73%,2.33,0.30,bearish,bearish,2.88,5.38,1.99,0.33,0.907,25.35%,N/A,N/A

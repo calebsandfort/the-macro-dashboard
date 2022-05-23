@@ -15,6 +15,7 @@ import technicals as technicals
 import matplotlib.pyplot as plt
 from matplotlib import colors
 import constants
+import colorMapUtils as cmap_utils
 
 universeInfo = pd.read_csv(os.path.join(os.getcwd(), 'data', "UniverseInfo.csv"), index_col="Ticker")
 rosetta_stone = constants.grids
@@ -506,7 +507,7 @@ def get_cmap_value(s, m, M, cmap='seismic', reverse = False, low=0, high=0):
                             M + (rng * high))
     normed = norm(s.values)
     
-    the_cmap = plt.cm.get_cmap(cmap).reversed() if reverse else plt.cm.get_cmap(cmap)
+    the_cmap = cmap_utils.get_cmap(cmap).reversed() if reverse else cmap_utils.get_cmap(cmap)
     
     c = [colors.rgb2hex(x) for x in the_cmap(normed)]
     return c

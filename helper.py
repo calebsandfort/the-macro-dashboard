@@ -35,7 +35,7 @@ def refreshData():
     dr.GetAlphaQueryVolDataForTickers(allTickers)
 
 
-refreshData()
+# refreshData()
 
 # portfolio = ac.AssetCollection("Test.csv")
 
